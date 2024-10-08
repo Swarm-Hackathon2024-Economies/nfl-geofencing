@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7BACAF112CB580B1005CC432 /* PlayerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BACAF102CB580B1005CC432 /* PlayerCard.swift */; };
 		7BE708522CB54CA000E0CBA9 /* nfl_geofencingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708512CB54CA000E0CBA9 /* nfl_geofencingApp.swift */; };
 		7BE708542CB54CA000E0CBA9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708532CB54CA000E0CBA9 /* ContentView.swift */; };
 		7BE708562CB54CA000E0CBA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BE708552CB54CA000E0CBA9 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7BACAF102CB580B1005CC432 /* PlayerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCard.swift; sourceTree = "<group>"; };
 		7BE7084E2CB54CA000E0CBA9 /* nfl-geofencing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nfl-geofencing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BE708512CB54CA000E0CBA9 /* nfl_geofencingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nfl_geofencingApp.swift; sourceTree = "<group>"; };
 		7BE708532CB54CA000E0CBA9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				7BE7085F2CB550F100E0CBA9 /* SetupProfileView.swift */,
 				7BE708552CB54CA000E0CBA9 /* Assets.xcassets */,
 				7BE708572CB54CA000E0CBA9 /* Preview Content */,
+				7BACAF102CB580B1005CC432 /* PlayerCard.swift */,
 			);
 			path = "nfl-geofencing";
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				7BE708642CB5548F00E0CBA9 /* MapScreen.swift in Sources */,
 				7BE708602CB550F100E0CBA9 /* SetupProfileView.swift in Sources */,
 				7BE708662CB554A700E0CBA9 /* FriendScreen.swift in Sources */,
+				7BACAF112CB580B1005CC432 /* PlayerCard.swift in Sources */,
 				7BE708522CB54CA000E0CBA9 /* nfl_geofencingApp.swift in Sources */,
 				7BE7086A2CB5551700E0CBA9 /* DriveScreen.swift in Sources */,
 			);
