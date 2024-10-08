@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var finishOnboarding: Bool = true
+    @State private var finishOnboarding: Bool = false
     
     var body: some View {
         if finishOnboarding {
