@@ -18,7 +18,7 @@ class FakeLocationManager: NSObject, ObservableObject, CLLocationManagerDelegate
     var willChangeCoordinate: ((_ current: CLLocationCoordinate2D, _ next: CLLocationCoordinate2D) -> Void)?
     
     private var timer: Timer?
-    private var currentStepIndex: Int = 0
+    var currentStepIndex: Int = 0
     
     private let updateInterval: TimeInterval = 2
     private let speed: Double = 50.0

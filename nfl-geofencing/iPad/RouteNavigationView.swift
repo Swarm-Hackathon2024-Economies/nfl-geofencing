@@ -1,9 +1,17 @@
 import SwiftUI
 import MapKit
 
+extension CLLocationCoordinate2D: Identifiable {
+    public var id: Double {
+        longitude + latitude
+    }
+}
+
 struct RouteNavigationView: View {
     @State private var position: MapCameraPosition = .automatic
     @State private var route: MKRoute?
+    @State private var coordinatesOnRoute: [CLLocationCoordinate2D] = []
+    @State private var passedCoordinates: [CLLocationCoordinate2D] = []
     @ObservedObject private var locationManager = FakeLocationManager()
     
     var body: some View {
@@ -15,7 +23,16 @@ struct RouteNavigationView: View {
                         .offset(y: 5)
                         .padding()
                         .background(Circle().fill(.white.opacity(0.7)).rotation3DEffect(.degrees(40), axis: (x: 1.0, y: 0.0, z: 0.0)))
-                        
+                }
+            }
+            
+            ForEach(coordinatesOnRoute.dropFirst()) { coordinate in
+                Annotation("", coordinate: coordinate, anchor: .bottomLeading) {
+                    Image(systemName: "football.fill")
+                        .font(.title)
+                        .foregroundStyle(.brown)
+                        .padding(4)
+                        .opacity(passedCoordinates.contains(coordinate) ? 0 : 1)
                 }
             }
             
@@ -25,10 +42,19 @@ struct RouteNavigationView: View {
             }
         }
         .animation(.linear, value: locationManager.coordinate)
+        .transition(.asymmetric(insertion: .scale, removal: .slide))
         .mapStyle(.standard(elevation: .flat))
         .onAppear {
             locationManager.willChangeCoordinate = self.willChangeCoordinate
             getDirections()
+        }
+        .onChange(of: locationManager.coordinate) { oldValue, newValue in
+            guard let coordinate = newValue else { return }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                withAnimation {
+                    passedCoordinates.append(coordinate)
+                }
+            }
         }
         .preferredColorScheme(.dark)
     }
@@ -58,6 +84,7 @@ struct RouteNavigationView: View {
             
             self.route = route
             let coordinates = route.polyline.getCoordinates()
+            coordinatesOnRoute = coordinates
             locationManager.coordinate = coordinates.first
             if coordinates.count < 2 { return }
             withAnimation {
