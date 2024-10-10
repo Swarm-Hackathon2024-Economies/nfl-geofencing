@@ -1,51 +1,83 @@
 import SwiftUI
 
-struct Profile {
-    var name: String
-    var car: String
-    var footballPosition: String
-    var team: String
-
-    static var blank: Profile {
-        Profile(name: "", car: "", footballPosition: "", team: "")
+struct LoginInfo {
+    var emailId: String
+    var password: String
+    
+    static var blank: LoginInfo {
+        LoginInfo(emailId: "", password: "")
     }
 }
 
 struct LoginView: View {
     let onFinish: () -> Void
-    @State private var draftProfile = Profile.blank
-
+    @State private var loginInfo = LoginInfo.blank
+    @State private var isPresented = false
+    
     var body: some View {
         NavigationStack {
-            List {
-                Section {
-                    VStack {
-                        Circle().fill(.cyan).frame(height: 200)
-                        Button {
-
-                        } label: {
-                            Text("Connect with TOYOTA ID")
-                                .foregroundStyle(.black)
-                                .padding()
-                                .background(RoundedRectangle(cornerRadius: 8).fill(.cyan))
-                        }
-                        .buttonStyle(BorderlessButtonStyle())
+            VStack {
+                Spacer()
+                Image("Eagles_logo")
+                    .resizable()
+                    .frame(width: 210, height: 91)
+                Spacer()
+                Text("APP NAME")
+                    .font(.title)
+                    .bold()
+                Spacer()
+                Button {
+                    // TOYOTA LOGIN PAGE
+                } label: {
+                    ZStack {
+                        Image("TOYOTA_logo")
+                            .resizable()
+                            .frame(width: 143, height: 24)
                     }
-                    .frame(maxWidth: .infinity)
-                    .listRowBackground(Color.clear)
-                    .listRowSeparator(.hidden)
+                    .frame(width: 334, height: 50)
+                    .background()
+                    .cornerRadius(8)
+                    .shadow(color:.gray, radius: 3, y: 2)
+                    
                 }
-                Section {
-                    FormRow(title: "Name", text: $draftProfile.name)
-                    FormRow(title: "Car", text: $draftProfile.car)
-                    FormRow(title: "Football Position", text: $draftProfile.footballPosition)
-                    FormRow(title: "Team", text: $draftProfile.team)
+                .buttonStyle(BorderlessButtonStyle())
+            }
+            Spacer()
+            Text("or")
+                .font(.system(size: 24))
+                .foregroundStyle(.gray)
+            Spacer()
+            VStack {
+                VStack(alignment: .leading) {
+                    Text("Email ID")
+                        .font(.system(size: 16))
+                        .foregroundStyle(.gray)
+                    TextField("", text: $loginInfo.emailId)
+                        .frame(maxWidth: .infinity)
+                    Divider()
                 }
-
+                .frame(height: 72)
+                VStack(alignment: .leading) {
+                    Text("Password")
+                        .font(.system(size: 16))
+                        .foregroundStyle(.gray)
+                    SecureField("", text: $loginInfo.password)
+                    Divider()
+                }
+                .frame(height: 72)
+                HStack {
+                    Spacer()
+                    Text("Forgot Password?")
+                        .font(.callout)
+                        .foregroundStyle(.red)
+                }
+                Spacer()
                 Button {
                     onFinish()
                 } label: {
                     Text("Login")
+                        .font(.system(size: 20))
+                        .bold()
                         .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .padding()
@@ -54,28 +86,23 @@ struct LoginView: View {
                 .buttonStyle(BorderlessButtonStyle())
                 .listRowBackground(Color.clear)
                 .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                Spacer()
                 HStack {
                     Text("Don't have an account?")
                         .foregroundStyle(.gray)
-                    Text("Register Now")
-                        .foregroundStyle(.red)
+                    Button {
+                        isPresented = true
+                    } label: {
+                        Text("Register Now")
+                            .foregroundStyle(.red)
+                    }
                 }
                 .font(.system(size: 16))
             }
-            .navigationBarTitleDisplayMode(.inline)
-        }
-    }
-}
-
-struct FormRow: View {
-    let title: String
-    @Binding var text: String
-
-    var body: some View {
-        HStack {
-            Text(title)
-            TextField(title, text: $text)
-                .multilineTextAlignment(.trailing)
+            .padding(30)
+            .navigationDestination(isPresented: $isPresented) {
+                SetupProfileView()
+            }
         }
     }
 }

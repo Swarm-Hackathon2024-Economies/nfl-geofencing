@@ -1,10 +1,22 @@
 import SwiftUI
 
+struct Profile {
+    var name: String
+    var car: String
+    var footballPosition: String
+    var team: String
+    
+    static var blank: Profile {
+        Profile(name: "", car: "", footballPosition: "", team: "")
+    }
+}
+
 struct SetupProfileView: View {
-    let onFinish: () -> Void
+    //    let onFinish: () -> Void
+    @Environment(\.dismiss) var dismiss
     @State private var draftProfile = Profile.blank
     let positionList = FootballPosition().positions
-
+    
     var body: some View {
         NavigationStack {
             HStack {
@@ -16,9 +28,9 @@ struct SetupProfileView: View {
             Spacer()
             ScalableImageView(UIImage(named: "add_photo")!)
                 .frame(width: 100, height: 100)
-            .frame(maxWidth: .infinity)
-            .listRowBackground(Color.clear)
-            .listRowSeparator(.hidden)
+                .frame(maxWidth: .infinity)
+                .listRowBackground(Color.clear)
+                .listRowSeparator(.hidden)
             Spacer()
             VStack(alignment: .leading, spacing: 24) {
                 VStack(alignment: .leading) {
@@ -106,7 +118,7 @@ struct SetupProfileView: View {
             }
             Spacer()
             Button {
-                onFinish()
+                //                onFinish()
             } label: {
                 Text("Next")
                     .font(.system(size: 20))
@@ -116,17 +128,28 @@ struct SetupProfileView: View {
                     .background(RoundedRectangle(cornerRadius: 8)
                         .stroke(Color.red, lineWidth: 1)
                         .fill(.white))
-
+                
             }
             .padding(1)
         }
         .padding(30)
-        .navigationTitle("Create Profile")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(
+                    action: {
+                        dismiss()
+                    }, label: {
+                        Image(systemName: "chevron.backward")
+                    }
+                ).tint(.black)
+            }
+        }
     }
 }
 
 
 #Preview {
-    SetupProfileView() {}
+    SetupProfileView()
 }

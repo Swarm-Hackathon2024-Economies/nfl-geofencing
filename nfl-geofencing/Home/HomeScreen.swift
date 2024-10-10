@@ -2,7 +2,7 @@ import SwiftUI
 import MapKit
 
 struct HomeScreen: View {
-
+    
     var body: some View {
         VStack {
             HStack {
