@@ -18,7 +18,7 @@ struct ContentView: View {
                     .tabItem { Label("My Page", systemImage: "person.circle.fill") }
             }
         } else {
-            SetupProfileView() {
+            LoginView() {
                 finishOnboarding = true
             }
         }

@@ -1,78 +1,136 @@
 import SwiftUI
 
-struct Profile {
-    var name: String
-    var car: String
-    var footballPosition: String
-    var team: String
-    
-    static var blank: Profile {
-        Profile(name: "", car: "", footballPosition: "", team: "")
-    }
-}
-
 struct SetupProfileView: View {
     let onFinish: () -> Void
     @State private var draftProfile = Profile.blank
-    
+    let positionList = FootballPosition().positions
+
     var body: some View {
         NavigationStack {
-            List {
-                Section {
-                    VStack {
-                        Circle().fill(.cyan).frame(height: 200)
-                        Button {
-                            
-                        } label: {
-                            Text("Connect with TOYOTA ID")
-                                .foregroundStyle(.black)
-                                .padding()
-                                .background(RoundedRectangle(cornerRadius: 8).fill(.cyan))
-                        }
-                        .buttonStyle(BorderlessButtonStyle())
-                    }
-                    .frame(maxWidth: .infinity)
-                    .listRowBackground(Color.clear)
-                    .listRowSeparator(.hidden)
-                }
-                Section {
-                    FormRow(title: "Name", text: $draftProfile.name)
-                    FormRow(title: "Car", text: $draftProfile.car)
-                    FormRow(title: "Football Position", text: $draftProfile.footballPosition)
-                    FormRow(title: "Team", text: $draftProfile.team)
-                }
-                
-                Button {
-                    onFinish()
-                } label: {
-                    Text("OK")
-                        .foregroundStyle(.black)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 8).fill(.cyan))
-                }
-                .buttonStyle(BorderlessButtonStyle())
-                .listRowBackground(Color.clear)
-                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+            HStack {
+                Text("Create Profile")
+                    .font(.title)
+                    .bold()
+                Spacer()
             }
-            .navigationTitle("Create Profile")
-            .navigationBarTitleDisplayMode(.inline)
+            Spacer()
+            ZStack(alignment: .center) {
+                Circle().fill(.gray).frame(height: 100)
+                Image(systemName: "photo.badge.plus")
+                    .resizable()
+                    .frame(width: 45, height: 38)
+                    .foregroundStyle(.white)
+            }
+            .frame(maxWidth: .infinity)
+            .listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
+            Spacer()
+            VStack(alignment: .leading, spacing: 24) {
+                VStack(alignment: .leading) {
+                    Text("Your Car")
+                        .font(.system(size: 16))
+                        .foregroundStyle(.gray)
+                    TextField("Crown Hybrid", text: $draftProfile.car)
+                        .frame(maxWidth: .infinity)
+                    Divider()
+                }
+                .frame(height: 72)
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack {
+                        Text("Player Name")
+                            .font(.system(size: 16))
+                            .foregroundStyle(.gray)
+                        Text("*")
+                            .foregroundStyle(.red)
+                    }
+                    TextField("", text: $draftProfile.name)
+                        .frame(maxWidth: .infinity)
+                    Divider()
+                }
+                .frame(height: 72)
+                VStack(alignment: .leading, spacing: 10){
+                    HStack {
+                        Text("Your Position")
+                            .font(.system(size: 16))
+                            .foregroundStyle(.gray)
+                        Text("*")
+                            .foregroundStyle(.red)
+                    }
+                    HStack {
+                        Menu {
+                            ForEach(positionList, id: \.self) { content in
+                                Button {
+                                    draftProfile.footballPosition = content
+                                } label: {
+                                    Text(content.description)
+                                }
+                            }
+                        } label: {
+                            HStack {
+                                Text(draftProfile.footballPosition.description).lineLimit(1)
+                                Spacer()
+                                Image(systemName: "chevron.down")
+                            }
+                            .foregroundStyle(.black)
+                        }
+                    }
+                    .frame(height: 22)
+                    Divider()
+                }
+                .frame(height: 72)
+                VStack(alignment: .leading, spacing: 10){
+                    HStack {
+                        Text("Your First Team")
+                            .font(.system(size: 16))
+                            .foregroundStyle(.gray)
+                        Text("*")
+                            .foregroundStyle(.red)
+                    }
+                    HStack {
+                        Menu {
+                            ForEach(positionList, id: \.self) { content in
+                                Button {
+                                    draftProfile.team = content
+                                } label: {
+                                    Text(content.description)
+                                }
+                            }
+                        } label: {
+                            HStack {
+                                Text(draftProfile.team.description).lineLimit(1)
+                                Spacer()
+                                Image(systemName: "chevron.down")
+                            }
+                            .foregroundStyle(.black)
+                        }
+                    }
+                    .frame(height: 22)
+                    Divider()
+                }
+                .frame(height: 72)
+            }
+            Spacer()
+            Button {
+                onFinish()
+            } label: {
+                Text("Next")
+                    .font(.system(size: 20))
+                    .foregroundStyle(.red)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.red, lineWidth: 1)
+                        .fill(.white))
+
+            }
+            .padding(1)
         }
+        .padding(30)
+        .navigationTitle("Create Profile")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
-struct FormRow: View {
-    let title: String
-    @Binding var text: String
-    
-    var body: some View {
-        HStack {
-            Text(title)
-            TextField(title, text: $text)
-                .multilineTextAlignment(.trailing)
-        }
-    }
-}
 
 #Preview {
     SetupProfileView() {}

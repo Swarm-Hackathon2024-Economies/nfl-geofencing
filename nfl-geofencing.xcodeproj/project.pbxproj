@@ -25,6 +25,8 @@
 		7BE7086A2CB5551700E0CBA9 /* DriveScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708692CB5551700E0CBA9 /* DriveScreen.swift */; };
 		A139DB5D2CB5724F00A75050 /* RouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139DB5C2CB5724F00A75050 /* RouteDetailView.swift */; };
 		A139DB612CB573AE00A75050 /* DestinationRegistorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139DB602CB573AE00A75050 /* DestinationRegistorView.swift */; };
+		A1FB9D892CB7CDBA00119D9B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB9D882CB7CDBA00119D9B /* LoginView.swift */; };
+		A1FB9D8B2CB8002900119D9B /* FootballPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB9D8A2CB8002900119D9B /* FootballPosition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		7BE708692CB5551700E0CBA9 /* DriveScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveScreen.swift; sourceTree = "<group>"; };
 		A139DB5C2CB5724F00A75050 /* RouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailView.swift; sourceTree = "<group>"; };
 		A139DB602CB573AE00A75050 /* DestinationRegistorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationRegistorView.swift; sourceTree = "<group>"; };
+		A1FB9D882CB7CDBA00119D9B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		A1FB9D8A2CB8002900119D9B /* FootballPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootballPosition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +101,11 @@
 				7BE7086F2CB556FB00E0CBA9 /* MyPage */,
 				7BE708512CB54CA000E0CBA9 /* nfl_geofencingApp.swift */,
 				A139DB5C2CB5724F00A75050 /* RouteDetailView.swift */,
+				A1FB9D8A2CB8002900119D9B /* FootballPosition.swift */,
 				A139DB602CB573AE00A75050 /* DestinationRegistorView.swift */,
 				7BE708532CB54CA000E0CBA9 /* ContentView.swift */,
 				7BE7085F2CB550F100E0CBA9 /* SetupProfileView.swift */,
+				A1FB9D882CB7CDBA00119D9B /* LoginView.swift */,
 				7BE708552CB54CA000E0CBA9 /* Assets.xcassets */,
 				7BE708572CB54CA000E0CBA9 /* Preview Content */,
 				7BACAF102CB580B1005CC432 /* PlayerCard.swift */,
@@ -234,8 +240,10 @@
 				7B4BFFC32CB6A01D001C450F /* LocationManager.swift in Sources */,
 				A139DB612CB573AE00A75050 /* DestinationRegistorView.swift in Sources */,
 				7B4BFFBF2CB69EE2001C450F /* Place.swift in Sources */,
+				A1FB9D8B2CB8002900119D9B /* FootballPosition.swift in Sources */,
 				7BE708642CB5548F00E0CBA9 /* MapScreen.swift in Sources */,
 				7BE708602CB550F100E0CBA9 /* SetupProfileView.swift in Sources */,
+				A1FB9D892CB7CDBA00119D9B /* LoginView.swift in Sources */,
 				7BE708662CB554A700E0CBA9 /* FriendScreen.swift in Sources */,
 				7B4BFFBC2CB69E07001C450F /* ToyotaNavigationSidebar.swift in Sources */,
 				7B4BFFBA2CB69C10001C450F /* IPadContentView.swift in Sources */,
