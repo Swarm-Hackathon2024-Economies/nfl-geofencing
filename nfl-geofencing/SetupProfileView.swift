@@ -14,13 +14,8 @@ struct SetupProfileView: View {
                 Spacer()
             }
             Spacer()
-            ZStack(alignment: .center) {
-                Circle().fill(.gray).frame(height: 100)
-                Image(systemName: "photo.badge.plus")
-                    .resizable()
-                    .frame(width: 45, height: 38)
-                    .foregroundStyle(.white)
-            }
+            ScalableImageView(UIImage(named: "add_photo")!)
+                .frame(width: 100, height: 100)
             .frame(maxWidth: .infinity)
             .listRowBackground(Color.clear)
             .listRowSeparator(.hidden)

@@ -62,7 +62,6 @@ struct LoginView: View {
                 }
                 .font(.system(size: 16))
             }
-            .navigationTitle("Create Profile")
             .navigationBarTitleDisplayMode(.inline)
         }
     }

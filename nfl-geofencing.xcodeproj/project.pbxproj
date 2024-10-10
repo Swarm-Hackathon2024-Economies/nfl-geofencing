@@ -27,6 +27,7 @@
 		A139DB612CB573AE00A75050 /* DestinationRegistorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139DB602CB573AE00A75050 /* DestinationRegistorView.swift */; };
 		A1FB9D892CB7CDBA00119D9B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB9D882CB7CDBA00119D9B /* LoginView.swift */; };
 		A1FB9D8B2CB8002900119D9B /* FootballPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB9D8A2CB8002900119D9B /* FootballPosition.swift */; };
+		A1FD00402CB8136100EC3A46 /* ScarableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FD003F2CB8136100EC3A46 /* ScarableImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		A139DB602CB573AE00A75050 /* DestinationRegistorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationRegistorView.swift; sourceTree = "<group>"; };
 		A1FB9D882CB7CDBA00119D9B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A1FB9D8A2CB8002900119D9B /* FootballPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootballPosition.swift; sourceTree = "<group>"; };
+		A1FD003F2CB8136100EC3A46 /* ScarableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScarableImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				7BE7085F2CB550F100E0CBA9 /* SetupProfileView.swift */,
 				A1FB9D882CB7CDBA00119D9B /* LoginView.swift */,
 				7BE708552CB54CA000E0CBA9 /* Assets.xcassets */,
+				A1FD003F2CB8136100EC3A46 /* ScarableImageView.swift */,
 				7BE708572CB54CA000E0CBA9 /* Preview Content */,
 				7BACAF102CB580B1005CC432 /* PlayerCard.swift */,
 				7B4BFFBE2CB69EE2001C450F /* Place.swift */,
@@ -239,6 +242,7 @@
 				7BE708622CB5511000E0CBA9 /* HomeScreen.swift in Sources */,
 				7B4BFFC32CB6A01D001C450F /* LocationManager.swift in Sources */,
 				A139DB612CB573AE00A75050 /* DestinationRegistorView.swift in Sources */,
+				A1FD00402CB8136100EC3A46 /* ScarableImageView.swift in Sources */,
 				7B4BFFBF2CB69EE2001C450F /* Place.swift in Sources */,
 				A1FB9D8B2CB8002900119D9B /* FootballPosition.swift in Sources */,
 				7BE708642CB5548F00E0CBA9 /* MapScreen.swift in Sources */,
