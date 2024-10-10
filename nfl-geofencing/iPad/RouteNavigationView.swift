@@ -8,11 +8,12 @@ extension CLLocationCoordinate2D: Identifiable {
 }
 
 struct RouteNavigationView: View {
+    @ObservedObject var locationManager: FakeLocationManager
     @State private var position: MapCameraPosition = .automatic
     @State private var route: MKRoute?
     @State private var coordinatesOnRoute: [CLLocationCoordinate2D] = []
     @State private var passedCoordinates: [CLLocationCoordinate2D] = []
-    @ObservedObject private var locationManager = FakeLocationManager()
+    @Binding var totalPoints: Int
     
     var body: some View {
         Map(position: $position) {
@@ -49,9 +50,11 @@ struct RouteNavigationView: View {
             getDirections()
         }
         .onChange(of: locationManager.coordinate) { oldValue, newValue in
+            if oldValue == nil { return }
             guard let coordinate = newValue else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 withAnimation {
+                    totalPoints += 12
                     passedCoordinates.append(coordinate)
                 }
             }
@@ -117,5 +120,5 @@ struct RouteNavigationView: View {
 
 
 #Preview {
-    RouteNavigationView()
+    RouteNavigationView(locationManager: FakeLocationManager(), totalPoints: .constant(0))
 }

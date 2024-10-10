@@ -13,6 +13,7 @@ extension CLLocationCoordinate2D: Equatable {
 
 class FakeLocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var coordinate: CLLocationCoordinate2D?
+    @Published var updatingFinished: Bool = false
     
     var routePolyline: MKPolyline?
     var willChangeCoordinate: ((_ current: CLLocationCoordinate2D, _ next: CLLocationCoordinate2D) -> Void)?
@@ -53,6 +54,7 @@ class FakeLocationManager: NSObject, ObservableObject, CLLocationManagerDelegate
     func stopUpdatingLocation() {
         timer?.invalidate()
         timer = nil
+        updatingFinished = true
     }
 }
 
