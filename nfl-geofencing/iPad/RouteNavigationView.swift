@@ -1,18 +1,13 @@
 import SwiftUI
 import MapKit
 
-extension CLLocationCoordinate2D: Identifiable {
-    public var id: Double {
-        longitude + latitude
-    }
-}
-
 struct RouteNavigationView: View {
     @ObservedObject var locationManager: FakeLocationManager
     @State private var position: MapCameraPosition = .automatic
     @State private var route: MKRoute?
     @State private var coordinatesOnRoute: [CLLocationCoordinate2D] = []
     @State private var passedCoordinates: [CLLocationCoordinate2D] = []
+    @Binding var instruction: Instruction
     @Binding var totalPoints: Int
     
     var body: some View {
@@ -58,8 +53,20 @@ struct RouteNavigationView: View {
                     passedCoordinates.append(coordinate)
                 }
             }
+            
+            let currentStep = getCurrentStep(for: coordinate)
+            instruction.text = currentStep?.instructions
         }
         .preferredColorScheme(.dark)
+    }
+    
+    private func getCurrentStep(for currentLocation: CLLocationCoordinate2D) -> MKRoute.Step? {
+        guard let route else { return nil }
+        let step = route.steps.first { step in
+            let coordinates = step.polyline.getCoordinates()
+            return coordinates.contains(currentLocation)
+        }
+        return step
     }
     
     private func calculateAngle(from start: CLLocationCoordinate2D, to next: CLLocationCoordinate2D) -> Double {
@@ -118,7 +125,10 @@ struct RouteNavigationView: View {
 }
 
 
-
 #Preview {
-    RouteNavigationView(locationManager: FakeLocationManager(), totalPoints: .constant(0))
+    RouteNavigationView(
+        locationManager: FakeLocationManager(),
+        instruction: .constant(Instruction()),
+        totalPoints: .constant(0)
+    )
 }

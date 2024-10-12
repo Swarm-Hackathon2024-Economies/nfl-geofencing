@@ -23,6 +23,10 @@
 		7BE708662CB554A700E0CBA9 /* FriendScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708652CB554A700E0CBA9 /* FriendScreen.swift */; };
 		7BE708682CB554CB00E0CBA9 /* MyPageScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708672CB554CB00E0CBA9 /* MyPageScreen.swift */; };
 		7BE7086A2CB5551700E0CBA9 /* DriveScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708692CB5551700E0CBA9 /* DriveScreen.swift */; };
+		7BE99FCF2CBAB9230049F525 /* Collection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE99FCE2CBAB9230049F525 /* Collection+.swift */; };
+		7BE99FD12CBAB94B0049F525 /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE99FD02CBAB94B0049F525 /* CLLocationCoordinate2D+.swift */; };
+		7BE99FD32CBABA330049F525 /* MapPolyline+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE99FD22CBABA330049F525 /* MapPolyline+.swift */; };
+		7BE99FD52CBABA8E0049F525 /* ResultDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE99FD42CBABA8E0049F525 /* ResultDialog.swift */; };
 		A139DB5D2CB5724F00A75050 /* RouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139DB5C2CB5724F00A75050 /* RouteDetailView.swift */; };
 		A139DB612CB573AE00A75050 /* DestinationRegistorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139DB602CB573AE00A75050 /* DestinationRegistorView.swift */; };
 		A1FB9D892CB7CDBA00119D9B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB9D882CB7CDBA00119D9B /* LoginView.swift */; };
@@ -48,6 +52,10 @@
 		7BE708652CB554A700E0CBA9 /* FriendScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendScreen.swift; sourceTree = "<group>"; };
 		7BE708672CB554CB00E0CBA9 /* MyPageScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageScreen.swift; sourceTree = "<group>"; };
 		7BE708692CB5551700E0CBA9 /* DriveScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveScreen.swift; sourceTree = "<group>"; };
+		7BE99FCE2CBAB9230049F525 /* Collection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+.swift"; sourceTree = "<group>"; };
+		7BE99FD02CBAB94B0049F525 /* CLLocationCoordinate2D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+.swift"; sourceTree = "<group>"; };
+		7BE99FD22CBABA330049F525 /* MapPolyline+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapPolyline+.swift"; sourceTree = "<group>"; };
+		7BE99FD42CBABA8E0049F525 /* ResultDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDialog.swift; sourceTree = "<group>"; };
 		A139DB5C2CB5724F00A75050 /* RouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailView.swift; sourceTree = "<group>"; };
 		A139DB602CB573AE00A75050 /* DestinationRegistorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationRegistorView.swift; sourceTree = "<group>"; };
 		A1FB9D882CB7CDBA00119D9B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -72,6 +80,7 @@
 				7B4BFFB92CB69C10001C450F /* IPadContentView.swift */,
 				7B4BFFBB2CB69E07001C450F /* ToyotaNavigationSidebar.swift */,
 				7B4BFFC02CB69F36001C450F /* RouteNavigationView.swift */,
+				7BE99FD42CBABA8E0049F525 /* ResultDialog.swift */,
 			);
 			path = iPad;
 			sourceTree = "<group>";
@@ -114,6 +123,9 @@
 				7BACAF102CB580B1005CC432 /* PlayerCard.swift */,
 				7B4BFFBE2CB69EE2001C450F /* Place.swift */,
 				7B4BFFC22CB6A01D001C450F /* LocationManager.swift */,
+				7BE99FCE2CBAB9230049F525 /* Collection+.swift */,
+				7BE99FD02CBAB94B0049F525 /* CLLocationCoordinate2D+.swift */,
+				7BE99FD22CBABA330049F525 /* MapPolyline+.swift */,
 			);
 			path = "nfl-geofencing";
 			sourceTree = "<group>";
@@ -247,12 +259,16 @@
 				A1FB9D8B2CB8002900119D9B /* FootballPosition.swift in Sources */,
 				7BE708642CB5548F00E0CBA9 /* MapScreen.swift in Sources */,
 				7BE708602CB550F100E0CBA9 /* SetupProfileView.swift in Sources */,
+				7BE99FCF2CBAB9230049F525 /* Collection+.swift in Sources */,
+				7BE99FD52CBABA8E0049F525 /* ResultDialog.swift in Sources */,
 				A1FB9D892CB7CDBA00119D9B /* LoginView.swift in Sources */,
 				7BE708662CB554A700E0CBA9 /* FriendScreen.swift in Sources */,
 				7B4BFFBC2CB69E07001C450F /* ToyotaNavigationSidebar.swift in Sources */,
 				7B4BFFBA2CB69C10001C450F /* IPadContentView.swift in Sources */,
+				7BE99FD32CBABA330049F525 /* MapPolyline+.swift in Sources */,
 				7BACAF112CB580B1005CC432 /* PlayerCard.swift in Sources */,
 				7BE708522CB54CA000E0CBA9 /* nfl_geofencingApp.swift in Sources */,
+				7BE99FD12CBAB94B0049F525 /* CLLocationCoordinate2D+.swift in Sources */,
 				7B4BFFC12CB69F36001C450F /* RouteNavigationView.swift in Sources */,
 				7BE7086A2CB5551700E0CBA9 /* DriveScreen.swift in Sources */,
 			);
