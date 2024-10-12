@@ -24,6 +24,12 @@ struct RouteDetailView: View {
                         await calculateRoute()
                     }
                 }
+                .onChange(of: selectedRoute) {
+                    Task {
+                        guard let tmp = selectedRoute else {return}
+                        await checkRouteAvoidsArea(route: tmp)
+                    }
+                }
             }
             VStack {
                 ScrollView(.vertical, showsIndicators: false) {
@@ -155,7 +161,9 @@ struct RouteDetailView: View {
                                                     }
                                                     Button{
                                                         self.selectedRoute = route
-                                                        self.modalOffset = UIScreen.main.bounds.height - 255
+                                                        withAnimation{
+                                                            self.modalOffset = UIScreen.main.bounds.height - 255
+                                                        }
 
                                                     } label: {
                                                         ZStack {
@@ -170,7 +178,6 @@ struct RouteDetailView: View {
                                                         }
                                                     }
                                                     .frame(width: 62, height: 62)
-
                                                 }
                                             }
                                             .frame(height: 90)
@@ -240,12 +247,77 @@ struct RouteDetailView: View {
             let response = try await directions.calculate()
             let routes = response.routes
             self.routes = routes
-            print(routes)
         } catch {
             print(error.localizedDescription)
         }
     }
 
+    func checkRouteAvoidsArea(route: MKRoute) -> Bool {
+        let routePolyline = route.polyline
+        let pointCount = routePolyline.pointCount
+        let points = routePolyline.points()
+
+        for i in 0..<pointCount {
+            print("\(i)周目")
+            let coordinate = points[i].coordinate
+            let location = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+
+            let testCoordinate = CLLocationCoordinate2D(latitude: 32.7488, longitude: -97.0937)
+
+            func roundToThirdDecimalPlace(value: Double) -> Double {
+                return (value * 1000).rounded() / 1000
+            }
+
+            // 指定した座標が四捨五入した経路の座標に含まれているか確認する関数
+            func isCoordinateInRoundedRoute(route: CLLocationCoordinate2D, testCoordinate: CLLocationCoordinate2D) -> Bool {
+                let roundedTestCoordinate = CLLocationCoordinate2D(
+                    latitude: roundToThirdDecimalPlace(value: testCoordinate.latitude),
+                    longitude: roundToThirdDecimalPlace(value: testCoordinate.longitude)
+                )
+
+                let roundedRouteCoordinate = CLLocationCoordinate2D(
+                    latitude: roundToThirdDecimalPlace(value: route.latitude),
+                    longitude: roundToThirdDecimalPlace(value: route.longitude)
+                )
+
+                print("\(roundedTestCoordinate)")
+                print("\(roundedRouteCoordinate)")
+
+                // 一致を確認
+                if roundedRouteCoordinate.latitude == roundedTestCoordinate.latitude &&
+                    roundedRouteCoordinate.longitude == roundedTestCoordinate.longitude {
+                    return true // 一致する座標が見つかった
+                }
+                return false // 一致する座標が見つからなかった
+            }
+
+            if isCoordinateInRoundedRoute(route: coordinate, testCoordinate: testCoordinate) {
+                print("指定した座標は四捨五入した経路の座標に含まれています。")
+            } else {
+                print("指定した座標は四捨五入した経路の座標に含まれていません。")
+            }
+        }
+        return true  // エリアに触れていない
+    }
+
+    func generateCoordinatePatterns(center: CLLocationCoordinate2D, latitudeRange: ClosedRange<Double>, longitudeRange: ClosedRange<Double>) -> [CLLocationCoordinate2D] {
+        var patterns: [CLLocationCoordinate2D] = []
+
+        // 緯度と経度を小数点第4位までの範囲で生成
+        let latStep = 0.0001
+        let lonStep = 0.0001
+
+        // 緯度の範囲をループ
+        for lat in stride(from: latitudeRange.lowerBound, through: latitudeRange.upperBound, by: latStep) {
+            // 経度の範囲をループ
+            for lon in stride(from: longitudeRange.lowerBound, through: longitudeRange.upperBound, by: lonStep) {
+                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                patterns.append(coordinate)
+            }
+        }
+
+        return patterns
+    }
 }
 
 #Preview {
