@@ -56,6 +56,8 @@ struct RouteNavigationView: View {
             
             let currentStep = getCurrentStep(for: coordinate)
             instruction.text = currentStep?.instructions
+            guard let currentStep else { return }
+            updateRemainingDistance(of: currentStep, from: coordinate)
         }
         .preferredColorScheme(.dark)
     }
@@ -69,8 +71,21 @@ struct RouteNavigationView: View {
         return step
     }
     
-    private func updateDirectionForNextStep(from currentLocation: CLLocationCoordinate2D) {
-        guard let route else { return }
+    private func updateRemainingDistance(of step: MKRoute.Step, from currentLocation: CLLocationCoordinate2D) {
+        let stepCoordinates = step.polyline.getCoordinates()
+        let currentIndexInStep = stepCoordinates.firstIndex(of: currentLocation) ?? 0
+        
+        var remainingDistance: Double = 0
+        for index in currentIndexInStep..<stepCoordinates.count {
+            guard let current = stepCoordinates[safe: index] else { break }
+            guard let next = stepCoordinates[safe: index + 1] else { break }
+            let currentLocation = CLLocation(latitude: current.latitude, longitude: current.longitude)
+            let nextLocation = CLLocation(latitude: next.latitude, longitude: next.longitude)
+            remainingDistance += nextLocation.distance(from: currentLocation)
+        }
+        withAnimation {
+            instruction.distance = Int(remainingDistance)
+        }
     }
     
     private func calculateAngle(from start: CLLocationCoordinate2D, to next: CLLocationCoordinate2D) -> Double {
