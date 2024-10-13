@@ -39,4 +39,17 @@ struct Place {
         item.name = "AT&T Stadium"
         return item
     }()
+    
+    static let greatHeartsIrvingUpperSchool = {
+        let item = MKMapItem(
+            placemark: MKPlacemark(
+                coordinate: CLLocationCoordinate2D(
+                    latitude: 32.881103028406834,
+                    longitude: -96.99292883215352
+                )
+            )
+        )
+        item.name = "Great Hearts Irving Upper School"
+        return item
+    }()
 }

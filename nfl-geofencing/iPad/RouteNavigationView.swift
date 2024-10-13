@@ -42,7 +42,7 @@ struct RouteNavigationView: View {
         .mapStyle(.standard(elevation: .flat))
         .onAppear {
             locationManager.willChangeCoordinate = self.willChangeCoordinate
-            getDirections()
+            getRoute()
         }
         .onChange(of: locationManager.coordinate) { oldValue, newValue in
             if oldValue == nil { return }
@@ -69,6 +69,10 @@ struct RouteNavigationView: View {
         return step
     }
     
+    private func updateDirectionForNextStep(from currentLocation: CLLocationCoordinate2D) {
+        guard let route else { return }
+    }
+    
     private func calculateAngle(from start: CLLocationCoordinate2D, to next: CLLocationCoordinate2D) -> Double {
         let deltaLongitude = next.longitude - start.longitude
         let deltaLatitude = next.latitude - start.latitude
@@ -77,7 +81,7 @@ struct RouteNavigationView: View {
         return result
     }
     
-    private func getDirections() {
+    private func getRoute() {
         let request = MKDirections.Request()
         request.source = Place.tmna
         request.destination = Place.atAndTStadium
@@ -97,26 +101,21 @@ struct RouteNavigationView: View {
             coordinatesOnRoute = coordinates
             locationManager.coordinate = coordinates.first
             if coordinates.count < 2 { return }
-            withAnimation {
-                position = .camera(
-                    MapCamera(
-                        centerCoordinate: coordinates[0],
-                        distance: 300,
-                        heading: calculateAngle(from: coordinates[0], to: coordinates[1]),
-                        pitch: 40
-                    )
-                )
-            }
+            adjustCameraPosition(for: coordinates[0], and: coordinates[1])
         }
     }
     
     private func willChangeCoordinate(_ current: CLLocationCoordinate2D, _ next: CLLocationCoordinate2D) {
+        adjustCameraPosition(for: current, and: next)
+    }
+    
+    private func adjustCameraPosition(for currentPosition: CLLocationCoordinate2D, and nextPosition: CLLocationCoordinate2D) {
         withAnimation {
             position = .camera(
                 MapCamera(
-                    centerCoordinate: next,
+                    centerCoordinate: nextPosition,
                     distance: 300,
-                    heading: calculateAngle(from: current, to: next),
+                    heading: calculateAngle(from: currentPosition, to: nextPosition),
                     pitch: 40
                 )
             )
