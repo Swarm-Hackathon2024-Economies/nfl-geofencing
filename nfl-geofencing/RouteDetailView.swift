@@ -4,51 +4,44 @@ import MapKit
 struct RouteDetailView: View {
     @State private var destinationInputText = ""
     @State private var arrivalInputText = ""
-    @State private var routes: [MKRoute]?
-    @State private var modalOffset: CGFloat = UIScreen.main.bounds.height - 255
-    @State private var lastModalOffset: CGFloat = UIScreen.main.bounds.height - 255
+    @State private var routes: [MKRoute] = []
     @State private var selectedRoute: MKRoute?
+    @State private var dangerArea: [CircleArea] = []
+    let dangerAreaRepository: DangerAreaRepository = JsonDangerAreaRepository()
 
+    @State private var dangerPointCountList: [Int] = []
+    @State private var rankList: [Int] = []
+    @State private var scoreList: [Int] = []
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            VStack {
-                Map {
-                    if let routePolyline = selectedRoute?.polyline as? MKPolyline {
-                        MapPolyline(routePolyline)
-                            .stroke(Color.blue, lineWidth: 8)
-                    }
+            Map {
+                if let routePolyline = selectedRoute?.polyline as? MKPolyline {
+                    MapPolyline(routePolyline)
+                        .stroke(Color.blue, lineWidth: 8)
                 }
-                .onAppear {
-                    Task {
-                        await calculateRoute()
-                    }
+                ForEach(dangerArea) { area in
+                    MapCircle(
+                        center: .init(latitude: area.latitude, longitude: area.longitude),
+                        radius: area.radius
+                    )
+                    .foregroundStyle(.red.opacity(0.3))
                 }
-                .onChange(of: selectedRoute) {
-                    Task {
-                        guard let tmp = selectedRoute else {return}
-                        await checkRouteAvoidsArea(route: tmp)
+            }
+            .onAppear {
+                Task {
+                    dangerArea = dangerAreaRepository.getAll()
+                    await calculateRoute()
+                    for route in routes {
+                        dangerPointCountList.append(countRouteAvoidsArea(route: route))
+                        self.rankList = convertPointToRank(originalArray: dangerPointCountList)
+                        self.scoreList = assignScores(from: rankList)
                     }
                 }
             }
-            VStack {
-                ScrollView(.vertical, showsIndicators: false) {
-                    Spacer()
+            .sheet(isPresented: .constant(true)) {
+                NavigationStack {
                     VStack {
-                        Capsule()
-                            .frame(width: 40, height: 5)
-                            .foregroundColor(.gray)
-                            .padding(.top, 8)
-                            .onTapGesture {
-                                withAnimation {
-                                    if modalOffset == UIScreen.main.bounds.height - 685 {
-                                        modalOffset = UIScreen.main.bounds.height - 255
-                                    } else {
-                                        modalOffset = UIScreen.main.bounds.height - 685
-                                    }
-                                    lastModalOffset = modalOffset
-                                }
-                            }
                         HStack(spacing:0) {
                             Image(systemName: "book.pages")
                             Text("Playbook")
@@ -131,29 +124,34 @@ struct RouteDetailView: View {
                             }
                             .frame(width: 351, height: 230)
                             .cornerRadius(8)
-                            ZStack(alignment: .topLeading) {
-                                Rectangle()
-                                    .fill(Color("BackgroundColor"))
-                                VStack {
-                                    if let unwrappedRoutes = routes {
-                                        ForEach(unwrappedRoutes, id: \.self) { route in
+                            ScrollView {
+                                ZStack(alignment: .topLeading) {
+                                    Rectangle()
+                                        .fill(Color("BackgroundColor"))
+                                    VStack {
+
+                                        ForEach(routes.indices, id: \.self) { index in
+                                            let route = routes[index]
                                             VStack(alignment: .leading, spacing: 0) {
-                                                HStack {
-                                                    Text("\(Int(ceil(route.expectedTravelTime / 60))) min")
-                                                        .font(.title3)
-                                                        .bold()
-                                                }
+                                                Text("\(Int(ceil(route.expectedTravelTime / 60))) min")
+                                                    .font(.title3)
+                                                    .bold()
+                                                    .padding(EdgeInsets(top: 16, leading: 0, bottom: 0, trailing: 0))
                                                 HStack {
                                                     VStack(alignment: .leading, spacing: 13) {
                                                         HStack {
-                                                            Text("\(Int(ceil(route.distance / 1.609))) miles")
+                                                            Text("\(Int(ceil(route.distance / 1609))) miles")
                                                             Spacer()
+                                                            Text("\(countRouteAvoidsArea(route: route).description)")
+                                                                .font(.caption2)
+                                                            Text("SafetyRank:\(rankList[index])")
+                                                                .font(.headline)
                                                         }
                                                         HStack(spacing: 8) {
                                                             Image(systemName: "football.fill")
                                                                 .foregroundStyle(.blue)
                                                             Text("Expected points earned")
-                                                            Text("50")
+                                                            Text("\(scoreList[index])")
                                                                 .font(.title3)
                                                                 .bold()
                                                                 .foregroundStyle(.blue)
@@ -161,10 +159,6 @@ struct RouteDetailView: View {
                                                     }
                                                     Button{
                                                         self.selectedRoute = route
-                                                        withAnimation{
-                                                            self.modalOffset = UIScreen.main.bounds.height - 255
-                                                        }
-
                                                     } label: {
                                                         ZStack {
                                                             Rectangle()
@@ -181,45 +175,24 @@ struct RouteDetailView: View {
                                                 }
                                             }
                                             .frame(height: 90)
+                                            //                                            .onAppear {
+                                            //                                                dangerPointCountList.insert(countRouteAvoidsArea(route: route), at: 0)
+                                            //                                            }
+                                            Divider()
+                                                .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))
                                         }
                                     }
-                                    Divider()
+                                    .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
                                 }
-                                .padding(15)
+                                .frame(width: 351, height: 300)
+                                .cornerRadius(8)
                             }
-                            .frame(width: 351, height: 300)
-                            .cornerRadius(8)
                         }
                     }
-                    .frame(maxWidth: .infinity, maxHeight: 615)
-                    .background(Color.white)
-                    .cornerRadius(12)
-                    .shadow(radius: 10)
-                    .offset(y: modalOffset)
-                    .gesture(
-                        DragGesture()
-                            .onChanged { value in
-                                let newOffset = value.translation.height + lastModalOffset
-                                if newOffset < UIScreen.main.bounds.height - 685 {
-                                    modalOffset = UIScreen.main.bounds.height - 685
-                                } else if newOffset > UIScreen.main.bounds.height - 255 {
-                                    modalOffset = UIScreen.main.bounds.height - 255
-                                } else {
-                                    modalOffset = newOffset
-                                }
-                            }
-                            .onEnded { _ in
-                                withAnimation {
-                                    if modalOffset < lastModalOffset {
-                                        modalOffset = UIScreen.main.bounds.height - 685
-                                    } else {
-                                        modalOffset = UIScreen.main.bounds.height - 255
-                                    }
-                                }
-                                lastModalOffset = modalOffset
-                            }
-                    )
                 }
+                .presentationDetents([.fraction(0.99), .height(600), .height(30)])
+                .presentationBackgroundInteraction(.enabled)
+                .interactiveDismissDisabled()
             }
         }
     }
@@ -238,6 +211,7 @@ struct RouteDetailView: View {
         let destinationPlacemark = MKPlacemark(coordinate: destinationCoordinate)
 
         let request = MKDirections.Request()
+        request.requestsAlternateRoutes = true
         request.source = MKMapItem(placemark: sourcePlacemark)
         request.destination = MKMapItem(placemark: destinationPlacemark)
         request.transportType = .automobile
@@ -252,23 +226,20 @@ struct RouteDetailView: View {
         }
     }
 
-    func checkRouteAvoidsArea(route: MKRoute) -> Bool {
+    func countRouteAvoidsArea(route: MKRoute) -> Int {
         let routePolyline = route.polyline
         let pointCount = routePolyline.pointCount
         let points = routePolyline.points()
+        var count = 0
 
         for i in 0..<pointCount {
-            print("\(i)周目")
             let coordinate = points[i].coordinate
             let location = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-
-            let testCoordinate = CLLocationCoordinate2D(latitude: 32.7488, longitude: -97.0937)
 
             func roundToThirdDecimalPlace(value: Double) -> Double {
                 return (value * 1000).rounded() / 1000
             }
 
-            // 指定した座標が四捨五入した経路の座標に含まれているか確認する関数
             func isCoordinateInRoundedRoute(route: CLLocationCoordinate2D, testCoordinate: CLLocationCoordinate2D) -> Bool {
                 let roundedTestCoordinate = CLLocationCoordinate2D(
                     latitude: roundToThirdDecimalPlace(value: testCoordinate.latitude),
@@ -280,36 +251,31 @@ struct RouteDetailView: View {
                     longitude: roundToThirdDecimalPlace(value: route.longitude)
                 )
 
-                print("\(roundedTestCoordinate)")
-                print("\(roundedRouteCoordinate)")
-
-                // 一致を確認
                 if roundedRouteCoordinate.latitude == roundedTestCoordinate.latitude &&
                     roundedRouteCoordinate.longitude == roundedTestCoordinate.longitude {
-                    return true // 一致する座標が見つかった
+                    return true
                 }
-                return false // 一致する座標が見つからなかった
+                return false
             }
 
-            if isCoordinateInRoundedRoute(route: coordinate, testCoordinate: testCoordinate) {
-                print("指定した座標は四捨五入した経路の座標に含まれています。")
-            } else {
-                print("指定した座標は四捨五入した経路の座標に含まれていません。")
+            for dangerPoint in dangerArea {
+                let coordinate = CLLocationCoordinate2D(latitude: dangerPoint.latitude, longitude: dangerPoint.longitude)
+
+                if isCoordinateInRoundedRoute(route: coordinate, testCoordinate: coordinate) {
+                    count += 1
+                }
             }
         }
-        return true  // エリアに触れていない
+        return count
     }
 
     func generateCoordinatePatterns(center: CLLocationCoordinate2D, latitudeRange: ClosedRange<Double>, longitudeRange: ClosedRange<Double>) -> [CLLocationCoordinate2D] {
         var patterns: [CLLocationCoordinate2D] = []
 
-        // 緯度と経度を小数点第4位までの範囲で生成
         let latStep = 0.0001
         let lonStep = 0.0001
 
-        // 緯度の範囲をループ
         for lat in stride(from: latitudeRange.lowerBound, through: latitudeRange.upperBound, by: latStep) {
-            // 経度の範囲をループ
             for lon in stride(from: longitudeRange.lowerBound, through: longitudeRange.upperBound, by: lonStep) {
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
                 patterns.append(coordinate)
@@ -319,6 +285,38 @@ struct RouteDetailView: View {
         return patterns
     }
 }
+
+func convertPointToRank(originalArray: [Int]) -> [Int] {
+    let sortedArray = originalArray.sorted()
+    var ranks = [Int](repeating: 0, count: originalArray.count)
+
+    for (index, value) in originalArray.enumerated() {
+        if let rank = sortedArray.firstIndex(of: value) {
+            ranks[index] = rank + 1
+        }
+    }
+
+    return ranks
+}
+
+func assignScores(from array: [Int]) -> [Int] {
+    let count = array.count
+    if count < 2 { return [] }
+
+    var scores = [Int](repeating: 0, count: count)
+
+    let indexedArray = array.enumerated().map { (index: $0.offset, value: $0.element) }
+
+    let sortedArray = indexedArray.sorted { $0.value < $1.value }
+
+    for (rank, element) in sortedArray.enumerated() {
+        let score = 80 - ((70 * rank) / (count - 1))
+        scores[element.index] = score
+    }
+
+    return scores
+}
+
 
 #Preview {
     RouteDetailView()
