@@ -15,6 +15,11 @@
 		7BACAF112CB580B1005CC432 /* PlayerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BACAF102CB580B1005CC432 /* PlayerCard.swift */; };
 		7BE49F352CBBE6FC00B31067 /* crustered-accident.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BE49F342CBBE6FC00B31067 /* crustered-accident.json */; };
 		7BE49F382CBBE82300B31067 /* DangerAreaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F372CBBE82300B31067 /* DangerAreaRepository.swift */; };
+		7BE49F3D2CBC3E0100B31067 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F3C2CBC3E0100B31067 /* View+.swift */; };
+		7BE49F402CBC3E3D00B31067 /* ScrollSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F3F2CBC3E3D00B31067 /* ScrollSpy.swift */; };
+		7BE49F422CBC3E7B00B31067 /* NFLCollectionOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F412CBC3E7B00B31067 /* NFLCollectionOverview.swift */; };
+		7BE49F452CBC480D00B31067 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F442CBC480D00B31067 /* Card.swift */; };
+		7BE49F472CBC4C2300B31067 /* CardCollectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F462CBC4C2300B31067 /* CardCollectionDetailView.swift */; };
 		7BE708522CB54CA000E0CBA9 /* nfl_geofencingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708512CB54CA000E0CBA9 /* nfl_geofencingApp.swift */; };
 		7BE708542CB54CA000E0CBA9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708532CB54CA000E0CBA9 /* ContentView.swift */; };
 		7BE708562CB54CA000E0CBA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BE708552CB54CA000E0CBA9 /* Assets.xcassets */; };
@@ -48,6 +53,11 @@
 		7BACAF102CB580B1005CC432 /* PlayerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCard.swift; sourceTree = "<group>"; };
 		7BE49F342CBBE6FC00B31067 /* crustered-accident.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "crustered-accident.json"; sourceTree = "<group>"; };
 		7BE49F372CBBE82300B31067 /* DangerAreaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerAreaRepository.swift; sourceTree = "<group>"; };
+		7BE49F3C2CBC3E0100B31067 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		7BE49F3F2CBC3E3D00B31067 /* ScrollSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollSpy.swift; sourceTree = "<group>"; };
+		7BE49F412CBC3E7B00B31067 /* NFLCollectionOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFLCollectionOverview.swift; sourceTree = "<group>"; };
+		7BE49F442CBC480D00B31067 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		7BE49F462CBC4C2300B31067 /* CardCollectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionDetailView.swift; sourceTree = "<group>"; };
 		7BE7084E2CB54CA000E0CBA9 /* nfl-geofencing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nfl-geofencing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BE708512CB54CA000E0CBA9 /* nfl_geofencingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nfl_geofencingApp.swift; sourceTree = "<group>"; };
 		7BE708532CB54CA000E0CBA9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +108,7 @@
 		7BE49F332CBBE64C00B31067 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7B4BFFBE2CB69EE2001C450F /* Place.swift */,
 				7BE49F342CBBE6FC00B31067 /* crustered-accident.json */,
 			);
 			path = Resources;
@@ -109,6 +120,23 @@
 				7BE49F372CBBE82300B31067 /* DangerAreaRepository.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		7BE49F3E2CBC3E2300B31067 /* CustomModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				7BE49F3F2CBC3E3D00B31067 /* ScrollSpy.swift */,
+			);
+			path = CustomModifiers;
+			sourceTree = "<group>";
+		};
+		7BE49F432CBC477600B31067 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E1CCE3D22CBB94B400B64C1D /* Team.swift */,
+				7BE49F442CBC480D00B31067 /* Card.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		7BE708452CB54CA000E0CBA9 = {
@@ -130,6 +158,8 @@
 		7BE708502CB54CA000E0CBA9 /* nfl-geofencing */ = {
 			isa = PBXGroup;
 			children = (
+				7BE49F432CBC477600B31067 /* Models */,
+				7BE49F3E2CBC3E2300B31067 /* CustomModifiers */,
 				7BE49F362CBBE71E00B31067 /* Repositories */,
 				7BE49F332CBBE64C00B31067 /* Resources */,
 				7BE99FD62CBABEBC0049F525 /* Extensions */,
@@ -150,10 +180,8 @@
 				A1FD003F2CB8136100EC3A46 /* ScarableImageView.swift */,
 				7BE708572CB54CA000E0CBA9 /* Preview Content */,
 				7BACAF102CB580B1005CC432 /* PlayerCard.swift */,
-				7B4BFFBE2CB69EE2001C450F /* Place.swift */,
 				7B4BFFC22CB6A01D001C450F /* LocationManager.swift */,
 				7BE99FD72CBAE5350049F525 /* TransitPointSpike.swift */,
-				E1CCE3D22CBB94B400B64C1D /* Team.swift */,
 				E1CCE3D42CBB9F4400B64C1D /* TeamSelectView.swift */,
 			);
 			path = "nfl-geofencing";
@@ -195,6 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				7BE708652CB554A700E0CBA9 /* CardsScreen.swift */,
+				7BE49F412CBC3E7B00B31067 /* NFLCollectionOverview.swift */,
+				7BE49F462CBC4C2300B31067 /* CardCollectionDetailView.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -213,6 +243,7 @@
 				7BE99FD02CBAB94B0049F525 /* CLLocationCoordinate2D+.swift */,
 				7BE99FD22CBABA330049F525 /* MapPolyline+.swift */,
 				7BE99FCE2CBAB9230049F525 /* Collection+.swift */,
+				7BE49F3C2CBC3E0100B31067 /* View+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -292,18 +323,23 @@
 				A139DB5D2CB5724F00A75050 /* RouteDetailView.swift in Sources */,
 				7BE708542CB54CA000E0CBA9 /* ContentView.swift in Sources */,
 				7BE708622CB5511000E0CBA9 /* HomeScreen.swift in Sources */,
+				7BE49F3D2CBC3E0100B31067 /* View+.swift in Sources */,
 				7B4BFFC32CB6A01D001C450F /* LocationManager.swift in Sources */,
 				7BE49F382CBBE82300B31067 /* DangerAreaRepository.swift in Sources */,
 				7BE99FD82CBAE5350049F525 /* TransitPointSpike.swift in Sources */,
 				A139DB612CB573AE00A75050 /* DestinationRegistorView.swift in Sources */,
+				7BE49F422CBC3E7B00B31067 /* NFLCollectionOverview.swift in Sources */,
 				E1CCE3D52CBB9F4400B64C1D /* TeamSelectView.swift in Sources */,
 				A1FD00402CB8136100EC3A46 /* ScarableImageView.swift in Sources */,
 				7B4BFFBF2CB69EE2001C450F /* Place.swift in Sources */,
+				7BE49F472CBC4C2300B31067 /* CardCollectionDetailView.swift in Sources */,
+				7BE49F452CBC480D00B31067 /* Card.swift in Sources */,
 				A1FB9D8B2CB8002900119D9B /* FootballPosition.swift in Sources */,
 				7BE708642CB5548F00E0CBA9 /* ScheduleScreen.swift in Sources */,
 				7BE708602CB550F100E0CBA9 /* SetupProfileView.swift in Sources */,
 				7BE99FCF2CBAB9230049F525 /* Collection+.swift in Sources */,
 				E1CCE3D32CBB94B400B64C1D /* Team.swift in Sources */,
+				7BE49F402CBC3E3D00B31067 /* ScrollSpy.swift in Sources */,
 				7BE99FD52CBABA8E0049F525 /* ResultDialog.swift in Sources */,
 				A1FB9D892CB7CDBA00119D9B /* LoginView.swift in Sources */,
 				7BE708662CB554A700E0CBA9 /* CardsScreen.swift in Sources */,
