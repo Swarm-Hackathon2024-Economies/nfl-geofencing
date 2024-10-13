@@ -1,0 +1,13 @@
+US_Accidents_March23.csv
+
+venv/
+env/
+.venv/
+
+__pycache__/
+*.pyc
+*.pyo
+
+*.DS_Store  # macOSのメタデータファイル
+.idea/  # PyCharmなどのIDEが生成する設定ファイル
+.vscode/  # Visual Studio Codeの設定

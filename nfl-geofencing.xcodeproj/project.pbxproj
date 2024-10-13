@@ -13,6 +13,8 @@
 		7B4BFFC12CB69F36001C450F /* RouteNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4BFFC02CB69F36001C450F /* RouteNavigationView.swift */; };
 		7B4BFFC32CB6A01D001C450F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4BFFC22CB6A01D001C450F /* LocationManager.swift */; };
 		7BACAF112CB580B1005CC432 /* PlayerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BACAF102CB580B1005CC432 /* PlayerCard.swift */; };
+		7BE49F352CBBE6FC00B31067 /* crustered-accident.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BE49F342CBBE6FC00B31067 /* crustered-accident.json */; };
+		7BE49F382CBBE82300B31067 /* DangerAreaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F372CBBE82300B31067 /* DangerAreaRepository.swift */; };
 		7BE708522CB54CA000E0CBA9 /* nfl_geofencingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708512CB54CA000E0CBA9 /* nfl_geofencingApp.swift */; };
 		7BE708542CB54CA000E0CBA9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708532CB54CA000E0CBA9 /* ContentView.swift */; };
 		7BE708562CB54CA000E0CBA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BE708552CB54CA000E0CBA9 /* Assets.xcassets */; };
@@ -44,6 +46,8 @@
 		7B4BFFC02CB69F36001C450F /* RouteNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteNavigationView.swift; sourceTree = "<group>"; };
 		7B4BFFC22CB6A01D001C450F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7BACAF102CB580B1005CC432 /* PlayerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCard.swift; sourceTree = "<group>"; };
+		7BE49F342CBBE6FC00B31067 /* crustered-accident.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "crustered-accident.json"; sourceTree = "<group>"; };
+		7BE49F372CBBE82300B31067 /* DangerAreaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerAreaRepository.swift; sourceTree = "<group>"; };
 		7BE7084E2CB54CA000E0CBA9 /* nfl-geofencing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nfl-geofencing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BE708512CB54CA000E0CBA9 /* nfl_geofencingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nfl_geofencingApp.swift; sourceTree = "<group>"; };
 		7BE708532CB54CA000E0CBA9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,6 +95,22 @@
 			path = iPad;
 			sourceTree = "<group>";
 		};
+		7BE49F332CBBE64C00B31067 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7BE49F342CBBE6FC00B31067 /* crustered-accident.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7BE49F362CBBE71E00B31067 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				7BE49F372CBBE82300B31067 /* DangerAreaRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		7BE708452CB54CA000E0CBA9 = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +130,8 @@
 		7BE708502CB54CA000E0CBA9 /* nfl-geofencing */ = {
 			isa = PBXGroup;
 			children = (
+				7BE49F362CBBE71E00B31067 /* Repositories */,
+				7BE49F332CBBE64C00B31067 /* Resources */,
 				7BE99FD62CBABEBC0049F525 /* Extensions */,
 				7B4BFFB82CB69BF0001C450F /* iPad */,
 				7BE7086B2CB556D300E0CBA9 /* Home */,
@@ -253,6 +275,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BE49F352CBBE6FC00B31067 /* crustered-accident.json in Resources */,
 				7BE708592CB54CA000E0CBA9 /* Preview Assets.xcassets in Resources */,
 				7BE708562CB54CA000E0CBA9 /* Assets.xcassets in Resources */,
 			);
@@ -270,6 +293,7 @@
 				7BE708542CB54CA000E0CBA9 /* ContentView.swift in Sources */,
 				7BE708622CB5511000E0CBA9 /* HomeScreen.swift in Sources */,
 				7B4BFFC32CB6A01D001C450F /* LocationManager.swift in Sources */,
+				7BE49F382CBBE82300B31067 /* DangerAreaRepository.swift in Sources */,
 				7BE99FD82CBAE5350049F525 /* TransitPointSpike.swift in Sources */,
 				A139DB612CB573AE00A75050 /* DestinationRegistorView.swift in Sources */,
 				E1CCE3D52CBB9F4400B64C1D /* TeamSelectView.swift in Sources */,

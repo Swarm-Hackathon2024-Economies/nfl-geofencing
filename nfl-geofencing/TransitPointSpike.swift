@@ -5,6 +5,8 @@ struct TransitPointSpike: View {
     @State private var routes1: [MKRoute] = []
     @State private var routes2: [MKRoute] = []
     @State private var position: MapCameraPosition = .automatic
+    @State private var dangerArea: [CircleArea] = []
+    let dangerAreaRepository: DangerAreaRepository = JsonDangerAreaRepository()
     
     var body: some View {
         Map(position: $position) {
@@ -17,14 +19,17 @@ struct TransitPointSpike: View {
                     .stroke(.red, lineWidth: 5)
             }
             
-            MapCircle(
-                center: Place.greatHeartsIrvingUpperSchool.placemark.coordinate,
-                radius: 3000
-            )
-            .foregroundStyle(.red.opacity(0.3))
+            ForEach(dangerArea) { area in
+                MapCircle(
+                    center: .init(latitude: area.latitude, longitude: area.longitude),
+                    radius: area.radius
+                )
+                .foregroundStyle(.red.opacity(0.3))
+            }
         }
         .onAppear {
             getRoute()
+            dangerArea = dangerAreaRepository.getAll()
         }
     }
     
@@ -34,11 +39,7 @@ struct TransitPointSpike: View {
             radius: 4000 / 111000,
             pointCoordinate: Place.tmna.placemark.coordinate
         )
-        print(tangentPoints)
         guard let firstTangentPoint = tangentPoints.first else { return }
-        print(firstTangentPoint)
-        let transitPoint = CLLocationCoordinate2D(latitude: firstTangentPoint.1, longitude: firstTangentPoint.0)
-        let transitPointMapItem = MKMapItem(placemark: .init(coordinate: transitPoint))
         
         let request1 = MKDirections.Request()
         request1.requestsAlternateRoutes = true
