@@ -11,7 +11,7 @@ struct ContentView: View {
                                 if selectedTab == 0 {
                                     Image("Home_select")
                                 } else {
-                                    Image("HomeIconDisable")
+                                    Image("Home")
                                 }
                             }
                             .tag(0)
