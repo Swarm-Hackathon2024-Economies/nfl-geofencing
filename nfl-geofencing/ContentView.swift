@@ -16,7 +16,7 @@ struct ContentView: View {
                             }
                             .tag(0)
                         
-                        MapScreen()
+                        ScheduleScreen()
                             .tabItem {
                                 if selectedTab == 1 {
                                     Image("Schedule_select")

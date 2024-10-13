@@ -19,7 +19,7 @@
 		7BE708592CB54CA000E0CBA9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BE708582CB54CA000E0CBA9 /* Preview Assets.xcassets */; };
 		7BE708602CB550F100E0CBA9 /* SetupProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE7085F2CB550F100E0CBA9 /* SetupProfileView.swift */; };
 		7BE708622CB5511000E0CBA9 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708612CB5511000E0CBA9 /* HomeScreen.swift */; };
-		7BE708642CB5548F00E0CBA9 /* MapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708632CB5548F00E0CBA9 /* MapScreen.swift */; };
+		7BE708642CB5548F00E0CBA9 /* ScheduleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708632CB5548F00E0CBA9 /* ScheduleScreen.swift */; };
 		7BE708662CB554A700E0CBA9 /* FriendScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708652CB554A700E0CBA9 /* FriendScreen.swift */; };
 		7BE708682CB554CB00E0CBA9 /* MyPageScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708672CB554CB00E0CBA9 /* MyPageScreen.swift */; };
 		7BE7086A2CB5551700E0CBA9 /* DriveScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708692CB5551700E0CBA9 /* DriveScreen.swift */; };
@@ -50,7 +50,7 @@
 		7BE708582CB54CA000E0CBA9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7BE7085F2CB550F100E0CBA9 /* SetupProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupProfileView.swift; sourceTree = "<group>"; };
 		7BE708612CB5511000E0CBA9 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
-		7BE708632CB5548F00E0CBA9 /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
+		7BE708632CB5548F00E0CBA9 /* ScheduleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleScreen.swift; sourceTree = "<group>"; };
 		7BE708652CB554A700E0CBA9 /* FriendScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendScreen.swift; sourceTree = "<group>"; };
 		7BE708672CB554CB00E0CBA9 /* MyPageScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageScreen.swift; sourceTree = "<group>"; };
 		7BE708692CB5551700E0CBA9 /* DriveScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveScreen.swift; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 			children = (
 				7B4BFFB82CB69BF0001C450F /* iPad */,
 				7BE7086B2CB556D300E0CBA9 /* Home */,
-				7BE7086C2CB556E800E0CBA9 /* Map */,
+				7BE7086C2CB556E800E0CBA9 /* Schedule */,
 				7BE7086D2CB556F000E0CBA9 /* Drive */,
 				7BE7086E2CB556F600E0CBA9 /* Friend */,
 				7BE7086F2CB556FB00E0CBA9 /* MyPage */,
@@ -152,12 +152,12 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		7BE7086C2CB556E800E0CBA9 /* Map */ = {
+		7BE7086C2CB556E800E0CBA9 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				7BE708632CB5548F00E0CBA9 /* MapScreen.swift */,
+				7BE708632CB5548F00E0CBA9 /* ScheduleScreen.swift */,
 			);
-			path = Map;
+			path = Schedule;
 			sourceTree = "<group>";
 		};
 		7BE7086D2CB556F000E0CBA9 /* Drive */ = {
@@ -264,7 +264,7 @@
 				A1FD00402CB8136100EC3A46 /* ScarableImageView.swift in Sources */,
 				7B4BFFBF2CB69EE2001C450F /* Place.swift in Sources */,
 				A1FB9D8B2CB8002900119D9B /* FootballPosition.swift in Sources */,
-				7BE708642CB5548F00E0CBA9 /* MapScreen.swift in Sources */,
+				7BE708642CB5548F00E0CBA9 /* ScheduleScreen.swift in Sources */,
 				7BE708602CB550F100E0CBA9 /* SetupProfileView.swift in Sources */,
 				7BE99FCF2CBAB9230049F525 /* Collection+.swift in Sources */,
 				E1CCE3D32CBB94B400B64C1D /* Team.swift in Sources */,
