@@ -32,7 +32,7 @@ struct ContentView: View {
                             }
                             .tag(2)
                         
-                        FriendScreen()
+                        CardsScreen()
                             .tabItem {
                                 if selectedTab == 3 {
                                     Image("Card_select")

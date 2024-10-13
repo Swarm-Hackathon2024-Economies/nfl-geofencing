@@ -23,7 +23,8 @@ struct HomeScreen: View {
                         HStack {
                             Image("BallIcon")
                             Text("2,234")
-                                .font(Font.title)
+                                .font(Font.title2)
+                                .bold()
                         }
                     }
                     .cornerRadius(10)
