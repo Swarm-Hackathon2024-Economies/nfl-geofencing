@@ -33,6 +33,7 @@
 		A1FB9D8B2CB8002900119D9B /* FootballPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB9D8A2CB8002900119D9B /* FootballPosition.swift */; };
 		A1FD00402CB8136100EC3A46 /* ScarableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FD003F2CB8136100EC3A46 /* ScarableImageView.swift */; };
 		E1CCE3D32CBB94B400B64C1D /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CCE3D22CBB94B400B64C1D /* Team.swift */; };
+		E1CCE3D52CBB9F4400B64C1D /* TeamSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CCE3D42CBB9F4400B64C1D /* TeamSelectView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		A1FB9D8A2CB8002900119D9B /* FootballPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootballPosition.swift; sourceTree = "<group>"; };
 		A1FD003F2CB8136100EC3A46 /* ScarableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScarableImageView.swift; sourceTree = "<group>"; };
 		E1CCE3D22CBB94B400B64C1D /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		E1CCE3D42CBB9F4400B64C1D /* TeamSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSelectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				7BE99FD02CBAB94B0049F525 /* CLLocationCoordinate2D+.swift */,
 				7BE99FD22CBABA330049F525 /* MapPolyline+.swift */,
 				E1CCE3D22CBB94B400B64C1D /* Team.swift */,
+				E1CCE3D42CBB9F4400B64C1D /* TeamSelectView.swift */,
 			);
 			path = "nfl-geofencing";
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				7BE708622CB5511000E0CBA9 /* HomeScreen.swift in Sources */,
 				7B4BFFC32CB6A01D001C450F /* LocationManager.swift in Sources */,
 				A139DB612CB573AE00A75050 /* DestinationRegistorView.swift in Sources */,
+				E1CCE3D52CBB9F4400B64C1D /* TeamSelectView.swift in Sources */,
 				A1FD00402CB8136100EC3A46 /* ScarableImageView.swift in Sources */,
 				7B4BFFBF2CB69EE2001C450F /* Place.swift in Sources */,
 				A1FB9D8B2CB8002900119D9B /* FootballPosition.swift in Sources */,

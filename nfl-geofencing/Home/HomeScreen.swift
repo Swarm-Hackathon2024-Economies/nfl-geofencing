@@ -135,7 +135,6 @@ struct HomeScreen: View {
                     .frame(maxWidth: 280)
                 }.padding(.bottom, 20)
                 HStack {
-                    
                     Text("Ranking")
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                         .bold()
@@ -165,7 +164,6 @@ struct HomeScreen: View {
                                 RoundedRectangle(cornerRadius: 15)
                                     .stroke(Color.red, lineWidth: 1)
                             )
-                        
                         Text("Collage")
                             .foregroundStyle(.red)
                             .font(.body)
