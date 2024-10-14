@@ -16,6 +16,7 @@ struct SetupProfileView: View {
     @Environment(\.dismiss) var dismiss
     @State private var draftProfile = Profile.blank
     let positionList = FootballPosition().positions
+    @Binding var isShowSetUpProfile: Bool
     
     var body: some View {
         NavigationStack {
@@ -117,8 +118,9 @@ struct SetupProfileView: View {
                 .frame(height: 72)
             }
             Spacer()
-            Button {
+            NavigationLink {
                 //                onFinish()
+                TeamSelectView(isShowSetUpProfile: $isShowSetUpProfile)
             } label: {
                 Text("Next")
                     .font(.system(size: 20))
@@ -151,5 +153,5 @@ struct SetupProfileView: View {
 
 
 #Preview {
-    SetupProfileView()
+    SetupProfileView(isShowSetUpProfile: .constant(true))
 }

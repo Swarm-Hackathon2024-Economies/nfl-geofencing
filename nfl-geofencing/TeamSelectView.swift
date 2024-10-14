@@ -1,7 +1,8 @@
 import SwiftUI
 
-struct TeamSelect: View {
+struct TeamSelectView: View {
     @State private var selectedTeamIndex: Int?
+    @Binding var isShowSetUpProfile: Bool
     
     private var teams: [(rank: String, icon: String, name: String, points: String)] {
         Team.allItems.map { team in
@@ -38,14 +39,17 @@ struct TeamSelect: View {
                 }
             }
             Spacer()
-            Button(action: {}) {
+            Button(action: {
+                isShowSetUpProfile = false
+            }) {
                 Text("Kick Off")
-                    .foregroundColor(.white)
-                    .font(.title)
-                    .frame(width: 334, height: 50)
+                    .font(.system(size: 20))
+                    .bold()
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 8).fill(.red))
             }
-            .background(Color.red)
-            .cornerRadius(8)
         }
         .frame(maxWidth: 334)
         Spacer()
@@ -91,5 +95,5 @@ struct TeamSelect: View {
 }
 
 #Preview {
-    TeamSelect()
+    TeamSelectView(isShowSetUpProfile: .constant(true))
 }

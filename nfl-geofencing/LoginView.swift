@@ -101,7 +101,7 @@ struct LoginView: View {
             }
             .padding(30)
             .navigationDestination(isPresented: $isPresented) {
-                SetupProfileView()
+                SetupProfileView(isShowSetUpProfile: $isPresented)
             }
         }
     }
