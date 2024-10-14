@@ -25,6 +25,7 @@
 		7BE49F4D2CBD170800B31067 /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F4C2CBD170800B31067 /* CapsuleButton.swift */; };
 		7BE49F4F2CBD190D00B31067 /* RankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F4E2CBD190D00B31067 /* RankingView.swift */; };
 		7BE49F522CBD266900B31067 /* MatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F512CBD266900B31067 /* MatchCard.swift */; };
+		7BE49F562CBD488100B31067 /* MCSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F552CBD488100B31067 /* MCSessionManager.swift */; };
 		7BE708522CB54CA000E0CBA9 /* nfl_geofencingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708512CB54CA000E0CBA9 /* nfl_geofencingApp.swift */; };
 		7BE708542CB54CA000E0CBA9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708532CB54CA000E0CBA9 /* ContentView.swift */; };
 		7BE708562CB54CA000E0CBA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BE708552CB54CA000E0CBA9 /* Assets.xcassets */; };
@@ -71,6 +72,7 @@
 		7BE49F4C2CBD170800B31067 /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
 		7BE49F4E2CBD190D00B31067 /* RankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingView.swift; sourceTree = "<group>"; };
 		7BE49F512CBD266900B31067 /* MatchCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCard.swift; sourceTree = "<group>"; };
+		7BE49F552CBD488100B31067 /* MCSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCSessionManager.swift; sourceTree = "<group>"; };
 		7BE7084E2CB54CA000E0CBA9 /* nfl-geofencing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nfl-geofencing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BE708512CB54CA000E0CBA9 /* nfl_geofencingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nfl_geofencingApp.swift; sourceTree = "<group>"; };
 		7BE708532CB54CA000E0CBA9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				7B4BFFC22CB6A01D001C450F /* LocationManager.swift */,
 				7BE99FD72CBAE5350049F525 /* TransitPointSpike.swift */,
 				E1CCE3D42CBB9F4400B64C1D /* TeamSelectView.swift */,
+				7BE49F552CBD488100B31067 /* MCSessionManager.swift */,
 			);
 			path = "nfl-geofencing";
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				7BE49F4B2CBD142500B31067 /* ProfileCardView.swift in Sources */,
 				7BE99FD12CBAB94B0049F525 /* CLLocationCoordinate2D+.swift in Sources */,
 				7B4BFFC12CB69F36001C450F /* RouteNavigationView.swift in Sources */,
+				7BE49F562CBD488100B31067 /* MCSessionManager.swift in Sources */,
 				7BE7086A2CB5551700E0CBA9 /* DriveScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

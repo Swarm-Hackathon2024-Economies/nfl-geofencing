@@ -3,12 +3,15 @@ import MapKit
 
 struct RouteNavigationView: View {
     @ObservedObject var locationManager: FakeLocationManager
+    @Binding var instruction: Instruction
+    @Binding var totalPoints: Int
+    @Binding var navigationStarted: Bool
     @State private var position: MapCameraPosition = .automatic
     @State private var route: MKRoute?
     @State private var coordinatesOnRoute: [CLLocationCoordinate2D] = []
     @State private var passedCoordinates: [CLLocationCoordinate2D] = []
-    @Binding var instruction: Instruction
-    @Binding var totalPoints: Int
+    @State private var dangerArea: [CircleArea] = []
+    let dangerAreaRepository: DangerAreaRepository = JsonDangerAreaRepository()
     
     var body: some View {
         Map(position: $position) {
@@ -32,15 +35,23 @@ struct RouteNavigationView: View {
                 }
             }
             
+            ForEach(dangerArea) { area in
+                MapCircle(
+                    center: .init(latitude: area.latitude, longitude: area.longitude),
+                    radius: area.radius
+                )
+                .foregroundStyle(.red.opacity(0.3))
+            }
+            
             if let route {
                 MapPolyline(route)
                     .stroke(.blue, lineWidth: 5)
             }
         }
         .animation(.linear, value: locationManager.coordinate)
-        .transition(.asymmetric(insertion: .scale, removal: .slide))
         .mapStyle(.standard(elevation: .flat))
-        .onAppear {
+        .onChange(of: navigationStarted) { _, newValue in
+            guard navigationStarted else { return }
             locationManager.willChangeCoordinate = self.willChangeCoordinate
             getRoute()
         }
@@ -58,6 +69,9 @@ struct RouteNavigationView: View {
             instruction.text = currentStep?.instructions
             guard let currentStep else { return }
             updateRemainingDistance(of: currentStep, from: coordinate)
+        }
+        .onAppear {
+            dangerArea = dangerAreaRepository.getAll()
         }
         .preferredColorScheme(.dark)
     }
@@ -143,6 +157,7 @@ struct RouteNavigationView: View {
     RouteNavigationView(
         locationManager: FakeLocationManager(),
         instruction: .constant(Instruction()),
-        totalPoints: .constant(0)
+        totalPoints: .constant(0),
+        navigationStarted: .constant(true)
     )
 }

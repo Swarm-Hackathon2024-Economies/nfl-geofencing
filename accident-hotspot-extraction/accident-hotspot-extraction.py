@@ -3,6 +3,7 @@ from sklearn.cluster import DBSCAN
 import numpy as np
 from geopy.distance import great_circle
 import json
+import math
 
 # テキサス州の緯度・経度範囲
 TEXAS_LAT_MIN = 32.5
@@ -59,6 +60,60 @@ def process_chunk(chunk, chunk_id):
     # クラスタの中心座標と半径をリストに追加
     return clusters.apply(cluster_center_radius).tolist()
 
+# 2つの円の重なり面積を計算
+def calculate_overlap_area(r1, r2, d):
+    # 2つの円が重なっていない場合は0を返す
+    if d >= r1 + r2:
+        return 0
+    # 一方の円がもう一方の円を完全に含んでいる場合
+    if d <= abs(r1 - r2):
+        return math.pi * min(r1, r2) ** 2
+    
+    # 重なり面積を計算
+    r1_sq = r1 ** 2
+    r2_sq = r2 ** 2
+    try:
+        part1 = r1_sq * math.acos(max(-1, min(1, (d ** 2 + r1_sq - r2_sq) / (2 * d * r1))))
+        part2 = r2_sq * math.acos(max(-1, min(1, (d ** 2 + r2_sq - r1_sq) / (2 * d * r2))))
+    except ValueError:
+        return 0
+    part3 = 0.5 * math.sqrt((-d + r1 + r2) * (d + r1 - r2) * (d - r1 + r2) * (d + r1 + r2))
+    return part1 + part2 - part3
+
+
+# 半径が0の円を削除する関数
+def filter_zero_radius_circles(circles):
+    return [circle for circle in circles if circle['radius'] > 0]
+
+# クラスタ間の重複を除外する関数（半径が小さい方を残す）
+def remove_large_overlapping_circles(circles, overlap_threshold=0.8):
+    filtered_circles = []
+    
+    for i, circle in enumerate(circles):
+        keep_circle = True
+        for other_circle in circles:
+            if circle == other_circle:
+                continue
+            distance_between_centers = great_circle(
+                (circle['latitude'], circle['longitude']),
+                (other_circle['latitude'], other_circle['longitude'])
+            ).meters
+            
+            # 2つの円の重なり面積を計算
+            overlap_area = calculate_overlap_area(circle['radius'], other_circle['radius'], distance_between_centers)
+            circle_area = math.pi * (circle['radius'] ** 2)
+            other_circle_area = math.pi * (other_circle['radius'] ** 2)
+            
+            # 80%以上の重なりがある場合、半径が大きい方を削除
+            if overlap_area / min(circle_area, other_circle_area) > overlap_threshold:
+                if circle['radius'] > other_circle['radius']:
+                    keep_circle = False  # 大きな円を削除
+                    break
+        if keep_circle:
+            filtered_circles.append(circle)
+    
+    return filtered_circles
+
 # チャンクごとにデータを読み込みながら処理
 chunk_id = 1
 for chunk in pd.read_csv('US_Accidents_March23.csv', chunksize=chunksize):
@@ -68,8 +123,14 @@ for chunk in pd.read_csv('US_Accidents_March23.csv', chunksize=chunksize):
     print(f"Chunk {chunk_id} processing complete.\n")
     chunk_id += 1
 
-# 最終結果をJSONファイルに保存
-with open('texas_clustered_accidents.json', 'w') as f:
-    json.dump(results, f, indent=4)
+# 半径が0の円を除外
+results = filter_zero_radius_circles(results)
 
-print("All chunks processed and data saved to 'texas_clustered_accidents.json'.")
+# 重複を除外する（面積の80％以上が重なる円を除外）
+filtered_results = remove_large_overlapping_circles(results, overlap_threshold=0.8)
+
+# 最終結果をJSONファイルに保存
+with open('texas_clustered_accidents_filtered.json', 'w') as f:
+    json.dump(filtered_results, f, indent=4)
+
+print("All chunks processed and data saved to 'texas_clustered_accidents_filtered.json'.")

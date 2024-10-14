@@ -10,17 +10,21 @@ struct IPadContentView: View {
     @State private var navigationBarSelection: ToyotaNaviSidebar.Item = .map
     @State private var totalPoints: Int = 0
     @State private var instruction: Instruction = Instruction(text: nil, distance: nil)
+    @ObservedObject var mcSessionManager = MCSessionManager()
+    @State private var navigationStarted = false
     
     var body: some View {
         ZStack {
             RouteNavigationView(
                 locationManager: locationManager,
                 instruction: $instruction,
-                totalPoints: $totalPoints
+                totalPoints: $totalPoints,
+                navigationStarted: $navigationStarted
             )
             .toyotaNaviSidebar(selection: $navigationBarSelection)
             .overlay(alignment: .bottomTrailing) {
                 currentScoreCard
+                    .opacity(navigationStarted ? 1 : 0)
             }
             .overlay(alignment: .topTrailing) {
                 HStack {
@@ -44,6 +48,19 @@ struct IPadContentView: View {
                     }
                 }
                 .mapFloatingItemBackground(width: 400)
+                .opacity(navigationStarted ? 1 : 0)
+            }
+            .onAppear {
+                mcSessionManager.start()
+            }
+            .onDisappear {
+                mcSessionManager.invalidate()
+            }
+            .onChange(of: mcSessionManager.receivedData) { _, newValue in
+                guard let data = newValue else { return }
+                guard let navigationStarted = try? JSONDecoder().decode(Bool.self, from: data) else { return }
+                self.navigationStarted = navigationStarted
+                mcSessionManager.invalidate()
             }
             
             if locationManager.updatingFinished {

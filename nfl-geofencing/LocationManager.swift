@@ -4,7 +4,7 @@ import MapKit
 
 
 class FakeLocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    @Published var coordinate: CLLocationCoordinate2D?
+    @Published var coordinate: CLLocationCoordinate2D? = Place.tmna.placemark.coordinate
     @Published var updatingFinished: Bool = false
     
     var routePolyline: MKPolyline?
