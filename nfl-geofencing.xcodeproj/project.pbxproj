@@ -44,6 +44,9 @@
 		A1FB9D892CB7CDBA00119D9B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB9D882CB7CDBA00119D9B /* LoginView.swift */; };
 		A1FB9D8B2CB8002900119D9B /* FootballPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB9D8A2CB8002900119D9B /* FootballPosition.swift */; };
 		A1FD00402CB8136100EC3A46 /* ScarableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FD003F2CB8136100EC3A46 /* ScarableImageView.swift */; };
+		CE2E6C272CBD187C007023DC /* MyNFLCollerctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E6C262CBD187C007023DC /* MyNFLCollerctionView.swift */; };
+		CE2E6C292CBD18C0007023DC /* MyCollegeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E6C282CBD18C0007023DC /* MyCollegeCollectionView.swift */; };
+		CE2E6C2B2CBD18DF007023DC /* MyCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E6C2A2CBD18DF007023DC /* MyCollectionView.swift */; };
 		E1CCE3D32CBB94B400B64C1D /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CCE3D22CBB94B400B64C1D /* Team.swift */; };
 		E1CCE3D52CBB9F4400B64C1D /* TeamSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CCE3D42CBB9F4400B64C1D /* TeamSelectView.swift */; };
 /* End PBXBuildFile section */
@@ -87,6 +90,9 @@
 		A1FB9D882CB7CDBA00119D9B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A1FB9D8A2CB8002900119D9B /* FootballPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootballPosition.swift; sourceTree = "<group>"; };
 		A1FD003F2CB8136100EC3A46 /* ScarableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScarableImageView.swift; sourceTree = "<group>"; };
+		CE2E6C262CBD187C007023DC /* MyNFLCollerctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNFLCollerctionView.swift; sourceTree = "<group>"; };
+		CE2E6C282CBD18C0007023DC /* MyCollegeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollegeCollectionView.swift; sourceTree = "<group>"; };
+		CE2E6C2A2CBD18DF007023DC /* MyCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionView.swift; sourceTree = "<group>"; };
 		E1CCE3D22CBB94B400B64C1D /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		E1CCE3D42CBB9F4400B64C1D /* TeamSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSelectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,6 +243,9 @@
 				7BE49F412CBC3E7B00B31067 /* NFLCollectionOverview.swift */,
 				7BE49F462CBC4C2300B31067 /* CardCollectionDetailView.swift */,
 				7BE49F482CBD060D00B31067 /* CardUnpackView.swift */,
+				CE2E6C262CBD187C007023DC /* MyNFLCollerctionView.swift */,
+				CE2E6C282CBD18C0007023DC /* MyCollegeCollectionView.swift */,
+				CE2E6C2A2CBD18DF007023DC /* MyCollectionView.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -346,10 +355,13 @@
 				E1CCE3D52CBB9F4400B64C1D /* TeamSelectView.swift in Sources */,
 				A1FD00402CB8136100EC3A46 /* ScarableImageView.swift in Sources */,
 				7B4BFFBF2CB69EE2001C450F /* Place.swift in Sources */,
+				CE2E6C2B2CBD18DF007023DC /* MyCollectionView.swift in Sources */,
+				CE2E6C272CBD187C007023DC /* MyNFLCollerctionView.swift in Sources */,
 				7BE49F472CBC4C2300B31067 /* CardCollectionDetailView.swift in Sources */,
 				7BE49F452CBC480D00B31067 /* Card.swift in Sources */,
 				A1FB9D8B2CB8002900119D9B /* FootballPosition.swift in Sources */,
 				7BE708642CB5548F00E0CBA9 /* ScheduleScreen.swift in Sources */,
+				CE2E6C292CBD18C0007023DC /* MyCollegeCollectionView.swift in Sources */,
 				7BE708602CB550F100E0CBA9 /* SetupProfileView.swift in Sources */,
 				7BE99FCF2CBAB9230049F525 /* Collection+.swift in Sources */,
 				E1CCE3D32CBB94B400B64C1D /* Team.swift in Sources */,

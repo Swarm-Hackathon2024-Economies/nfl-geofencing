@@ -26,79 +26,8 @@ struct CardsScreen: View {
                                 NFLCollectionOverview(title: "Profile Parts", imageName: "CollectionPicture3")
                             }
                             .padding(.horizontal)
-                        } else {
-                            VStack {
-                                HStack {
-                                    Text("NFL Collections")
-                                        .font(.title2.bold())
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                    HStack{
-                                        Text("23")
-                                            .font(.title2.bold())
-                                        Text("/ 230")
-                                    }
-                                }
-                                HStack {
-                                    NavigationLink {
-                                        PlayerCard()
-                                    } label: {
-                                        Image("MyNFLCollection1")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .clipShape(RoundedRectangle(cornerRadius: 8))
-                                            .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 5)
-                                    }
-                                    Image("MyNFLCollection2")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                                        .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 5)
-                                    Image("MyNFLCollection1")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                                        .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 5)
-                                }
-                                HStack {
-                                    Spacer()
-                                    Text("View all")
-                                        .font(.title3.bold())
-                                        .foregroundStyle(.red)
-                                }
-                                .padding(.bottom, 10)
-                                HStack {
-                                    Text("College Collections")
-                                        .font(.title2.bold())
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                    Text("40")
-                                        .font(.title2.bold())
-                                    Text("/ 230")
-                                }
-                                HStack {
-                                    Image("MyCollegeCollection1")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                                        .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 5)
-                                    Image("MyCollegeCollection2")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                                        .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 5)
-                                    Image("MyCollegeCollection1")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                                        .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 5)
-                                }
-                                HStack {
-                                    Spacer()
-                                    Text("View all")
-                                        .font(.title3.bold())
-                                        .foregroundStyle(.red)
-                                }
-                            }
-                            .padding(.horizontal)
+                        } else {                                MyCollectionView()
+                                .padding(.horizontal)
                         }
                     } header: {
                         sectionHeader
