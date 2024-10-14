@@ -4,7 +4,7 @@ struct TeamSelectView: View {
     @State private var selectedTeamIndex: Int?
     @Binding var isShowSetUpProfile: Bool
     
-    private var teams = Team.allItems
+    private let teams = Team.allItems
     
     var body: some View {
         VStack {
