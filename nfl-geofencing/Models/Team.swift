@@ -1,36 +1,24 @@
 import SwiftUI
 
 struct Team: Equatable {
+    let rank: String
     let name: String
-    let points: Int
-    let image: String
+    let points: String
+    let icon: String
     let color: Color
 
-    static let Ravens = Team(name: "Ravens", points: 834339, image: "baltimore-ravens", color: .red)
-    static let Bills = Team(name: "Bills", points: 630496, image: "buffalo-bills", color: .blue)
-    static let Bengals = Team(name: "Bengals", points: 627995, image: "cincinnati-bengals", color: .black)
-    static let Colts = Team(name: "Colts", points: 484724, image: "indianapolis-colts", color: .brown)
-    static let Patriots = Team(name: "Patriots", points: 453321, image: "new-england-patriots", color: .yellow)
-    static let Angeles = Team(name: "Angeles", points: 408419, image: "new-los-angeles-rams", color: .cyan)
-    static let Saints = Team(name: "Saints", points: 365405, image: "new-orleans-saints", color: .mint)
-    static let Eagles = Team(name: "Eagles", points: 345094, image: "philadelphia-eagles", color: .green)
-    static let Chargers = Team(name: "Chargers", points: 309080, image: "san-diego-chargers", color: .pink)
-    static let _49ers = Team(name: "_49ers", points: 275707, image: "san-francisco-49ers", color: .purple)
-    static let Seahawks = Team(name: "Seahawks", points: 154308, image: "seattle-seahawks", color: .teal)
-    static let Commanders = Team(name: "Commanders", points: 144861, image: "washington-commanders", color: .indigo)
-
     static let allItems: [Team] = [
-        Ravens,
-        Bills,
-        Bengals,
-        Colts,
-        Patriots,
-        Angeles,
-        Saints,
-        Eagles,
-        Chargers,
-        _49ers,
-        Seahawks,
-        Commanders
+        Team(rank: "1", name: "Ravens", points: "834,339", icon: "baltimore-ravens", color: .red),
+        Team(rank: "2", name: "Bills", points: "630,496", icon: "buffalo-bills", color: .blue),
+        Team(rank: "3", name: "Bengals", points: "627,995", icon: "cincinnati-bengals", color: .black),
+        Team(rank: "4", name: "Colts", points: "484,724", icon: "indianapolis-colts", color: .brown),
+        Team(rank: "5", name: "Patriots", points: "453,321", icon: "new-england-patriots", color: .yellow),
+        Team(rank: "6", name: "Angeles", points: "408,419", icon: "new-los-angeles-rams", color: .cyan),
+        Team(rank: "7", name: "Saints", points: "365,405", icon: "new-orleans-saints", color: .mint),
+        Team(rank: "8", name: "Eagles", points: "345,094", icon: "philadelphia-eagles", color: .green),
+        Team(rank: "9", name: "Chargers", points: "309,080", icon: "san-diego-chargers", color: .pink),
+        Team(rank: "10", name: "49ers", points: "275,707", icon: "san-francisco-49ers", color: .purple),
+        Team(rank: "11", name: "Seahawks", points: "154,308", icon: "seattle-seahawks", color: .teal),
+        Team(rank: "12", name: "Commanders", points: "144,861", icon: "washington-commanders", color: .indigo),
     ]
 }

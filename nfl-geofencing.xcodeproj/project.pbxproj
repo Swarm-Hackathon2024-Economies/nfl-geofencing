@@ -24,6 +24,7 @@
 		7BE49F4B2CBD142500B31067 /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F4A2CBD142500B31067 /* ProfileCardView.swift */; };
 		7BE49F4D2CBD170800B31067 /* CapsuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F4C2CBD170800B31067 /* CapsuleButton.swift */; };
 		7BE49F4F2CBD190D00B31067 /* RankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F4E2CBD190D00B31067 /* RankingView.swift */; };
+		7BE49F522CBD266900B31067 /* MatchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F512CBD266900B31067 /* MatchCard.swift */; };
 		7BE708522CB54CA000E0CBA9 /* nfl_geofencingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708512CB54CA000E0CBA9 /* nfl_geofencingApp.swift */; };
 		7BE708542CB54CA000E0CBA9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708532CB54CA000E0CBA9 /* ContentView.swift */; };
 		7BE708562CB54CA000E0CBA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BE708552CB54CA000E0CBA9 /* Assets.xcassets */; };
@@ -69,6 +70,7 @@
 		7BE49F4A2CBD142500B31067 /* ProfileCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
 		7BE49F4C2CBD170800B31067 /* CapsuleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButton.swift; sourceTree = "<group>"; };
 		7BE49F4E2CBD190D00B31067 /* RankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingView.swift; sourceTree = "<group>"; };
+		7BE49F512CBD266900B31067 /* MatchCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCard.swift; sourceTree = "<group>"; };
 		7BE7084E2CB54CA000E0CBA9 /* nfl-geofencing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nfl-geofencing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BE708512CB54CA000E0CBA9 /* nfl_geofencingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nfl_geofencingApp.swift; sourceTree = "<group>"; };
 		7BE708532CB54CA000E0CBA9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -153,6 +155,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		7BE49F502CBD1DF300B31067 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7BE49F4C2CBD170800B31067 /* CapsuleButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		7BE708452CB54CA000E0CBA9 = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +182,7 @@
 		7BE708502CB54CA000E0CBA9 /* nfl-geofencing */ = {
 			isa = PBXGroup;
 			children = (
+				7BE49F502CBD1DF300B31067 /* Components */,
 				7BE49F432CBC477600B31067 /* Models */,
 				7BE49F3E2CBC3E2300B31067 /* CustomModifiers */,
 				7BE49F362CBBE71E00B31067 /* Repositories */,
@@ -214,7 +225,6 @@
 			children = (
 				7BE708612CB5511000E0CBA9 /* HomeScreen.swift */,
 				7BE49F4A2CBD142500B31067 /* ProfileCardView.swift */,
-				7BE49F4C2CBD170800B31067 /* CapsuleButton.swift */,
 				7BE49F4E2CBD190D00B31067 /* RankingView.swift */,
 			);
 			path = Home;
@@ -224,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				7BE708632CB5548F00E0CBA9 /* ScheduleScreen.swift */,
+				7BE49F512CBD266900B31067 /* MatchCard.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -374,6 +385,7 @@
 				7BE99FD32CBABA330049F525 /* MapPolyline+.swift in Sources */,
 				7BE49F4D2CBD170800B31067 /* CapsuleButton.swift in Sources */,
 				7BACAF112CB580B1005CC432 /* PlayerCard.swift in Sources */,
+				7BE49F522CBD266900B31067 /* MatchCard.swift in Sources */,
 				7BE708522CB54CA000E0CBA9 /* nfl_geofencingApp.swift in Sources */,
 				7BE49F4B2CBD142500B31067 /* ProfileCardView.swift in Sources */,
 				7BE99FD12CBAB94B0049F525 /* CLLocationCoordinate2D+.swift in Sources */,

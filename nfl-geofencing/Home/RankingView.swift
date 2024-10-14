@@ -1,13 +1,6 @@
 import SwiftUI
 
 struct RankingView: View {
-    let teams = Team.allItems.map { team in
-        (rank: "\(Team.allItems.firstIndex(of: team)! + 1)",
-         icon: team.image,
-         name: team.name,
-         points: "\(team.points.formattedWithSeparator())P")
-    }
-    
     var body: some View {
         VStack {
             Text("Ranking")
@@ -20,7 +13,7 @@ struct RankingView: View {
                 Spacer()
             }
             Grid {
-                ForEach(teams, id: \.rank) { team in
+                ForEach(Team.allItems, id: \.rank) { team in
                     GridRow {
                         Text(team.rank)
                             .font(.title.bold())

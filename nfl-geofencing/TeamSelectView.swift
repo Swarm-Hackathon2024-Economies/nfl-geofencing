@@ -4,16 +4,7 @@ struct TeamSelectView: View {
     @State private var selectedTeamIndex: Int?
     @Binding var isShowSetUpProfile: Bool
     
-    private var teams: [(rank: String, icon: String, name: String, points: String)] {
-        Team.allItems.map { team in
-            (
-                rank: "\(Team.allItems.firstIndex(of: team)! + 1)",
-                icon: team.image,
-                name: team.name,
-                points: "\(team.points.formattedWithSeparator())P"
-            )
-        }
-    }
+    private var teams = Team.allItems
     
     var body: some View {
         VStack {
@@ -66,7 +57,7 @@ struct TeamSelectView: View {
     }
     
     
-    private func teamCell(for team: (rank: String, icon: String, name: String, points: String), isSelected: Bool) -> some View {
+    private func teamCell(for team: Team, isSelected: Bool) -> some View {
         VStack {
             Image(team.icon)
                 .resizable()
