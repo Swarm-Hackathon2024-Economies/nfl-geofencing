@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CardCollectionDetailView: View {
     @State private var showPurchaseDialog = false
+    @State private var showCardUnpackView = false
     
     var body: some View {
         ZStack {
@@ -20,7 +21,6 @@ struct CardCollectionDetailView: View {
                 .padding(.horizontal)
                 .padding(.top, 16)
             }
-            .zIndex(0)
             
             if showPurchaseDialog {
                 Color.black.opacity(0.3).ignoresSafeArea()
@@ -30,7 +30,13 @@ struct CardCollectionDetailView: View {
                     .transition(.move(edge: .top).combined(with: .opacity))
                     .zIndex(2.0)
             }
+            
+            if showCardUnpackView {
+                CardUnpackView(show: $showCardUnpackView)
+                    .zIndex(3.0)
+            }
         }
+        .toolbar(showCardUnpackView ? .hidden : .visible, for: .navigationBar)
         .cardsScreenToolbarItems()
     }
     
@@ -92,6 +98,7 @@ struct CardCollectionDetailView: View {
                 withAnimation {
                     showPurchaseDialog = false
                 }
+                showCardUnpackView = true
             } label: {
                 Text("Unpack")
                     .fontWeight(.bold)

@@ -20,6 +20,7 @@
 		7BE49F422CBC3E7B00B31067 /* NFLCollectionOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F412CBC3E7B00B31067 /* NFLCollectionOverview.swift */; };
 		7BE49F452CBC480D00B31067 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F442CBC480D00B31067 /* Card.swift */; };
 		7BE49F472CBC4C2300B31067 /* CardCollectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F462CBC4C2300B31067 /* CardCollectionDetailView.swift */; };
+		7BE49F492CBD060D00B31067 /* CardUnpackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F482CBD060D00B31067 /* CardUnpackView.swift */; };
 		7BE708522CB54CA000E0CBA9 /* nfl_geofencingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708512CB54CA000E0CBA9 /* nfl_geofencingApp.swift */; };
 		7BE708542CB54CA000E0CBA9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE708532CB54CA000E0CBA9 /* ContentView.swift */; };
 		7BE708562CB54CA000E0CBA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BE708552CB54CA000E0CBA9 /* Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		7BE49F412CBC3E7B00B31067 /* NFLCollectionOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFLCollectionOverview.swift; sourceTree = "<group>"; };
 		7BE49F442CBC480D00B31067 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		7BE49F462CBC4C2300B31067 /* CardCollectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionDetailView.swift; sourceTree = "<group>"; };
+		7BE49F482CBD060D00B31067 /* CardUnpackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardUnpackView.swift; sourceTree = "<group>"; };
 		7BE7084E2CB54CA000E0CBA9 /* nfl-geofencing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nfl-geofencing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BE708512CB54CA000E0CBA9 /* nfl_geofencingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nfl_geofencingApp.swift; sourceTree = "<group>"; };
 		7BE708532CB54CA000E0CBA9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				7BE708652CB554A700E0CBA9 /* CardsScreen.swift */,
 				7BE49F412CBC3E7B00B31067 /* NFLCollectionOverview.swift */,
 				7BE49F462CBC4C2300B31067 /* CardCollectionDetailView.swift */,
+				7BE49F482CBD060D00B31067 /* CardUnpackView.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				A139DB5D2CB5724F00A75050 /* RouteDetailView.swift in Sources */,
 				7BE708542CB54CA000E0CBA9 /* ContentView.swift in Sources */,
 				7BE708622CB5511000E0CBA9 /* HomeScreen.swift in Sources */,
+				7BE49F492CBD060D00B31067 /* CardUnpackView.swift in Sources */,
 				7BE49F3D2CBC3E0100B31067 /* View+.swift in Sources */,
 				7B4BFFC32CB6A01D001C450F /* LocationManager.swift in Sources */,
 				7BE49F382CBBE82300B31067 /* DangerAreaRepository.swift in Sources */,
