@@ -25,7 +25,8 @@ struct MyCollegeCollectionView: View {
             } label: {
                 Image("MyCollegeCollection1")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 140, height: 200)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 5)
             }
@@ -36,7 +37,8 @@ struct MyCollegeCollectionView: View {
             } label: {
                 Image("MyCollegeCollection2")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 140, height: 200)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 5)
             }
@@ -47,7 +49,8 @@ struct MyCollegeCollectionView: View {
             } label: {
                 Image("MyCollegeCollection3")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 140, height: 200)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 5)
             }

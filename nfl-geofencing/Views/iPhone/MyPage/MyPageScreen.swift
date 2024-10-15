@@ -1,12 +1,67 @@
 import SwiftUI
 
 struct MyPageScreen: View {
+    let profileItems: [ProfileItem] = [
+        ProfileItem(name: "MyProfile", imageName: "PeopleIcon"),
+        ProfileItem(name: "Insurance class", imageName: "LikeIcon"),
+    ]
+    let externalLinkItems: [ProfileItem] = [
+        ProfileItem(name: "TOYOTA", imageName: "TOYOTAIcon"),
+        ProfileItem(name: "TOYOTA Account", imageName: "TOYOTAIcon"),
+        ProfileItem(name: "NFL", imageName: "NFLIcon"),
+        ProfileItem(name: "NFL Ticket", imageName: "NFLIcon"),
+        ProfileItem(name: "NFL FLAG", imageName: "NFLFlagIcon"),
+        ProfileItem(name: "FAQ & Contact Us", imageName: "QuestionIcon"),
+    ]
+    
     var body: some View {
-        ScrollView {
-            Text("MyPage")
+        NavigationStack {
+            ScrollView {
+                VStack {
+                    Rectangle()
+                        .fill(Color.gray)
+                        .frame(height: 1)
+                    ForEach(profileItems, id: \.name) { item in
+                        HStack {
+                            Image(item.imageName)
+                            Text(item.name)
+                            Spacer()
+                            Image("ArrowIcon")
+                                .padding()
+                        }
+                        .frame(height: 35)
+                        Rectangle()
+                            .fill(Color.gray)
+                            .frame(height: 1)
+                    }
+                    HStack {
+                        Text("External Link")
+                            .font(.title2)
+                            .foregroundStyle(.gray)
+                            .bold()
+                        Spacer()
+                    }
+                    .padding(.top,40)
+                    Rectangle()
+                        .fill(Color.gray)
+                        .frame(height: 1)
+                    ForEach(externalLinkItems, id: \.name) { item in
+                        HStack {
+                            Image(item.imageName)
+                            Text(item.name)
+                            Spacer()
+                            Image("ArrowIcon")
+                        }
+                        .frame(height: 35)
+                        Rectangle()
+                            .fill(Color.gray)
+                            .frame(height: 1)
+                    }
+                }
+                .padding()
+            }
+            .mypageScreenToolbarItems()
         }
-        .mypageScreenToolbarItems()
-        .mypageItemList()
     }
 }
 
@@ -15,7 +70,7 @@ struct MypageScreenToolbarItems: ViewModifier {
         content
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Image("TitleIcon")
+                    Image("MyPageTitleIcon")
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack(spacing: 38) {
@@ -36,77 +91,9 @@ struct MypageScreenToolbarItems: ViewModifier {
     }
 }
 
-struct MypageItemList: ViewModifier {
-    let profileItems: [ProfileItem] = [
-            ProfileItem(name: "MyProfile", imageName: "PeopleIcon"),
-            ProfileItem(name: "Insurance class", imageName: "LikeIcon"),
-        ]
-    let externalLinkItems: [ProfileItem] = [
-            ProfileItem(name: "TOYOTA", imageName: "TOYOTAIcon"),
-            ProfileItem(name: "TOYOTA Account", imageName: "TOYOTAIcon"),
-            ProfileItem(name: "NFL", imageName: "NFLIcon"),
-            ProfileItem(name: "NFL Ticket", imageName: "NFLIcon"),
-            ProfileItem(name: "NFL FLAG", imageName: "NFLFlagIcon"),
-            ProfileItem(name: "FAQ & Contact Us", imageName: "QuestionIcon"),
-        ]
-    func body(content: Content) -> some View {
-        VStack {
-            Rectangle()
-                    .fill(Color.gray)
-                    .frame(height: 1)
-                    .padding(.horizontal)
-            ForEach(profileItems, id: \.name) { item in
-                            HStack {
-                                Image(item.imageName)
-                                Text(item.name)
-                                Spacer()
-                                Image("ArrowIcon")
-                                    .padding()
-                            }
-                            .frame(height: 35)
-                            .padding(.horizontal)
-                            Rectangle()
-                                .fill(Color.gray)
-                                .frame(height: 1)
-                                .padding(.horizontal)
-                        }
-            HStack {
-            Text("External Link")
-                    .font(.title2)
-                    .foregroundStyle(.gray)
-                    .bold()
-                    .padding(.horizontal)
-                Spacer()
-            }
-            .padding(.top,40)
-            Rectangle()
-                    .fill(Color.gray)
-                    .frame(height: 1)
-                    .padding(.horizontal)
-            ForEach(externalLinkItems, id: \.name) { item in
-                            HStack {
-                                Image(item.imageName)
-                                Text(item.name)
-                                Spacer()
-                                Image("ArrowIcon")
-                            }
-                            .frame(height: 35)
-                            .padding(.horizontal)
-                            Rectangle()
-                                .fill(Color.gray)
-                                .frame(height: 1)
-                                .padding(.horizontal)
-                        }
-        }
-    }
-}
-
 extension View {
     func mypageScreenToolbarItems() -> some View {
         modifier(MypageScreenToolbarItems())
-    }
-    func mypageItemList() -> some View {
-        modifier(MypageItemList())
     }
 }
 
