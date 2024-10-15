@@ -45,7 +45,7 @@ struct MyCollegeCollectionView: View {
                     .scaleEffect(0.9)
                     .cardsScreenToolbarItems()
             } label: {
-                Image("MyCollegeCollection1")
+                Image("MyCollegeCollection3")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius: 8))

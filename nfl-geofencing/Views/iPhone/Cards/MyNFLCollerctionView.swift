@@ -47,7 +47,7 @@ struct MyNFLCollerctionView: View {
                     .scaleEffect(0.9)
                     .cardsScreenToolbarItems()
             } label: {
-                Image("MyNFLCollection1")
+                Image("MyNFLCollection3")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius: 8))

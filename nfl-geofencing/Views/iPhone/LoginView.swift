@@ -22,7 +22,7 @@ struct LoginView: View {
                     .resizable()
                     .frame(width: 210, height: 91)
                 Spacer()
-                Text("APP NAME")
+                Text("PLAYBOOK")
                     .font(.title)
                     .bold()
                 Spacer()
