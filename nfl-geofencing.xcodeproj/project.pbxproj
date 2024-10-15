@@ -12,6 +12,7 @@
 		7B4BFFBF2CB69EE2001C450F /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4BFFBE2CB69EE2001C450F /* Place.swift */; };
 		7B4BFFC12CB69F36001C450F /* RouteNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4BFFC02CB69F36001C450F /* RouteNavigationView.swift */; };
 		7B4BFFC32CB6A01D001C450F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4BFFC22CB6A01D001C450F /* LocationManager.swift */; };
+		7B9B6D5B2CBE6AA8007FA8A0 /* MapViewForScreenShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6D5A2CBE6AA8007FA8A0 /* MapViewForScreenShot.swift */; };
 		7BACAF112CB580B1005CC432 /* PlayerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BACAF102CB580B1005CC432 /* PlayerCard.swift */; };
 		7BE49F352CBBE6FC00B31067 /* crustered-accident.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BE49F342CBBE6FC00B31067 /* crustered-accident.json */; };
 		7BE49F382CBBE82300B31067 /* DangerAreaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F372CBBE82300B31067 /* DangerAreaRepository.swift */; };
@@ -58,6 +59,7 @@
 		7B4BFFBE2CB69EE2001C450F /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		7B4BFFC02CB69F36001C450F /* RouteNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteNavigationView.swift; sourceTree = "<group>"; };
 		7B4BFFC22CB6A01D001C450F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		7B9B6D5A2CBE6AA8007FA8A0 /* MapViewForScreenShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewForScreenShot.swift; sourceTree = "<group>"; };
 		7BACAF102CB580B1005CC432 /* PlayerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCard.swift; sourceTree = "<group>"; };
 		7BE49F342CBBE6FC00B31067 /* crustered-accident.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "crustered-accident.json"; sourceTree = "<group>"; };
 		7BE49F372CBBE82300B31067 /* DangerAreaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerAreaRepository.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				7BE708572CB54CA000E0CBA9 /* Preview Content */,
 				7B4BFFC22CB6A01D001C450F /* LocationManager.swift */,
 				7BE49F552CBD488100B31067 /* MCSessionManager.swift */,
+				7B9B6D5A2CBE6AA8007FA8A0 /* MapViewForScreenShot.swift */,
 			);
 			path = "nfl-geofencing";
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				7BE49F402CBC3E3D00B31067 /* ScrollSpy.swift in Sources */,
 				7BE99FD52CBABA8E0049F525 /* ResultDialog.swift in Sources */,
 				A1FB9D892CB7CDBA00119D9B /* LoginView.swift in Sources */,
+				7B9B6D5B2CBE6AA8007FA8A0 /* MapViewForScreenShot.swift in Sources */,
 				7BE708662CB554A700E0CBA9 /* CardsScreen.swift in Sources */,
 				7B4BFFBC2CB69E07001C450F /* ToyotaNavigationSidebar.swift in Sources */,
 				7B4BFFBA2CB69C10001C450F /* IPadContentView.swift in Sources */,
@@ -548,6 +552,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -577,6 +582,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
