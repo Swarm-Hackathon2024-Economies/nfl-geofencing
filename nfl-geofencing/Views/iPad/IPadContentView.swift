@@ -51,7 +51,7 @@ struct IPadContentView: View {
                 .opacity(navigationStarted ? 1 : 0)
             }
             .onAppear {
-                mcSessionManager.start()
+                mcSessionManager.startAdvertising()
             }
             .onDisappear {
                 mcSessionManager.invalidate()

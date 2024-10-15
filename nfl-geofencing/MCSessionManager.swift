@@ -37,6 +37,14 @@ class MCSessionManager: NSObject, ObservableObject {
         mcBrowser.startBrowsingForPeers()
     }
     
+    func startAdvertising() {
+        mcAdvertiser.startAdvertisingPeer()
+    }
+    
+    func startBrowsing() {
+        mcBrowser.startBrowsingForPeers()
+    }
+    
     func sendDataToAllPeers(data: Data) {
         do {
             try mcSession.send(data, toPeers: mcSession.connectedPeers, with: .reliable)
@@ -71,7 +79,9 @@ extension MCSessionManager: MCSessionDelegate {
     }
     
     private func peerConnected(_ peerID: MCPeerID) {
-        connectedPeerID = peerID
+        DispatchQueue.main.async {
+            self.connectedPeerID = peerID
+        }
         if mcSession.connectedPeers.count == maxNumPeers {
             self.suspend()
         }
@@ -79,7 +89,9 @@ extension MCSessionManager: MCSessionDelegate {
     
     private func peerDisconnected(peerID: MCPeerID) {
         if peerID == connectedPeerID {
-            connectedPeerID = nil
+            DispatchQueue.main.async {
+                self.connectedPeerID = nil
+            }
         }
         if mcSession.connectedPeers.count < maxNumPeers {
             self.start()
@@ -87,7 +99,9 @@ extension MCSessionManager: MCSessionDelegate {
     }
     
     internal func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        receivedData = data
+        DispatchQueue.main.async {
+            self.receivedData = data
+        }
     }
     
     internal func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {}

@@ -40,7 +40,6 @@
 		7BE99FD12CBAB94B0049F525 /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE99FD02CBAB94B0049F525 /* CLLocationCoordinate2D+.swift */; };
 		7BE99FD32CBABA330049F525 /* MapPolyline+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE99FD22CBABA330049F525 /* MapPolyline+.swift */; };
 		7BE99FD52CBABA8E0049F525 /* ResultDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE99FD42CBABA8E0049F525 /* ResultDialog.swift */; };
-		7BE99FD82CBAE5350049F525 /* TransitPointSpike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE99FD72CBAE5350049F525 /* TransitPointSpike.swift */; };
 		A139DB5D2CB5724F00A75050 /* RouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139DB5C2CB5724F00A75050 /* RouteDetailView.swift */; };
 		A139DB612CB573AE00A75050 /* DestinationRegistorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139DB602CB573AE00A75050 /* DestinationRegistorView.swift */; };
 		A1FB9D892CB7CDBA00119D9B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB9D882CB7CDBA00119D9B /* LoginView.swift */; };
@@ -88,7 +87,6 @@
 		7BE99FD02CBAB94B0049F525 /* CLLocationCoordinate2D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+.swift"; sourceTree = "<group>"; };
 		7BE99FD22CBABA330049F525 /* MapPolyline+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapPolyline+.swift"; sourceTree = "<group>"; };
 		7BE99FD42CBABA8E0049F525 /* ResultDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDialog.swift; sourceTree = "<group>"; };
-		7BE99FD72CBAE5350049F525 /* TransitPointSpike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitPointSpike.swift; sourceTree = "<group>"; };
 		A139DB5C2CB5724F00A75050 /* RouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailView.swift; sourceTree = "<group>"; };
 		A139DB602CB573AE00A75050 /* DestinationRegistorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationRegistorView.swift; sourceTree = "<group>"; };
 		A1FB9D882CB7CDBA00119D9B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -121,6 +119,33 @@
 				7BE99FD42CBABA8E0049F525 /* ResultDialog.swift */,
 			);
 			path = iPad;
+			sourceTree = "<group>";
+		};
+		7B9B6D582CBE687A007FA8A0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7BE49F502CBD1DF300B31067 /* Components */,
+				7BE49F3E2CBC3E2300B31067 /* CustomModifiers */,
+				7B9B6D592CBE68A8007FA8A0 /* iPhone */,
+				7B4BFFB82CB69BF0001C450F /* iPad */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7B9B6D592CBE68A8007FA8A0 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				7BE708532CB54CA000E0CBA9 /* ContentView.swift */,
+				7BE7085F2CB550F100E0CBA9 /* SetupProfileView.swift */,
+				E1CCE3D42CBB9F4400B64C1D /* TeamSelectView.swift */,
+				A1FB9D882CB7CDBA00119D9B /* LoginView.swift */,
+				7BE7086B2CB556D300E0CBA9 /* Home */,
+				7BE7086F2CB556FB00E0CBA9 /* MyPage */,
+				7BE7086E2CB556F600E0CBA9 /* Cards */,
+				7BE7086D2CB556F000E0CBA9 /* Drive */,
+				7BE7086C2CB556E800E0CBA9 /* Schedule */,
+			);
+			path = iPhone;
 			sourceTree = "<group>";
 		};
 		7BE49F332CBBE64C00B31067 /* Resources */ = {
@@ -160,6 +185,7 @@
 		7BE49F502CBD1DF300B31067 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A1FD003F2CB8136100EC3A46 /* ScarableImageView.swift */,
 				7BE49F4C2CBD170800B31067 /* CapsuleButton.swift */,
 			);
 			path = Components;
@@ -184,32 +210,16 @@
 		7BE708502CB54CA000E0CBA9 /* nfl-geofencing */ = {
 			isa = PBXGroup;
 			children = (
-				7BE49F502CBD1DF300B31067 /* Components */,
+				7B9B6D582CBE687A007FA8A0 /* Views */,
 				7BE49F432CBC477600B31067 /* Models */,
-				7BE49F3E2CBC3E2300B31067 /* CustomModifiers */,
 				7BE49F362CBBE71E00B31067 /* Repositories */,
 				7BE49F332CBBE64C00B31067 /* Resources */,
 				7BE99FD62CBABEBC0049F525 /* Extensions */,
-				7B4BFFB82CB69BF0001C450F /* iPad */,
-				7BE7086B2CB556D300E0CBA9 /* Home */,
-				7BE7086C2CB556E800E0CBA9 /* Schedule */,
-				7BE7086D2CB556F000E0CBA9 /* Drive */,
-				7BE7086E2CB556F600E0CBA9 /* Cards */,
-				7BE7086F2CB556FB00E0CBA9 /* MyPage */,
 				7BE708512CB54CA000E0CBA9 /* nfl_geofencingApp.swift */,
-				A139DB5C2CB5724F00A75050 /* RouteDetailView.swift */,
 				A1FB9D8A2CB8002900119D9B /* FootballPosition.swift */,
-				A139DB602CB573AE00A75050 /* DestinationRegistorView.swift */,
-				7BE708532CB54CA000E0CBA9 /* ContentView.swift */,
-				7BE7085F2CB550F100E0CBA9 /* SetupProfileView.swift */,
-				A1FB9D882CB7CDBA00119D9B /* LoginView.swift */,
 				7BE708552CB54CA000E0CBA9 /* Assets.xcassets */,
-				A1FD003F2CB8136100EC3A46 /* ScarableImageView.swift */,
 				7BE708572CB54CA000E0CBA9 /* Preview Content */,
-				7BACAF102CB580B1005CC432 /* PlayerCard.swift */,
 				7B4BFFC22CB6A01D001C450F /* LocationManager.swift */,
-				7BE99FD72CBAE5350049F525 /* TransitPointSpike.swift */,
-				E1CCE3D42CBB9F4400B64C1D /* TeamSelectView.swift */,
 				7BE49F552CBD488100B31067 /* MCSessionManager.swift */,
 			);
 			path = "nfl-geofencing";
@@ -245,6 +255,8 @@
 		7BE7086D2CB556F000E0CBA9 /* Drive */ = {
 			isa = PBXGroup;
 			children = (
+				A139DB602CB573AE00A75050 /* DestinationRegistorView.swift */,
+				A139DB5C2CB5724F00A75050 /* RouteDetailView.swift */,
 				7BE708692CB5551700E0CBA9 /* DriveScreen.swift */,
 			);
 			path = Drive;
@@ -253,6 +265,7 @@
 		7BE7086E2CB556F600E0CBA9 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
+				7BACAF102CB580B1005CC432 /* PlayerCard.swift */,
 				7BE708652CB554A700E0CBA9 /* CardsScreen.swift */,
 				7BE49F412CBC3E7B00B31067 /* NFLCollectionOverview.swift */,
 				7BE49F462CBC4C2300B31067 /* CardCollectionDetailView.swift */,
@@ -363,7 +376,6 @@
 				7BE49F3D2CBC3E0100B31067 /* View+.swift in Sources */,
 				7B4BFFC32CB6A01D001C450F /* LocationManager.swift in Sources */,
 				7BE49F382CBBE82300B31067 /* DangerAreaRepository.swift in Sources */,
-				7BE99FD82CBAE5350049F525 /* TransitPointSpike.swift in Sources */,
 				A139DB612CB573AE00A75050 /* DestinationRegistorView.swift in Sources */,
 				7BE49F422CBC3E7B00B31067 /* NFLCollectionOverview.swift in Sources */,
 				E1CCE3D52CBB9F4400B64C1D /* TeamSelectView.swift in Sources */,

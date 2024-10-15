@@ -209,10 +209,7 @@ struct RouteDetailView: View {
             }
         }
         .onAppear {
-            mcSessionManager.start()
-        }
-        .onDisappear {
-            mcSessionManager.invalidate()
+            mcSessionManager.startBrowsing()
         }
     }
 
