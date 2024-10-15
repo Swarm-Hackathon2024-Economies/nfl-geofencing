@@ -60,6 +60,7 @@
 		7B4BFFC02CB69F36001C450F /* RouteNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteNavigationView.swift; sourceTree = "<group>"; };
 		7B4BFFC22CB6A01D001C450F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7B9B6D5A2CBE6AA8007FA8A0 /* MapViewForScreenShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewForScreenShot.swift; sourceTree = "<group>"; };
+		7B9B6D5C2CBE787B007FA8A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7BACAF102CB580B1005CC432 /* PlayerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCard.swift; sourceTree = "<group>"; };
 		7BE49F342CBBE6FC00B31067 /* crustered-accident.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "crustered-accident.json"; sourceTree = "<group>"; };
 		7BE49F372CBBE82300B31067 /* DangerAreaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerAreaRepository.swift; sourceTree = "<group>"; };
@@ -212,6 +213,7 @@
 		7BE708502CB54CA000E0CBA9 /* nfl-geofencing */ = {
 			isa = PBXGroup;
 			children = (
+				7B9B6D5C2CBE787B007FA8A0 /* Info.plist */,
 				7B9B6D582CBE687A007FA8A0 /* Views */,
 				7BE49F432CBC477600B31067 /* Models */,
 				7BE49F362CBBE71E00B31067 /* Repositories */,
@@ -547,6 +549,8 @@
 				DEVELOPMENT_TEAM = 575NKNQV6Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "nfl-geofencing/Info.plist";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This app uses local network to comunicate with other device nearby.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -577,6 +581,8 @@
 				DEVELOPMENT_TEAM = 575NKNQV6Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "nfl-geofencing/Info.plist";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This app uses local network to comunicate with other device nearby.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
