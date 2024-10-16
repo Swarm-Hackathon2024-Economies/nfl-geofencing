@@ -41,6 +41,7 @@
 		7BE99FD12CBAB94B0049F525 /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE99FD02CBAB94B0049F525 /* CLLocationCoordinate2D+.swift */; };
 		7BE99FD32CBABA330049F525 /* MapPolyline+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE99FD22CBABA330049F525 /* MapPolyline+.swift */; };
 		7BE99FD52CBABA8E0049F525 /* ResultDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE99FD42CBABA8E0049F525 /* ResultDialog.swift */; };
+		7BEB7AE52CBFB98700C14DA0 /* CardUnpackView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEB7AE42CBFB98700C14DA0 /* CardUnpackView2.swift */; };
 		A139DB5D2CB5724F00A75050 /* RouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139DB5C2CB5724F00A75050 /* RouteDetailView.swift */; };
 		A139DB612CB573AE00A75050 /* DestinationRegistorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139DB602CB573AE00A75050 /* DestinationRegistorView.swift */; };
 		A1FB9D892CB7CDBA00119D9B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB9D882CB7CDBA00119D9B /* LoginView.swift */; };
@@ -90,6 +91,7 @@
 		7BE99FD02CBAB94B0049F525 /* CLLocationCoordinate2D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+.swift"; sourceTree = "<group>"; };
 		7BE99FD22CBABA330049F525 /* MapPolyline+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapPolyline+.swift"; sourceTree = "<group>"; };
 		7BE99FD42CBABA8E0049F525 /* ResultDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDialog.swift; sourceTree = "<group>"; };
+		7BEB7AE42CBFB98700C14DA0 /* CardUnpackView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardUnpackView2.swift; sourceTree = "<group>"; };
 		A139DB5C2CB5724F00A75050 /* RouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailView.swift; sourceTree = "<group>"; };
 		A139DB602CB573AE00A75050 /* DestinationRegistorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationRegistorView.swift; sourceTree = "<group>"; };
 		A1FB9D882CB7CDBA00119D9B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				CE2E6C262CBD187C007023DC /* MyNFLCollerctionView.swift */,
 				CE2E6C282CBD18C0007023DC /* MyCollegeCollectionView.swift */,
 				CE2E6C2A2CBD18DF007023DC /* MyCollectionView.swift */,
+				7BEB7AE42CBFB98700C14DA0 /* CardUnpackView2.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				7B4BFFC12CB69F36001C450F /* RouteNavigationView.swift in Sources */,
 				7BE49F562CBD488100B31067 /* MCSessionManager.swift in Sources */,
 				7BE7086A2CB5551700E0CBA9 /* DriveScreen.swift in Sources */,
+				7BEB7AE52CBFB98700C14DA0 /* CardUnpackView2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,14 @@ struct CircleArea: Identifiable, Decodable {
 
 protocol DangerAreaRepository {
     func getAll() -> [CircleArea]
+    func get(by season: Season, isNight: Bool) -> [CircleArea]
+}
+
+enum Season {
+    case spring
+    case summer
+    case autumn
+    case winter
 }
 
 class JsonDangerAreaRepository: DangerAreaRepository {
@@ -36,5 +44,9 @@ class JsonDangerAreaRepository: DangerAreaRepository {
             print("JSONデコード中にエラーが発生しました: \(error)")
             return []
         }
+    }
+    
+    func get(by season: Season, isNight: Bool) -> [CircleArea] {
+        return []
     }
 }
