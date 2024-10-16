@@ -23,17 +23,62 @@ struct RouteDetailView: View {
         latitude: 32.74816795373609,
         longitude: -97.09333068671008
     )
-    
+    @State private var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 32.7767, longitude: -96.7970),
+        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+    )
+
     let offset: CGFloat = 540
     @State private var modalOffset: CGFloat = 540
     @State private var lastModalOffset: CGFloat = 540
     
     @State private var childHeight: CGFloat = .zero
     
+
+    private let touristSpots = [
+        TouristSpot(latitude: 32.7883, longitude: -96.8004, placeName: "Dallas Arts District", symbolName: "paintpalette"),
+        TouristSpot(latitude: 32.7877, longitude: -96.8003, placeName: "Dallas Museum of Art", symbolName: "photo.on.rectangle"),
+        TouristSpot(latitude: 32.7790, longitude: -96.8088, placeName: "Dealey Plaza National Historic Landmark District", symbolName: "building.columns"),
+        TouristSpot(latitude: 32.7440, longitude: -96.8140, placeName: "Dallas Zoo", symbolName: "tortoise"),
+        TouristSpot(latitude: 32.8213, longitude: -96.7160, placeName: "Dallas Arboretum and Botanical Garden", symbolName: "leaf.fill"),
+        TouristSpot(latitude: 32.7802, longitude: -96.8086, placeName: "The Sixth Floor Museum at Dealey Plaza", symbolName: "book.closed"),
+        TouristSpot(latitude: 32.7756, longitude: -96.8094, placeName: "Reunion Tower", symbolName: "mappin.and.ellipse"),
+        TouristSpot(latitude: 32.7777, longitude: -96.8012, placeName: "Pioneer Plaza", symbolName: "figure.walk"),
+        TouristSpot(latitude: 32.7906, longitude: -96.8103, placeName: "American Airlines Center", symbolName: "sportscourt"),
+        TouristSpot(latitude: 33.1367, longitude: -96.7790, placeName: "Bayou Wildlife Zoo", symbolName: "pawprint"),
+        TouristSpot(latitude: 32.7892, longitude: -96.8018, placeName: "Klyde Warren Park", symbolName: "tree.fill"),
+        TouristSpot(latitude: 32.7869, longitude: -96.8064, placeName: "Perot Museum of Nature and Science", symbolName: "cube.box.fill"),
+        TouristSpot(latitude: 32.8292, longitude: -96.7116, placeName: "White Rock Lake", symbolName: "drop.fill"),
+        TouristSpot(latitude: 32.9628, longitude: -97.0353, placeName: "Grapevine Mills", symbolName: "bag"),
+        TouristSpot(latitude: 32.9385, longitude: -97.0723, placeName: "LEGOLAND Discovery Center", symbolName: "building.2.crop.circle"),
+        TouristSpot(latitude: 32.9335, longitude: -97.0788, placeName: "Sea Life Grapevine Aquarium", symbolName: "tortoise"),
+        TouristSpot(latitude: 32.9343, longitude: -97.0814, placeName: "Grapevine Vintage Railroad", symbolName: "tram.fill")
+    ]
+
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack {
                 Map {
+                    ForEach(touristSpots) { spot in
+                        Annotation(coordinate: CLLocationCoordinate2D(latitude: spot.latitude, longitude: spot.longitude), anchor: UnitPoint(x: 2, y: -2)) {
+                            Image(systemName: spot.symbolName)
+                                .foregroundStyle(.yellow)
+                                .padding(8)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(.blue))
+                        } label: {
+                            VStack {
+                                Text(spot.placeName)
+                                    .bold()
+                                    .foregroundColor(.white)
+                                    .padding([.top, .horizontal], 5)
+                            }
+                            .background(Color.black.opacity(0.7))
+                            .cornerRadius(5)
+                        }
+                        .annotationTitles(.visible)
+                    }
                     if let routePolyline = selectedRoute?.polyline as? MKPolyline {
                         MapPolyline(routePolyline)
                             .stroke(Color.blue, lineWidth: 8)
@@ -45,6 +90,13 @@ struct RouteDetailView: View {
                         )
                         .foregroundStyle(.red.opacity(0.3))
                     }
+//                    Annotation(coordinate: sourceCoordinate, anchor: UnitPoint(x: 2, y: -2)) {
+//                        Image(systemName: "location.circle.fill")
+//                    }
+                }
+                .mapControls {
+                    MapCompass()
+                        .mapControlVisibility(.visible)
                 }
             }
             .onAppear {
@@ -273,8 +325,11 @@ struct RouteDetailView: View {
     func calculateRoute(source: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) async {
         let sourcePlacemark = MKPlacemark(coordinate: source)
         let destinationPlacemark = MKPlacemark(coordinate: destination)
-        
+
         let request = MKDirections.Request()
+        request.source = Place.tmna
+        request.destination = Place.atAndTStadium
+
         request.requestsAlternateRoutes = true
         request.source = MKMapItem(placemark: sourcePlacemark)
         request.destination = MKMapItem(placemark: destinationPlacemark)
@@ -380,6 +435,13 @@ func assignScores(from array: [Int]) -> [Int] {
     return scores
 }
 
+struct TouristSpot: Identifiable {
+    let id = UUID()
+    let latitude: CLLocationDegrees
+    let longitude: CLLocationDegrees
+    let placeName: String
+    let symbolName: String
+}
 
 #Preview {
     RouteDetailView()
