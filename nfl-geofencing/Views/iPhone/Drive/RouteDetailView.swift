@@ -9,13 +9,13 @@ struct RouteDetailView: View {
     @State private var selectedRoute: MKRoute?
     @State private var dangerArea: [CircleArea] = []
     let dangerAreaRepository: DangerAreaRepository = JsonDangerAreaRepository()
-
+    
     @State private var dangerPointCountList: [Int] = []
     @State private var rankList: [Int] = []
     @State private var scoreList: [Int] = []
-
+    
     @ObservedObject var mcSessionManager = MCSessionManager()
-
+    
     @State private var sourceCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(
         latitude: 33.08575588060863,
         longitude: -96.83922557513722
@@ -28,14 +28,14 @@ struct RouteDetailView: View {
         center: CLLocationCoordinate2D(latitude: 32.7767, longitude: -96.7970),
         span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
     )
-
+    
     let offset: CGFloat = 540
     @State private var modalOffset: CGFloat = 540
     @State private var lastModalOffset: CGFloat = 540
-
+    
     @State private var childHeight: CGFloat = .zero
     @State private var isNight: Bool = false
-
+    
     private let touristSpots = [
         TouristSpot(latitude: 32.7883, longitude: -96.8004, placeName: "Dallas Arts District", symbolName: "paintpalette"),
         TouristSpot(latitude: 32.7877, longitude: -96.8003, placeName: "Dallas Museum of Art", symbolName: "photo.on.rectangle"),
@@ -55,15 +55,20 @@ struct RouteDetailView: View {
         TouristSpot(latitude: 32.9335, longitude: -97.0788, placeName: "Sea Life Grapevine Aquarium", symbolName: "tortoise"),
         TouristSpot(latitude: 32.9343, longitude: -97.0814, placeName: "Grapevine Vintage Railroad", symbolName: "tram.fill")
     ]
-
+    
     var body: some View {
         ZStack(alignment: .topTrailing) {
             VStack {
                 Map {
-
                     if let routePolyline = selectedRoute?.polyline as? MKPolyline {
                         MapPolyline(routePolyline)
                             .stroke(Color.blue, lineWidth: 8)
+                    }
+                    if routes.count > 0 {
+                        ForEach(routes, id: \.self) { route in
+                            MapPolyline(route)
+                                .stroke(Color.gray, lineWidth: 8)
+                        }
                     }
                     ForEach(dangerArea) { area in
                         MapCircle(
@@ -341,20 +346,20 @@ struct RouteDetailView: View {
             mcSessionManager.startBrowsing()
         }
     }
-
+    
     func calculateRoute(source: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) async {
         let sourcePlacemark = MKPlacemark(coordinate: source)
         let destinationPlacemark = MKPlacemark(coordinate: destination)
-
+        
         let request = MKDirections.Request()
         request.source = Place.tmna
         request.destination = Place.atAndTStadium
-
+        
         request.requestsAlternateRoutes = true
         request.source = MKMapItem(placemark: sourcePlacemark)
         request.destination = MKMapItem(placemark: destinationPlacemark)
         request.transportType = .automobile
-
+        
         do {
             let directions = MKDirections(request: request)
             let response = try await directions.calculate()
@@ -364,41 +369,41 @@ struct RouteDetailView: View {
             print(error.localizedDescription)
         }
     }
-
+    
     func roundToThirdDecimalPlace(value: Double) -> Double {
         return (value * 1000).rounded() / 1000
     }
-
+    
     func isCoordinateInRoundedRoute(route: CLLocationCoordinate2D, testCoordinate: CLLocationCoordinate2D) -> Bool {
         let roundedTestCoordinate = CLLocationCoordinate2D(
             latitude: roundToThirdDecimalPlace(value: testCoordinate.latitude),
             longitude: roundToThirdDecimalPlace(value: testCoordinate.longitude)
         )
-
+        
         let roundedRouteCoordinate = CLLocationCoordinate2D(
             latitude: roundToThirdDecimalPlace(value: route.latitude),
             longitude: roundToThirdDecimalPlace(value: route.longitude)
         )
-
+        
         if roundedRouteCoordinate.latitude == roundedTestCoordinate.latitude &&
             roundedRouteCoordinate.longitude == roundedTestCoordinate.longitude {
             return true
         }
         return false
     }
-
+    
     func countRouteAvoidsArea(route: MKRoute) -> Int {
         let routePolyline = route.polyline
         let pointCount = routePolyline.pointCount
         let points = routePolyline.points()
         var count = 0
-
+        
         for i in 0..<pointCount {
             let coordinate = points[i].coordinate
-
+            
             for dangerPoint in dangerArea {
                 let coordinate = CLLocationCoordinate2D(latitude: dangerPoint.latitude, longitude: dangerPoint.longitude)
-
+                
                 if isCoordinateInRoundedRoute(route: coordinate, testCoordinate: coordinate) {
                     count += 1
                 }
@@ -406,50 +411,50 @@ struct RouteDetailView: View {
         }
         return count
     }
-
+    
     func generateCoordinatePatterns(center: CLLocationCoordinate2D, latitudeRange: ClosedRange<Double>, longitudeRange: ClosedRange<Double>) -> [CLLocationCoordinate2D] {
         var patterns: [CLLocationCoordinate2D] = []
-
+        
         let step = 0.0001
-
+        
         for lat in stride(from: latitudeRange.lowerBound, through: latitudeRange.upperBound, by: step) {
             for lon in stride(from: longitudeRange.lowerBound, through: longitudeRange.upperBound, by: step) {
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
                 patterns.append(coordinate)
             }
         }
-
+        
         return patterns
     }
-
+    
     func convertPointToRank(originalArray: [Int]) -> [Int] {
         let sortedArray = originalArray.sorted()
         var ranks = [Int](repeating: 0, count: originalArray.count)
-
+        
         for (index, value) in originalArray.enumerated() {
             if let rank = sortedArray.firstIndex(of: value) {
                 ranks[index] = rank + 1
             }
         }
-
+        
         return ranks
     }
-
+    
     func assignScores(from array: [Int]) -> [Int] {
         let count = array.count
         if count < 2 { return [] }
-
+        
         var scores = [Int](repeating: 0, count: count)
-
+        
         let indexedArray = array.enumerated().map { (index: $0.offset, value: $0.element) }
-
+        
         let sortedArray = indexedArray.sorted { $0.value < $1.value }
-
+        
         for (rank, element) in sortedArray.enumerated() {
             let score = 80 - ((70 * rank) / (count - 1))
             scores[element.index] = score
         }
-
+        
         return scores
     }
 }
