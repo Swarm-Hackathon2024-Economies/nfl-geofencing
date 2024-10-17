@@ -28,7 +28,7 @@ enum Season {
 class JsonDangerAreaRepository: DangerAreaRepository {
     
     private let filename = "crustered-accident"
-    
+
     func getAll() -> [CircleArea] {
         guard let url = Bundle.main.url(forResource: filename, withExtension: "json") else {
             print("JSONファイルが見つかりません")
@@ -45,8 +45,23 @@ class JsonDangerAreaRepository: DangerAreaRepository {
             return []
         }
     }
-    
+
     func get(by season: Season, isNight: Bool) -> [CircleArea] {
-        return []
+        let detail: String = isNight ? "night" : "day"
+
+        guard let url = Bundle.main.url(forResource: "\(filename)-\(detail)", withExtension: "json") else {
+            print("JSONファイルが見つかりません")
+            return []
+        }
+
+        do {
+            let data = try Data(contentsOf: url)
+
+            let circleAreas = try JSONDecoder().decode([CircleArea].self, from: data)
+            return circleAreas
+        } catch {
+            print("JSONデコード中にエラーが発生しました: \(error)")
+            return []
+        }
     }
 }

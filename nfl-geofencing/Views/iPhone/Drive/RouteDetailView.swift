@@ -2,19 +2,20 @@ import SwiftUI
 import MapKit
 
 struct RouteDetailView: View {
-    @State private var destinationInputText = ""
-    @State private var arrivalInputText = ""
+    @State private var destinationInputText = "Toyota Motor North America, Inc."
+    @State private var arrivalInputText = "AT&T Stadium"
+    @State private var addInputText = "Add waypoint"
     @State private var routes: [MKRoute] = []
     @State private var selectedRoute: MKRoute?
     @State private var dangerArea: [CircleArea] = []
     let dangerAreaRepository: DangerAreaRepository = JsonDangerAreaRepository()
-    
+
     @State private var dangerPointCountList: [Int] = []
     @State private var rankList: [Int] = []
     @State private var scoreList: [Int] = []
-    
+
     @ObservedObject var mcSessionManager = MCSessionManager()
-    
+
     @State private var sourceCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(
         latitude: 33.08575588060863,
         longitude: -96.83922557513722
@@ -31,9 +32,9 @@ struct RouteDetailView: View {
     let offset: CGFloat = 540
     @State private var modalOffset: CGFloat = 540
     @State private var lastModalOffset: CGFloat = 540
-    
+
     @State private var childHeight: CGFloat = .zero
-    
+    @State private var isNight: Bool = false
 
     private let touristSpots = [
         TouristSpot(latitude: 32.7883, longitude: -96.8004, placeName: "Dallas Arts District", symbolName: "paintpalette"),
@@ -56,29 +57,10 @@ struct RouteDetailView: View {
     ]
 
     var body: some View {
-        ZStack(alignment: .bottom) {
+        ZStack(alignment: .topTrailing) {
             VStack {
                 Map {
-                    ForEach(touristSpots) { spot in
-                        Annotation(coordinate: CLLocationCoordinate2D(latitude: spot.latitude, longitude: spot.longitude), anchor: UnitPoint(x: 2, y: -2)) {
-                            Image(systemName: spot.symbolName)
-                                .foregroundStyle(.yellow)
-                                .padding(8)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .fill(.blue))
-                        } label: {
-                            VStack {
-                                Text(spot.placeName)
-                                    .bold()
-                                    .foregroundColor(.white)
-                                    .padding([.top, .horizontal], 5)
-                            }
-                            .background(Color.black.opacity(0.7))
-                            .cornerRadius(5)
-                        }
-                        .annotationTitles(.visible)
-                    }
+
                     if let routePolyline = selectedRoute?.polyline as? MKPolyline {
                         MapPolyline(routePolyline)
                             .stroke(Color.blue, lineWidth: 8)
@@ -90,19 +72,15 @@ struct RouteDetailView: View {
                         )
                         .foregroundStyle(.red.opacity(0.3))
                     }
-//                    Annotation(coordinate: sourceCoordinate, anchor: UnitPoint(x: 2, y: -2)) {
-//                        Image(systemName: "location.circle.fill")
-//                    }
                 }
-                .mapControls {
-                    MapCompass()
-                        .mapControlVisibility(.visible)
-                }
+                .preferredColorScheme(isNight ? .dark : .light)
             }
             .onAppear {
                 Task {
-                    dangerArea = dangerAreaRepository.getAll()
+                    routes = []
+                    dangerArea = dangerAreaRepository.get(by: .spring, isNight: isNight)
                     await calculateRoute(source: self.sourceCoordinate, destination: self.destinationCoordinate)
+                    dangerPointCountList = []
                     for route in routes {
                         dangerPointCountList.append(countRouteAvoidsArea(route: route))
                         self.rankList = convertPointToRank(originalArray: dangerPointCountList)
@@ -110,6 +88,43 @@ struct RouteDetailView: View {
                     }
                 }
             }
+            .onChange(of: isNight) {
+                Task {
+                    routes = []
+                    dangerArea = dangerAreaRepository.get(by: .spring, isNight: isNight)
+                    selectedRoute = nil
+                    await calculateRoute(source: self.sourceCoordinate, destination: self.destinationCoordinate)
+                    dangerPointCountList = []
+                    for route in routes {
+                        dangerPointCountList.append(countRouteAvoidsArea(route: route))
+                        self.rankList = convertPointToRank(originalArray: dangerPointCountList)
+                        self.scoreList = assignScores(from: rankList)
+                    }
+                }
+            }
+            Button(action: {
+                Task {
+                    routes = []
+                    await calculateRoute(source: self.sourceCoordinate, destination: self.destinationCoordinate)
+                }
+                isNight = !isNight
+            }) {
+                if isNight {
+                    Image(systemName: "moon.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(.white)
+                        .shadow(radius: 2)
+                } else {
+                    Image(systemName: "sun.max.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(.blue)
+                        .shadow(radius: 2)
+                }
+            }
+            .disabled(routes.isEmpty)
+            .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 16))
             VStack {
                 Spacer()
                 VStack {
@@ -138,6 +153,7 @@ struct RouteDetailView: View {
                                         .bold()
                                     Spacer()
                                 }
+                                .foregroundStyle(.black)
                                 .padding(EdgeInsets(
                                     top: 0, leading: 22, bottom: 0, trailing: 0
                                 ))
@@ -207,7 +223,8 @@ struct RouteDetailView: View {
                                                     .padding(EdgeInsets(
                                                         top: 10, leading: 18, bottom: 10, trailing: 18
                                                     ))
-                                                TextField("Add waypoint", text:$arrivalInputText)
+                                                TextField("Add waypoint", text: $addInputText)
+                                                    .foregroundStyle(.blue)
                                             }
                                         }
                                     }
@@ -283,8 +300,10 @@ struct RouteDetailView: View {
                                     }
                                 }
                             }
+                            .background(Color.white)
                         }
                     }
+                    .foregroundStyle(.black)
                     .frame(maxWidth: .infinity, maxHeight: 600)
                     .background(Color.white)
                     .cornerRadius(12)
@@ -294,12 +313,14 @@ struct RouteDetailView: View {
                         DragGesture()
                             .onChanged { value in
                                 let newOffset = value.translation.height + lastModalOffset
-                                if newOffset > offset {
-                                    modalOffset = offset
-                                } else if newOffset < 0 {
-                                    modalOffset = 0
-                                } else {
-                                    modalOffset = newOffset
+                                withAnimation {
+                                    if newOffset > offset {
+                                        modalOffset = offset
+                                    } else if newOffset < 0 {
+                                        modalOffset = 0
+                                    } else {
+                                        modalOffset = newOffset
+                                    }
                                 }
                             }
                             .onEnded { _ in
@@ -316,12 +337,11 @@ struct RouteDetailView: View {
                 }
             }
         }
-        
         .onAppear {
             mcSessionManager.startBrowsing()
         }
     }
-    
+
     func calculateRoute(source: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) async {
         let sourcePlacemark = MKPlacemark(coordinate: source)
         let destinationPlacemark = MKPlacemark(coordinate: destination)
@@ -334,7 +354,7 @@ struct RouteDetailView: View {
         request.source = MKMapItem(placemark: sourcePlacemark)
         request.destination = MKMapItem(placemark: destinationPlacemark)
         request.transportType = .automobile
-        
+
         do {
             let directions = MKDirections(request: request)
             let response = try await directions.calculate()
@@ -344,42 +364,41 @@ struct RouteDetailView: View {
             print(error.localizedDescription)
         }
     }
-    
+
+    func roundToThirdDecimalPlace(value: Double) -> Double {
+        return (value * 1000).rounded() / 1000
+    }
+
+    func isCoordinateInRoundedRoute(route: CLLocationCoordinate2D, testCoordinate: CLLocationCoordinate2D) -> Bool {
+        let roundedTestCoordinate = CLLocationCoordinate2D(
+            latitude: roundToThirdDecimalPlace(value: testCoordinate.latitude),
+            longitude: roundToThirdDecimalPlace(value: testCoordinate.longitude)
+        )
+
+        let roundedRouteCoordinate = CLLocationCoordinate2D(
+            latitude: roundToThirdDecimalPlace(value: route.latitude),
+            longitude: roundToThirdDecimalPlace(value: route.longitude)
+        )
+
+        if roundedRouteCoordinate.latitude == roundedTestCoordinate.latitude &&
+            roundedRouteCoordinate.longitude == roundedTestCoordinate.longitude {
+            return true
+        }
+        return false
+    }
+
     func countRouteAvoidsArea(route: MKRoute) -> Int {
         let routePolyline = route.polyline
         let pointCount = routePolyline.pointCount
         let points = routePolyline.points()
         var count = 0
-        
+
         for i in 0..<pointCount {
             let coordinate = points[i].coordinate
-            let location = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-            
-            func roundToThirdDecimalPlace(value: Double) -> Double {
-                return (value * 1000).rounded() / 1000
-            }
-            
-            func isCoordinateInRoundedRoute(route: CLLocationCoordinate2D, testCoordinate: CLLocationCoordinate2D) -> Bool {
-                let roundedTestCoordinate = CLLocationCoordinate2D(
-                    latitude: roundToThirdDecimalPlace(value: testCoordinate.latitude),
-                    longitude: roundToThirdDecimalPlace(value: testCoordinate.longitude)
-                )
-                
-                let roundedRouteCoordinate = CLLocationCoordinate2D(
-                    latitude: roundToThirdDecimalPlace(value: route.latitude),
-                    longitude: roundToThirdDecimalPlace(value: route.longitude)
-                )
-                
-                if roundedRouteCoordinate.latitude == roundedTestCoordinate.latitude &&
-                    roundedRouteCoordinate.longitude == roundedTestCoordinate.longitude {
-                    return true
-                }
-                return false
-            }
-            
+
             for dangerPoint in dangerArea {
                 let coordinate = CLLocationCoordinate2D(latitude: dangerPoint.latitude, longitude: dangerPoint.longitude)
-                
+
                 if isCoordinateInRoundedRoute(route: coordinate, testCoordinate: coordinate) {
                     count += 1
                 }
@@ -387,52 +406,52 @@ struct RouteDetailView: View {
         }
         return count
     }
-    
+
     func generateCoordinatePatterns(center: CLLocationCoordinate2D, latitudeRange: ClosedRange<Double>, longitudeRange: ClosedRange<Double>) -> [CLLocationCoordinate2D] {
         var patterns: [CLLocationCoordinate2D] = []
-        
+
         let step = 0.0001
-        
+
         for lat in stride(from: latitudeRange.lowerBound, through: latitudeRange.upperBound, by: step) {
             for lon in stride(from: longitudeRange.lowerBound, through: longitudeRange.upperBound, by: step) {
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
                 patterns.append(coordinate)
             }
         }
-        
+
         return patterns
     }
-}
 
-func convertPointToRank(originalArray: [Int]) -> [Int] {
-    let sortedArray = originalArray.sorted()
-    var ranks = [Int](repeating: 0, count: originalArray.count)
-    
-    for (index, value) in originalArray.enumerated() {
-        if let rank = sortedArray.firstIndex(of: value) {
-            ranks[index] = rank + 1
+    func convertPointToRank(originalArray: [Int]) -> [Int] {
+        let sortedArray = originalArray.sorted()
+        var ranks = [Int](repeating: 0, count: originalArray.count)
+
+        for (index, value) in originalArray.enumerated() {
+            if let rank = sortedArray.firstIndex(of: value) {
+                ranks[index] = rank + 1
+            }
         }
-    }
-    
-    return ranks
-}
 
-func assignScores(from array: [Int]) -> [Int] {
-    let count = array.count
-    if count < 2 { return [] }
-    
-    var scores = [Int](repeating: 0, count: count)
-    
-    let indexedArray = array.enumerated().map { (index: $0.offset, value: $0.element) }
-    
-    let sortedArray = indexedArray.sorted { $0.value < $1.value }
-    
-    for (rank, element) in sortedArray.enumerated() {
-        let score = 80 - ((70 * rank) / (count - 1))
-        scores[element.index] = score
+        return ranks
     }
-    
-    return scores
+
+    func assignScores(from array: [Int]) -> [Int] {
+        let count = array.count
+        if count < 2 { return [] }
+
+        var scores = [Int](repeating: 0, count: count)
+
+        let indexedArray = array.enumerated().map { (index: $0.offset, value: $0.element) }
+
+        let sortedArray = indexedArray.sorted { $0.value < $1.value }
+
+        for (rank, element) in sortedArray.enumerated() {
+            let score = 80 - ((70 * rank) / (count - 1))
+            scores[element.index] = score
+        }
+
+        return scores
+    }
 }
 
 struct TouristSpot: Identifiable {

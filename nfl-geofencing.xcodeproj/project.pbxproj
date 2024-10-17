@@ -47,6 +47,8 @@
 		A1FB9D892CB7CDBA00119D9B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB9D882CB7CDBA00119D9B /* LoginView.swift */; };
 		A1FB9D8B2CB8002900119D9B /* FootballPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB9D8A2CB8002900119D9B /* FootballPosition.swift */; };
 		A1FD00402CB8136100EC3A46 /* ScarableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FD003F2CB8136100EC3A46 /* ScarableImageView.swift */; };
+		A1FD2A3F2CC081D9001D603B /* crustered-accident-night.json in Resources */ = {isa = PBXBuildFile; fileRef = A1FD2A3E2CC081D9001D603B /* crustered-accident-night.json */; };
+		A1FD2A402CC081D9001D603B /* crustered-accident-day.json in Resources */ = {isa = PBXBuildFile; fileRef = A1FD2A3D2CC081D9001D603B /* crustered-accident-day.json */; };
 		CE2E6C272CBD187C007023DC /* MyNFLCollerctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E6C262CBD187C007023DC /* MyNFLCollerctionView.swift */; };
 		CE2E6C292CBD18C0007023DC /* MyCollegeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E6C282CBD18C0007023DC /* MyCollegeCollectionView.swift */; };
 		CE2E6C2B2CBD18DF007023DC /* MyCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E6C2A2CBD18DF007023DC /* MyCollectionView.swift */; };
@@ -97,6 +99,8 @@
 		A1FB9D882CB7CDBA00119D9B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A1FB9D8A2CB8002900119D9B /* FootballPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootballPosition.swift; sourceTree = "<group>"; };
 		A1FD003F2CB8136100EC3A46 /* ScarableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScarableImageView.swift; sourceTree = "<group>"; };
+		A1FD2A3D2CC081D9001D603B /* crustered-accident-day.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "crustered-accident-day.json"; sourceTree = "<group>"; };
+		A1FD2A3E2CC081D9001D603B /* crustered-accident-night.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "crustered-accident-night.json"; sourceTree = "<group>"; };
 		CE2E6C262CBD187C007023DC /* MyNFLCollerctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNFLCollerctionView.swift; sourceTree = "<group>"; };
 		CE2E6C282CBD18C0007023DC /* MyCollegeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollegeCollectionView.swift; sourceTree = "<group>"; };
 		CE2E6C2A2CBD18DF007023DC /* MyCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionView.swift; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				7B4BFFBE2CB69EE2001C450F /* Place.swift */,
+				A1FD2A3D2CC081D9001D603B /* crustered-accident-day.json */,
+				A1FD2A3E2CC081D9001D603B /* crustered-accident-night.json */,
 				7BE49F342CBBE6FC00B31067 /* crustered-accident.json */,
 			);
 			path = Resources;
@@ -364,6 +370,8 @@
 			files = (
 				7BE49F352CBBE6FC00B31067 /* crustered-accident.json in Resources */,
 				7BE708592CB54CA000E0CBA9 /* Preview Assets.xcassets in Resources */,
+				A1FD2A3F2CC081D9001D603B /* crustered-accident-night.json in Resources */,
+				A1FD2A402CC081D9001D603B /* crustered-accident-day.json in Resources */,
 				7BE708562CB54CA000E0CBA9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

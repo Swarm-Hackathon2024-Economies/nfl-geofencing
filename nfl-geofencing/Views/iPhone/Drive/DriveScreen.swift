@@ -5,16 +5,14 @@ struct DriveScreen: View {
         case destination
         case list
     }
-
+    
     @State private var currentPage = page.destination
     @State private var isShowAddSheet: Bool = false
-
+    
     var body: some View {
-        NavigationStack{
-            VStack {
-                RouteDetailView()
-                Spacer()
-            }
+        VStack {
+            RouteDetailView()
+            Spacer()
         }
         .sheet(isPresented: $isShowAddSheet) {
             DestinationRegistorView(onSubmit: {
