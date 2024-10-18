@@ -14,6 +14,7 @@
 		7B4BFFC32CB6A01D001C450F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4BFFC22CB6A01D001C450F /* LocationManager.swift */; };
 		7B9B6D5B2CBE6AA8007FA8A0 /* MapViewForScreenShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6D5A2CBE6AA8007FA8A0 /* MapViewForScreenShot.swift */; };
 		7BACAF112CB580B1005CC432 /* PlayerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BACAF102CB580B1005CC432 /* PlayerCard.swift */; };
+		7BD8C6782CC29BDB002D38A0 /* PlayerCard2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD8C6772CC29BDB002D38A0 /* PlayerCard2.swift */; };
 		7BE49F352CBBE6FC00B31067 /* crustered-accident.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BE49F342CBBE6FC00B31067 /* crustered-accident.json */; };
 		7BE49F382CBBE82300B31067 /* DangerAreaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F372CBBE82300B31067 /* DangerAreaRepository.swift */; };
 		7BE49F3D2CBC3E0100B31067 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE49F3C2CBC3E0100B31067 /* View+.swift */; };
@@ -65,6 +66,7 @@
 		7B9B6D5A2CBE6AA8007FA8A0 /* MapViewForScreenShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewForScreenShot.swift; sourceTree = "<group>"; };
 		7B9B6D5C2CBE787B007FA8A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7BACAF102CB580B1005CC432 /* PlayerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCard.swift; sourceTree = "<group>"; };
+		7BD8C6772CC29BDB002D38A0 /* PlayerCard2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCard2.swift; sourceTree = "<group>"; };
 		7BE49F342CBBE6FC00B31067 /* crustered-accident.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "crustered-accident.json"; sourceTree = "<group>"; };
 		7BE49F372CBBE82300B31067 /* DangerAreaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerAreaRepository.swift; sourceTree = "<group>"; };
 		7BE49F3C2CBC3E0100B31067 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				CE2E6C282CBD18C0007023DC /* MyCollegeCollectionView.swift */,
 				CE2E6C2A2CBD18DF007023DC /* MyCollectionView.swift */,
 				7BEB7AE42CBFB98700C14DA0 /* CardUnpackView2.swift */,
+				7BD8C6772CC29BDB002D38A0 /* PlayerCard2.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				7BE49F3D2CBC3E0100B31067 /* View+.swift in Sources */,
 				7B4BFFC32CB6A01D001C450F /* LocationManager.swift in Sources */,
 				7BE49F382CBBE82300B31067 /* DangerAreaRepository.swift in Sources */,
+				7BD8C6782CC29BDB002D38A0 /* PlayerCard2.swift in Sources */,
 				A139DB612CB573AE00A75050 /* DestinationRegistorView.swift in Sources */,
 				7BE49F422CBC3E7B00B31067 /* NFLCollectionOverview.swift in Sources */,
 				E1CCE3D52CBB9F4400B64C1D /* TeamSelectView.swift in Sources */,
