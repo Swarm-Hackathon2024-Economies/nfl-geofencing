@@ -8,6 +8,7 @@ struct CardUnpackView: View {
     @EnvironmentObject var scoreManager: ScoreManager 
 
     let backgroundAnimationPhases: [Color] = [.blue, .red, .orange, .yellow, .purple, .mint, .pink]
+    let randomIndex:Int = {Int.random(in: 0...2)}()
     
     var body: some View {
         ZStack {
@@ -24,7 +25,7 @@ struct CardUnpackView: View {
             }
             .background(.black)
             
-            PlayerCard()
+            PlayerCard2(player: players[randomIndex])
                 .overlay {
                     RoundedRectangle(cornerRadius: 50)
                         .fill(
@@ -81,7 +82,7 @@ struct CardUnpackView: View {
             .padding(.top)
         }
         .onAppear {
-            withAnimation(.easeOut(duration: 5)) {
+            withAnimation(.easeOut(duration: 3)) {
                 cardPresented = true
             } completion: {
                 withAnimation {

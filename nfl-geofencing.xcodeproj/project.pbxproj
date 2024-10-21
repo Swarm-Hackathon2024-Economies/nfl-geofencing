@@ -56,6 +56,7 @@
 		E1CCE3D32CBB94B400B64C1D /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CCE3D22CBB94B400B64C1D /* Team.swift */; };
 		E1CCE3D52CBB9F4400B64C1D /* TeamSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CCE3D42CBB9F4400B64C1D /* TeamSelectView.swift */; };
 		E1ED23A52CC6E71C00262A12 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ED23A42CC6E71C00262A12 /* Score.swift */; };
+		E1ED23A72CC6F3F500262A12 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ED23A62CC6F3F500262A12 /* Players.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,7 @@
 		E1CCE3D22CBB94B400B64C1D /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		E1CCE3D42CBB9F4400B64C1D /* TeamSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSelectView.swift; sourceTree = "<group>"; };
 		E1ED23A42CC6E71C00262A12 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		E1ED23A62CC6F3F500262A12 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 				E1CCE3D22CBB94B400B64C1D /* Team.swift */,
 				7BE49F442CBC480D00B31067 /* Card.swift */,
 				E1ED23A42CC6E71C00262A12 /* Score.swift */,
+				E1ED23A62CC6F3F500262A12 /* Players.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				7BE49F4D2CBD170800B31067 /* CapsuleButton.swift in Sources */,
 				7BACAF112CB580B1005CC432 /* PlayerCard.swift in Sources */,
 				7BE49F522CBD266900B31067 /* MatchCard.swift in Sources */,
+				E1ED23A72CC6F3F500262A12 /* Players.swift in Sources */,
 				7BE708522CB54CA000E0CBA9 /* nfl_geofencingApp.swift in Sources */,
 				7BE49F4B2CBD142500B31067 /* ProfileCardView.swift in Sources */,
 				7BE99FD12CBAB94B0049F525 /* CLLocationCoordinate2D+.swift in Sources */,

@@ -21,7 +21,7 @@ struct MyNFLCollerctionView: View {
         }
         HStack {
             NavigationLink {
-                PlayerCard()
+                PlayerCard2(player: players[0])
                     .scaleEffect(0.9)
                     .cardsScreenToolbarItems()
             } label: {
@@ -33,7 +33,7 @@ struct MyNFLCollerctionView: View {
                     .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 5)
             }
             NavigationLink {
-                PlayerCard()
+                PlayerCard2(player: players[1])
                     .scaleEffect(0.9)
                     .cardsScreenToolbarItems()
             } label: {
@@ -45,7 +45,7 @@ struct MyNFLCollerctionView: View {
                     .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 5)
             }
             NavigationLink {
-                PlayerCard()
+                PlayerCard2(player: players[2])
                     .scaleEffect(0.9)
                     .cardsScreenToolbarItems()
             } label: {
