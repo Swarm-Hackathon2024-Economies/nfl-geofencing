@@ -72,6 +72,9 @@ struct RouteNavigationView: View {
         }
         .onAppear {
             dangerArea = dangerAreaRepository.getAll()
+            
+            locationManager.willChangeCoordinate = self.willChangeCoordinate
+            getRoute()
         }
         .preferredColorScheme(.dark)
     }
