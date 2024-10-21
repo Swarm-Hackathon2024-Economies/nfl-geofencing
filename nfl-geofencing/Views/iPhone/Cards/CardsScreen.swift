@@ -90,6 +90,8 @@ struct CardsScreen: View {
 }
 
 struct CardsScreenToolbarItems: ViewModifier {
+    @EnvironmentObject var scoreManager: ScoreManager
+    
     func body(content: Content) -> some View {
         content
             .toolbar {
@@ -103,7 +105,7 @@ struct CardsScreenToolbarItems: ViewModifier {
                             .foregroundStyle(.white)
                             .padding(4)
                             .background(Circle().fill(.red))
-                        Text("2,234")
+                        Text("\(scoreManager.score)")
                             .font(.title2)
                             .bold()
                     }

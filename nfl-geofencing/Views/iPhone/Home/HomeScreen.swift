@@ -2,7 +2,8 @@ import SwiftUI
 import MapKit
 
 struct HomeScreen: View {
-    
+    @EnvironmentObject var scoreManager: ScoreManager
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -13,6 +14,7 @@ struct HomeScreen: View {
                 .padding()
             }
             .toolbar {
+                
                 ToolbarItem(placement: .topBarLeading) {
                     Image("TitleIcon")
                 }
@@ -24,7 +26,7 @@ struct HomeScreen: View {
                             .foregroundStyle(.white)
                             .background(Circle().fill(.red))
                         
-                        Text("2,234")
+                        Text("\(scoreManager.score)")
                             .font(Font.title2)
                             .bold()
                     }

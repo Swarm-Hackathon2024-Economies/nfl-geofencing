@@ -66,6 +66,8 @@ struct MyPageScreen: View {
 }
 
 struct MypageScreenToolbarItems: ViewModifier {
+    @EnvironmentObject var scoreManager: ScoreManager
+
     func body(content: Content) -> some View {
         content
             .toolbar {
@@ -79,7 +81,7 @@ struct MypageScreenToolbarItems: ViewModifier {
                             .foregroundStyle(.white)
                             .padding(4)
                             .background(Circle().fill(.red))
-                        Text("2,234")
+                        Text("\(scoreManager.score)")
                             .font(.title2)
                             .bold()
                     }

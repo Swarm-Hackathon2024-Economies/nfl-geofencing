@@ -5,6 +5,8 @@ struct CardUnpackView: View {
     @State private  var cardPresented = false
     @State private var showOKButton = false
     @State private var showRank = false
+    @EnvironmentObject var scoreManager: ScoreManager 
+
     let backgroundAnimationPhases: [Color] = [.blue, .red, .orange, .yellow, .purple, .mint, .pink]
     
     var body: some View {
@@ -41,6 +43,7 @@ struct CardUnpackView: View {
         .overlay(alignment: .bottomTrailing) {
             Button {
                 show = false
+                scoreManager.decrement(subScore: 300)
             } label: {
                 Text("OK")
                     .foregroundStyle(.white)
