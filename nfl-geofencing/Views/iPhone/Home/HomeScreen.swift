@@ -48,5 +48,5 @@ extension Int {
 }
 
 #Preview {
-    HomeScreen()
+    HomeScreen().environmentObject(ScoreManager())
 }

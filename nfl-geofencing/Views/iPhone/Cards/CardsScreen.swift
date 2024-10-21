@@ -124,5 +124,5 @@ extension View {
 }
 
 #Preview {
-    CardsScreen()
+    CardsScreen().environmentObject(ScoreManager())
 }

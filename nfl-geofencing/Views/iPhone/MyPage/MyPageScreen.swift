@@ -100,7 +100,7 @@ extension View {
 }
 
 #Preview {
-    MyPageScreen()
+    MyPageScreen().environmentObject(ScoreManager())
 }
 
 struct ProfileItem: Identifiable {
