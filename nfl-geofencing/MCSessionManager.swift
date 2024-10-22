@@ -11,13 +11,13 @@ class MCSessionManager: NSObject, ObservableObject {
     private let mcAdvertiser: MCNearbyServiceAdvertiser
     private let mcBrowser: MCNearbyServiceBrowser
     
-    private let localPeerID = MCPeerID(displayName: "\(UIDevice.current.model) - \(UIDevice.current.name)")
+    private let localPeerID = MCPeerID(displayName: UIDevice.current.name)
     private let identityKey = "identity"
     private let identity = "com.kaizen-cowboys.playbook"
     private let maxNumPeers = 1
     
     override init() {
-        let service = "greeting-app"
+        let service = "playbook"
         self.mcSession = MCSession(peer: localPeerID, securityIdentity: nil, encryptionPreference: .required)
         self.mcAdvertiser = MCNearbyServiceAdvertiser(
             peer: localPeerID,

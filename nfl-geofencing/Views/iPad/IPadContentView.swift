@@ -50,13 +50,13 @@ struct IPadContentView: View {
                 .mapFloatingItemBackground(width: 400)
                 .opacity(navigationStarted ? 1 : 0)
             }
-            .overlay(alignment: .top) {
-                if let _ = mcSessionManager.connectedPeerID {
+            .overlay(alignment: .bottomLeading) {
+                if let peerId = mcSessionManager.connectedPeerID {
                     HStack {
                         Image(systemName: "checkmark.circle.fill")
-                        Text("Connected")
+                        Text("Connected - \(peerId.displayName)")
                     }
-                    .mapFloatingItemBackground(width: 100)
+                    .mapFloatingItemBackground(width: 300)
                 } else {
                     HStack {
                         Image(systemName: "xmark.circle.fill")
