@@ -18,13 +18,10 @@ struct LoginView: View {
         NavigationStack {
             VStack {
                 Spacer()
-                Image("Eagles_logo")
+                Image("TitleIcon")
                     .resizable()
-                    .frame(width: 210, height: 91)
-                Spacer()
-                Text("PLAYBOOK")
-                    .font(.title)
-                    .bold()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 294, height: 111)
                 Spacer()
                 Button {
                     // TOYOTA LOGIN PAGE

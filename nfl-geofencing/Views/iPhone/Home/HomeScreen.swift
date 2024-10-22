@@ -17,6 +17,9 @@ struct HomeScreen: View {
                 
                 ToolbarItem(placement: .topBarLeading) {
                     Image("TitleIcon")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 168, height: 54)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack(spacing: 32) {
