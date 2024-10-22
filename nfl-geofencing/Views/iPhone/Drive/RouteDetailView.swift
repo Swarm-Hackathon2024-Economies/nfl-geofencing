@@ -60,15 +60,13 @@ struct RouteDetailView: View {
         ZStack(alignment: .topTrailing) {
             VStack {
                 Map {
+                    ForEach(routes, id: \.self) { route in
+                        MapPolyline(route)
+                            .stroke(Color.gray, lineWidth: 8)
+                    }
                     if let routePolyline = selectedRoute?.polyline as? MKPolyline {
                         MapPolyline(routePolyline)
                             .stroke(Color.blue, lineWidth: 8)
-                    }
-                    if routes.count > 0 {
-                        ForEach(routes, id: \.self) { route in
-                            MapPolyline(route)
-                                .stroke(Color.gray, lineWidth: 8)
-                        }
                     }
                     ForEach(dangerArea) { area in
                         MapCircle(
