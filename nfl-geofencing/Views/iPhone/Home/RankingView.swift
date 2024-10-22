@@ -21,7 +21,7 @@ struct RankingView: View {
                         Image(team.icon)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(maxWidth: 42, maxHeight: 36)
+                            .frame(maxWidth: 46, maxHeight: 32)
                         
                         Text(team.name)
                             .font(.title2.bold())
