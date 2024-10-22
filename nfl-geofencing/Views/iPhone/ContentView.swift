@@ -56,6 +56,7 @@ struct ContentView: View {
             LoginView() {
                 finishOnboarding = true
             }
+            .preferredColorScheme(.light)
         }
     }
 }
