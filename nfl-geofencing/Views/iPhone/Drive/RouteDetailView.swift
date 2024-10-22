@@ -157,10 +157,17 @@ struct RouteDetailView: View {
                                         .font(.title2)
                                         .bold()
                                     Spacer()
+                                    if let _ = mcSessionManager.connectedPeerID {
+                                        Image(systemName: "checkmark.circle.fill")
+                                        Text("Connected")
+                                    } else {
+                                        Image(systemName: "xmark.circle.fill")
+                                        Text("No connection")
+                                    }
                                 }
                                 .foregroundStyle(.black)
                                 .padding(EdgeInsets(
-                                    top: 0, leading: 22, bottom: 0, trailing: 0
+                                    top: 0, leading: 22, bottom: 0, trailing: 22
                                 ))
                                 VStack {
                                     ScrollView {
