@@ -45,15 +45,17 @@ struct CardsScreen: View {
         HStack {
             HStack {
                 Image(systemName: "football.fill")
+                    .resizable()
                     .foregroundStyle(.red)
                     .font(.caption)
                     .padding(4)
                     .background(Circle().fill(.white))
+                    .frame(width: 18, height: 20)
                 Text("Shop")
                     .foregroundStyle(selectedSection == .Shop ? .white : .red)
             }
-            .padding([.leading, .top, .bottom], 4)
-            .padding(.trailing, 8)
+            .padding(.vertical, 4)
+            .padding(.horizontal, 8)
             .background(
                 selectedSection == .Shop ?
                 Capsule().fill(.red)
@@ -68,7 +70,7 @@ struct CardsScreen: View {
             
             Text("My Collection")
                 .foregroundStyle(selectedSection == .MyCollection ? .white : .red)
-                .padding(.horizontal, 8)
+                .padding(.horizontal, 12)
                 .padding(.vertical, 4)
                 .background(
                     selectedSection == .MyCollection ?
