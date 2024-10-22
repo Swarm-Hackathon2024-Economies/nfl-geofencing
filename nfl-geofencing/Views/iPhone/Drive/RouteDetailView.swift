@@ -353,6 +353,9 @@ struct RouteDetailView: View {
         .onAppear {
             mcSessionManager.startBrowsing()
         }
+        .onDisappear {
+            self.isNight = false
+        }
     }
 
     func calculateRoute(source: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) async {
