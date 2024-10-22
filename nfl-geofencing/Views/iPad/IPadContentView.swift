@@ -50,6 +50,21 @@ struct IPadContentView: View {
                 .mapFloatingItemBackground(width: 400)
                 .opacity(navigationStarted ? 1 : 0)
             }
+            .overlay(alignment: .top) {
+                if let _ = mcSessionManager.connectedPeerID {
+                    HStack {
+                        Image(systemName: "checkmark.circle.fill")
+                        Text("Connected")
+                    }
+                    .mapFloatingItemBackground(width: 100)
+                } else {
+                    HStack {
+                        Image(systemName: "xmark.circle.fill")
+                        Text("No connection")
+                    }
+                    .mapFloatingItemBackground(width: 300)
+                }
+            }
             .onAppear {
                 mcSessionManager.startAdvertising()
             }
