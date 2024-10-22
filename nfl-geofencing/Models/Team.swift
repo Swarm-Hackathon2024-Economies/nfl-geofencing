@@ -7,7 +7,7 @@ struct Team: Equatable {
     let icon: String
     let color: Color
 
-    static let allItems: [Team] = [
+    static var allItems: [Team] = [
         Team(rank: "1", name: "Ravens", points: "834,339", icon: "baltimore-ravens", color: .red),
         Team(rank: "2", name: "Bills", points: "630,496", icon: "buffalo-bills", color: .blue),
         Team(rank: "3", name: "Bengals", points: "627,995", icon: "cincinnati-bengals", color: .black),
@@ -19,7 +19,7 @@ struct Team: Equatable {
         Team(rank: "9", name: "Chargers", points: "309,080", icon: "san-diego-chargers", color: .pink),
         Team(rank: "10", name: "49ers", points: "275,707", icon: "san-francisco-49ers", color: .purple),
         Team(rank: "11", name: "Seahawks", points: "154,308", icon: "seattle-seahawks", color: .teal),
-        Team(rank: "12", name: "Commanders", points: "144,861", icon: "washington-commanders", color: .indigo),
+        Team(rank: "12", name: "Commands", points: "144,861", icon: "washington-commanders", color: .indigo),
     ]
 }
 

@@ -84,17 +84,10 @@ struct RankingView: View {
     }
     var sectionHeader: some View {
         HStack {
-            HStack {
-                Image(systemName: "football.fill")
-                    .foregroundStyle(.red)
-                    .font(.caption)
-                    .padding(4)
-                    .background(Circle().fill(.white))
                 Text("NFL")
                     .foregroundStyle(selectedSection == .NFL ? .white : .red)
-            }
-            .padding([.leading, .top, .bottom], 4)
-            .padding(.trailing, 8)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 4)
             .background(
                 selectedSection == .NFL ?
                 Capsule().fill(.red)
@@ -109,7 +102,7 @@ struct RankingView: View {
             
             Text("Collage")
                 .foregroundStyle(selectedSection == .Collage ? .white : .red)
-                .padding(.horizontal, 8)
+                .padding(.horizontal, 12)
                 .padding(.vertical, 4)
                 .background(
                     selectedSection == .Collage ?
@@ -124,7 +117,7 @@ struct RankingView: View {
                 }
             Text("FlagFootball")
                 .foregroundStyle(selectedSection == .FlagFootball ? .white : .red)
-                .padding(.horizontal, 8)
+                .padding(.horizontal, 12)
                 .padding(.vertical, 4)
                 .background(
                     selectedSection == .FlagFootball ?

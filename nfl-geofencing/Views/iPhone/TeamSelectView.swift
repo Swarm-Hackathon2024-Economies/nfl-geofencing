@@ -3,8 +3,7 @@ import SwiftUI
 struct TeamSelectView: View {
     @State private var selectedTeamIndex: Int?
     @Binding var isShowSetUpProfile: Bool
-    
-    private let teams = Team.allItems
+    private let teams = Team.allItems + Team.allItems[2...8]
     
     var body: some View {
         VStack {

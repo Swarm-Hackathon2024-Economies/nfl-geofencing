@@ -4,11 +4,15 @@ import SwiftUI
 struct MatchCard: View {
     let team1: Team
     let team2: Team
+    let index: Int
     
-    init(for team1: Team, and team2: Team) {
+    init(for team1: Team, and team2: Team, and index: Int) {
         self.team1 = team1
         self.team2 = team2
+        self.index = index
     }
+    let scoreArray = [["2-3", "4-1"], ["1-1", "3-1"], ["3-2", "0-1"]]
+    let timeArray = ["11:50 am", "1:30 pm", "9:50 pm"]
     
     var body: some View {
         VStack(spacing: 8) {
@@ -23,7 +27,7 @@ struct MatchCard: View {
                 Text(team1.name)
                     .font(.title3.bold()).italic()
                 Spacer()
-                Text("2-3")
+                Text(scoreArray[index][0])
                     .bold()
                     .foregroundStyle(.gray)
             }
@@ -39,12 +43,12 @@ struct MatchCard: View {
                 Text(team2.name)
                     .font(.title3.bold()).italic()
                 Spacer()
-                Text("4-1")
+                Text(scoreArray[index][1])
                     .bold()
                     .foregroundStyle(.gray)
             }
             
-            Text("9:50 am")
+            Text(timeArray[index])
                 .bold()
                 .foregroundStyle(.gray)
         }
@@ -59,5 +63,5 @@ struct MatchCard: View {
 }
 
 #Preview {
-    MatchCard(for: Team.allItems[0], and: Team.allItems[1])
+    MatchCard(for: Team.allItems[0], and: Team.allItems[1], and: 0)
 }
