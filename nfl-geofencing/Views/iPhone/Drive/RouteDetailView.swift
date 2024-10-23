@@ -2,8 +2,8 @@ import SwiftUI
 import MapKit
 
 struct RouteDetailView: View {
-    @State private var destinationInputText = "Toyota Motor North America, Inc."
-    @State private var arrivalInputText = "AT&T S"
+    @State private var destinationInputText = "Dallas College Richland Campus"
+    @State private var arrivalInputText = "Lancaster Ai"
     @State private var addInputText = "Add waypoint"
     @State private var routes: [MKRoute] = []
     @State private var selectedRoute: MKRoute?
@@ -18,17 +18,19 @@ struct RouteDetailView: View {
     @ObservedObject var mcSessionManager = MCSessionManager()
 
     @State private var sourceCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(
-        latitude: 33.08575588060863,
-        longitude: -96.83922557513722
+        latitude: 32.921456458832715,
+        longitude: -96.72846230370557
     )
     @State private var destinationCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(
-        latitude: 32.74816795373609,
-        longitude: -97.09333068671008
+        latitude: 32.57961967670998,
+        longitude:   -96.72389618651692
     )
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 32.7767, longitude: -96.7970),
-        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-    )
+
+    @State private var position: MapCameraPosition = .region(MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 32.740,  longitude: -96.717),
+        span: MKCoordinateSpan(latitudeDelta: 0.25, longitudeDelta: 0.25)
+    ))
+
 
     let offset: CGFloat = 540
     @State private var modalOffset: CGFloat = 540
@@ -41,7 +43,7 @@ struct RouteDetailView: View {
     var body: some View {
         ZStack(alignment: .topTrailing) {
             VStack {
-                Map {
+                Map{
                     ForEach(routes, id: \.self) { route in
                         MapPolyline(route)
                             .stroke(Color.gray, lineWidth: 8)
@@ -55,10 +57,15 @@ struct RouteDetailView: View {
                             center: .init(latitude: area.latitude, longitude: area.longitude),
                             radius: area.radius
                         )
-                        .foregroundStyle(.red.opacity(0.3))
+                        .foregroundStyle(.red.opacity(0.6))
                     }
                 }
                 .preferredColorScheme(isNight ? .dark : .light)
+            }
+            .onAppear {
+                Task {
+                    dangerArea = dangerAreaRepository.get(by: .spring, isNight: isNight)
+                }
             }
             .onChange(of: isNight) {
                 Task {
