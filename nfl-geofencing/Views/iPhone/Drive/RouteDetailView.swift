@@ -27,8 +27,8 @@ struct RouteDetailView: View {
     )
 
     @State private var position: MapCameraPosition = .region(MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 32.740,  longitude: -96.717),
-        span: MKCoordinateSpan(latitudeDelta: 0.25, longitudeDelta: 0.25)
+        center: CLLocationCoordinate2D(latitude: 32.7767, longitude: -96.7970),
+        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
     ))
 
 
