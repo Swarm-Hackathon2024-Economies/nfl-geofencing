@@ -3,6 +3,8 @@ import MapKit
 
 struct HomeScreen: View {
     @EnvironmentObject var scoreManager: ScoreManager
+    @State private var isImageVisible = false
+    @State private var isScoreVisible = true
 
     var body: some View {
         NavigationStack {
@@ -20,6 +22,14 @@ struct HomeScreen: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 168, height: 54)
+                        .zIndex(10)
+                        .scaleEffect(isImageVisible ? 1.0 : 500, anchor: .init(x: 0.7, y: 0.35))
+                        .animation(.easeInOut(duration: 0.5), value: isImageVisible)
+                        .onAppear {
+                            withAnimation(.easeInOut(duration: 0.5)) {
+                                        isImageVisible = true
+                                    }
+                                }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack(spacing: 32) {
@@ -28,7 +38,6 @@ struct HomeScreen: View {
                             .padding(4)
                             .foregroundStyle(.white)
                             .background(Circle().fill(.red))
-                        
                         Text("\(scoreManager.score)")
                             .font(Font.title2)
                             .bold()
@@ -36,6 +45,13 @@ struct HomeScreen: View {
                     .padding([.leading, .top, .bottom], 4)
                     .padding(.trailing, 8)
                     .background(Capsule().stroke(.secondary))
+                    .opacity(isScoreVisible ? 0 : 1)
+                    .onAppear {
+                        withAnimation(.easeInOut(duration: 1)) {
+                                    isScoreVisible = false
+                                }
+                            }
+                    
                 }
             }
         }

@@ -8,33 +8,40 @@
 import SwiftUI
 
 struct LoginTitleImage: View {
+    var onFinish: () -> Void
+    @Binding var isLoginPushed: Bool
     @State private var isAnimating = false
     @State private var offsetY: CGFloat = -500
     @State private var offsetX: CGFloat = -700
     @State private var isBouncing = false
     @State private var isShaking = false
     @State private var shakeCount = 0
+    
     var body: some View {
-        Image("TitleIcon")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 294, height: 111)
-                            .offset(x: offsetX, y: offsetY)
-                            .rotationEffect(.degrees(isAnimating ? 5 : 0))
-                            .onAppear {
-                                dropAnimation()
-                            }
-                            .rotationEffect(.degrees(isShaking ? 12 : 0))
-                                        .onTapGesture {
-                                            withAnimation(Animation.default.repeatCount(3, autoreverses: true)) {
-                                                isShaking.toggle()
-                                            }
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                                withAnimation {
-                                                    isShaking = false
-                                                }
-                                            }
-                                        }
+        if !isLoginPushed {
+            Image("TitleIcon")
+                .resizable()
+                .transition(.scale(scale: 500, anchor: .init(x: 0.69, y: 0.48)))
+                .aspectRatio(contentMode: .fit)
+                .frame(width:  294,
+                       height: 111)
+                .offset(x: offsetX, y: offsetY)
+                .rotationEffect(.degrees(isAnimating ? 5 : 0))
+                .rotationEffect(.degrees(isShaking ? 12 : 0))
+                .onAppear {
+                    dropAnimation()
+                }
+                .onTapGesture {
+                    withAnimation(Animation.default.repeatCount(3, autoreverses: true)) {
+                        isShaking.toggle()
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        withAnimation {
+                            isShaking = false
+                        }
+                    }
+                }
+        }
     }
     private func dropAnimation() {
         withAnimation(.easeIn(duration: 1.0)) {
@@ -95,5 +102,5 @@ struct LoginTitleImage: View {
 
 
 #Preview {
-    LoginTitleImage()
+    LoginTitleImage(onFinish: {}, isLoginPushed: .constant(false))
 }
