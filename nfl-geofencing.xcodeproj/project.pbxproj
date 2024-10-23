@@ -586,6 +586,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "nfl-geofencing/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Playbook;
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This app uses local network to comunicate with other device nearby.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -618,6 +619,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "nfl-geofencing/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Playbook;
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "This app uses local network to comunicate with other device nearby.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
