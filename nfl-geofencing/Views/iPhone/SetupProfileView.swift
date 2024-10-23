@@ -18,6 +18,7 @@ struct SetupProfileView: View {
     let positionList = FootballPosition().positions
     @Binding var isShowSetUpProfile: Bool
     
+    
     var body: some View {
         NavigationStack {
             HStack {
@@ -56,72 +57,37 @@ struct SetupProfileView: View {
                     Divider()
                 }
                 .frame(height: 72)
-                VStack(alignment: .leading, spacing: 10){
+                VStack(alignment: .leading, spacing: 10) {
                     HStack {
-                        Text("Your Position")
+                        Text("Email")
                             .font(.system(size: 16))
                             .foregroundStyle(.gray)
                         Text("*")
                             .foregroundStyle(.red)
                     }
-                    HStack {
-                        Menu {
-                            ForEach(positionList, id: \.self) { content in
-                                Button {
-                                    draftProfile.footballPosition = content
-                                } label: {
-                                    Text(content.description)
-                                }
-                            }
-                        } label: {
-                            HStack {
-                                Text(draftProfile.footballPosition.description).lineLimit(1)
-                                Spacer()
-                                Image(systemName: "chevron.down")
-                            }
-                            .foregroundStyle(.black)
-                        }
-                    }
-                    .frame(height: 22)
+                    TextField("", text: $draftProfile.name)
+                        .frame(maxWidth: .infinity)
                     Divider()
                 }
                 .frame(height: 72)
-                VStack(alignment: .leading, spacing: 10){
+                VStack(alignment: .leading, spacing: 10) {
                     HStack {
-                        Text("Your First Team")
+                        Text("Password")
                             .font(.system(size: 16))
                             .foregroundStyle(.gray)
                         Text("*")
                             .foregroundStyle(.red)
                     }
-                    HStack {
-                        Menu {
-                            ForEach(positionList, id: \.self) { content in
-                                Button {
-                                    draftProfile.team = content
-                                } label: {
-                                    Text(content.description)
-                                }
-                            }
-                        } label: {
-                            HStack {
-                                Text(draftProfile.team.description).lineLimit(1)
-                                Spacer()
-                                Image(systemName: "chevron.down")
-                            }
-                            .foregroundStyle(.black)
-                        }
-                    }
-                    .frame(height: 22)
+                    TextField("", text: $draftProfile.name)
+                        .frame(maxWidth: .infinity)
                     Divider()
                 }
                 .frame(height: 72)
             }
             Spacer()
-            NavigationLink {
-                //                onFinish()
-                TeamSelectView(isShowSetUpProfile: $isShowSetUpProfile)
-            } label: {
+            Button(action: {
+                isShowSetUpProfile = false
+            }) {
                 Text("Next")
                     .font(.system(size: 20))
                     .foregroundStyle(.red)
@@ -130,7 +96,6 @@ struct SetupProfileView: View {
                     .background(RoundedRectangle(cornerRadius: 8)
                         .stroke(Color.red, lineWidth: 1)
                         .fill(.white))
-                
             }
             .padding(1)
         }
