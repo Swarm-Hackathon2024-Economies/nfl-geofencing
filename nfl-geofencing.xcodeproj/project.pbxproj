@@ -45,6 +45,8 @@
 		7BEB7AE52CBFB98700C14DA0 /* CardUnpackView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEB7AE42CBFB98700C14DA0 /* CardUnpackView2.swift */; };
 		A139DB5D2CB5724F00A75050 /* RouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139DB5C2CB5724F00A75050 /* RouteDetailView.swift */; };
 		A139DB612CB573AE00A75050 /* DestinationRegistorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139DB602CB573AE00A75050 /* DestinationRegistorView.swift */; };
+		A1D8CB102CC989780078A0E9 /* GifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D8CB0F2CC989780078A0E9 /* GifView.swift */; };
+		A1D8CB122CC989C20078A0E9 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = A1D8CB112CC989C20078A0E9 /* loading.gif */; };
 		A1FB9D892CB7CDBA00119D9B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB9D882CB7CDBA00119D9B /* LoginView.swift */; };
 		A1FB9D8B2CB8002900119D9B /* FootballPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB9D8A2CB8002900119D9B /* FootballPosition.swift */; };
 		A1FD00402CB8136100EC3A46 /* ScarableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FD003F2CB8136100EC3A46 /* ScarableImageView.swift */; };
@@ -100,6 +102,8 @@
 		7BEB7AE42CBFB98700C14DA0 /* CardUnpackView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardUnpackView2.swift; sourceTree = "<group>"; };
 		A139DB5C2CB5724F00A75050 /* RouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailView.swift; sourceTree = "<group>"; };
 		A139DB602CB573AE00A75050 /* DestinationRegistorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationRegistorView.swift; sourceTree = "<group>"; };
+		A1D8CB0F2CC989780078A0E9 /* GifView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifView.swift; sourceTree = "<group>"; };
+		A1D8CB112CC989C20078A0E9 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		A1FB9D882CB7CDBA00119D9B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A1FB9D8A2CB8002900119D9B /* FootballPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootballPosition.swift; sourceTree = "<group>"; };
 		A1FD003F2CB8136100EC3A46 /* ScarableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScarableImageView.swift; sourceTree = "<group>"; };
@@ -206,6 +210,7 @@
 			children = (
 				A1FD003F2CB8136100EC3A46 /* ScarableImageView.swift */,
 				7BE49F4C2CBD170800B31067 /* CapsuleButton.swift */,
+				A1D8CB0F2CC989780078A0E9 /* GifView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 				7BE708512CB54CA000E0CBA9 /* nfl_geofencingApp.swift */,
 				A1FB9D8A2CB8002900119D9B /* FootballPosition.swift */,
 				7BE708552CB54CA000E0CBA9 /* Assets.xcassets */,
+				A1D8CB112CC989C20078A0E9 /* loading.gif */,
 				7BE708572CB54CA000E0CBA9 /* Preview Content */,
 				7B4BFFC22CB6A01D001C450F /* LocationManager.swift */,
 				7BE49F552CBD488100B31067 /* MCSessionManager.swift */,
@@ -380,6 +386,7 @@
 				7BE49F352CBBE6FC00B31067 /* crustered-accident.json in Resources */,
 				7BE708592CB54CA000E0CBA9 /* Preview Assets.xcassets in Resources */,
 				A1FD2A3F2CC081D9001D603B /* crustered-accident-night.json in Resources */,
+				A1D8CB122CC989C20078A0E9 /* loading.gif in Resources */,
 				A1FD2A402CC081D9001D603B /* crustered-accident-day.json in Resources */,
 				7BE708562CB54CA000E0CBA9 /* Assets.xcassets in Resources */,
 			);
@@ -407,6 +414,7 @@
 				E1CCE3D52CBB9F4400B64C1D /* TeamSelectView.swift in Sources */,
 				A1FD00402CB8136100EC3A46 /* ScarableImageView.swift in Sources */,
 				7B4BFFBF2CB69EE2001C450F /* Place.swift in Sources */,
+				A1D8CB102CC989780078A0E9 /* GifView.swift in Sources */,
 				CE2E6C2B2CBD18DF007023DC /* MyCollectionView.swift in Sources */,
 				CE2E6C272CBD187C007023DC /* MyNFLCollerctionView.swift in Sources */,
 				7BE49F472CBC4C2300B31067 /* CardCollectionDetailView.swift in Sources */,

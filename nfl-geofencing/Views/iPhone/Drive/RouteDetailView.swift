@@ -36,6 +36,7 @@ struct RouteDetailView: View {
 
     @State private var childHeight: CGFloat = .zero
     @State private var isNight: Bool = false
+    @State private var isSearching: Bool = false
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -198,6 +199,7 @@ struct RouteDetailView: View {
                                                         .foregroundStyle(.blue)
                                                     Button {
                                                         Task {
+                                                            isSearching = true
                                                             routes = []
                                                             dangerArea = dangerAreaRepository.get(by: .spring, isNight: isNight)
                                                             await calculateRoute(source: self.sourceCoordinate, destination: self.destinationCoordinate)
@@ -209,6 +211,7 @@ struct RouteDetailView: View {
                                                                 self.fasterRouteList.append(route.expectedTravelTime)
                                                             }
                                                             self.fasterRouteList.sort()
+                                                            isSearching = false
                                                         }
                                                     } label: {
                                                         Image(systemName: "magnifyingglass.circle.fill")
@@ -225,8 +228,19 @@ struct RouteDetailView: View {
                                         ZStack(alignment: .topLeading) {
                                             Rectangle()
                                                 .fill(Color("BackgroundColor"))
-                                            if routes.count == 0 {
-                                                Text("Now Loading...(いい感じのGIF当てたい!)")
+                                            if isSearching {
+                                                HStack {
+                                                    Spacer()
+                                                    GifView(gifName: "loading", minimumInterval: 0.03)
+                                                        .frame(width: 100, height: 100)
+                                                        .padding()
+                                                    Spacer()
+                                                }
+                                            } else if routes.count == 0 {
+                                                Text("No result...")
+                                                    .font(.title)
+                                                    .bold()
+                                                    .padding()
                                             } else {
                                                 VStack {
                                                     ForEach(routes.indices, id: \.self) { index in
