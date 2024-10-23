@@ -38,6 +38,12 @@ struct RouteDetailView: View {
     @State private var isNight: Bool = false
     @State private var isSearching: Bool = false
 
+    let displayTexts: [Int: String] = [
+        1: "A",
+        2: "B",
+        3: "C"
+    ]
+
     var body: some View {
         ZStack(alignment: .topTrailing) {
             VStack {
@@ -72,22 +78,10 @@ struct RouteDetailView: View {
                     routes = []
                     dangerArea = dangerAreaRepository.get(by: .spring, isNight: isNight)
                     selectedRoute = nil
-                    await calculateRoute(source: self.sourceCoordinate, destination: self.destinationCoordinate)
                     dangerPointCountList = []
-                    for route in routes {
-                        dangerPointCountList.append(countRouteAvoidsArea(route: route))
-                        self.rankList = convertPointToRank(originalArray: dangerPointCountList)
-                        self.scoreList = assignScores(from: rankList)
-                        self.fasterRouteList.append(route.expectedTravelTime)
-                    }
-                    self.fasterRouteList.sort()
                 }
             }
             Button(action: {
-                Task {
-                    routes = []
-                    await calculateRoute(source: self.sourceCoordinate, destination: self.destinationCoordinate)
-                }
                 isNight = !isNight
             }) {
                 if isNight {
@@ -268,12 +262,12 @@ struct RouteDetailView: View {
                                                                             Image(systemName: "heart.fill")
                                                                                 .foregroundStyle(.red)
                                                                         }
-                                                                        if routes[index].expectedTravelTime != fasterRouteList.last {
+                                                                        if index == 0 || index == 1 {
                                                                             Image(systemName: "clock.fill")
                                                                                 .foregroundStyle(.green)
                                                                         }
                                                                         Spacer()
-                                                                        Text("SafetyRank:\(rankList[index])")
+                                                                        Text("SafetyRank:\(displayTexts[rankList[index], default: ""])")
                                                                             .font(.headline)
                                                                             .padding(.trailing, 8)
                                                                     }
