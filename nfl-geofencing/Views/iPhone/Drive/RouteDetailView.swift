@@ -22,8 +22,8 @@ struct RouteDetailView: View {
         longitude: -96.72846230370557
     )
     @State private var destinationCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(
-        latitude: 32.57961967670998,
-        longitude:   -96.72389618651692
+        latitude: 32.74816795373609,
+        longitude: -97.09333068671008
     )
 
     @State private var position: MapCameraPosition = .region(MKCoordinateRegion(
@@ -43,7 +43,9 @@ struct RouteDetailView: View {
     var body: some View {
         ZStack(alignment: .topTrailing) {
             VStack {
-                Map{
+                Map (
+                    position: $position
+                ) {
                     ForEach(routes, id: \.self) { route in
                         MapPolyline(route)
                             .stroke(Color.gray, lineWidth: 8)
