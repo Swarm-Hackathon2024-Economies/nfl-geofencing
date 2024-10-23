@@ -87,12 +87,8 @@ struct IPadContentView: View {
     
     var currentScoreCard: some View {
         VStack {
-            Image("Eagles")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(maxWidth: 80)
             HStack {
-                Image(systemName: "football.fill")
+                Image(systemName: "heart.fill")
                     .foregroundStyle(.black)
                     .padding(4)
                     .background(Circle().fill(.white))

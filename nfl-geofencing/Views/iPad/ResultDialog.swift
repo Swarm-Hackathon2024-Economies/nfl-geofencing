@@ -11,7 +11,7 @@ struct ResultDialog: View {
         VStack {
             Text("Results").font(.largeTitle.bold())
             HStack(spacing: 0) {
-                Image(systemName: "football.fill")
+                Image(systemName: "heart.circle")
                     .font(.body)
                     .foregroundStyle(.black)
                     .padding(4)

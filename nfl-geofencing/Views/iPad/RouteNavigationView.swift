@@ -27,9 +27,9 @@ struct RouteNavigationView: View {
             
             ForEach(coordinatesOnRoute.dropFirst()) { coordinate in
                 Annotation("", coordinate: coordinate, anchor: .bottomLeading) {
-                    Image(systemName: "scope")
+                    Image(systemName: "heart.circle")
                         .font(.title)
-                        .foregroundStyle(.brown)
+                        .foregroundStyle(.pink)
                         .padding(4)
                         .opacity(passedCoordinates.contains(coordinate) ? 0 : 1)
                 }
