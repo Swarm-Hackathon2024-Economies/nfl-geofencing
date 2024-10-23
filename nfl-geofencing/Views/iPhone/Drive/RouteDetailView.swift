@@ -18,19 +18,17 @@ struct RouteDetailView: View {
     @ObservedObject var mcSessionManager = MCSessionManager()
 
     @State private var sourceCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(
-        latitude: 32.921456458832715,
-        longitude: -96.72846230370557
+        latitude: 32.921492482668214,
+        longitude: -96.72852667672464
     )
     @State private var destinationCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(
-        latitude: 32.74816795373609,
-        longitude: -97.09333068671008
+        latitude: 32.59387809009608,
+        longitude: -96.72226098488478
     )
-
     @State private var position: MapCameraPosition = .region(MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 32.7767, longitude: -96.7970),
-        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        center: CLLocationCoordinate2D(latitude: 32.75228632213828 , longitude: -96.71599399739304),
+        span: MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3)
     ))
-
 
     let offset: CGFloat = 540
     @State private var modalOffset: CGFloat = 540
@@ -39,6 +37,12 @@ struct RouteDetailView: View {
     @State private var childHeight: CGFloat = .zero
     @State private var isNight: Bool = false
     @State private var isSearching: Bool = false
+
+    let displayTexts: [Int: String] = [
+        1: "A",
+        2: "B",
+        3: "C"
+    ]
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -74,22 +78,10 @@ struct RouteDetailView: View {
                     routes = []
                     dangerArea = dangerAreaRepository.get(by: .spring, isNight: isNight)
                     selectedRoute = nil
-                    await calculateRoute(source: self.sourceCoordinate, destination: self.destinationCoordinate)
                     dangerPointCountList = []
-                    for route in routes {
-                        dangerPointCountList.append(countRouteAvoidsArea(route: route))
-                        self.rankList = convertPointToRank(originalArray: dangerPointCountList)
-                        self.scoreList = assignScores(from: rankList)
-                        self.fasterRouteList.append(route.expectedTravelTime)
-                    }
-                    self.fasterRouteList.sort()
                 }
             }
             Button(action: {
-                Task {
-                    routes = []
-                    await calculateRoute(source: self.sourceCoordinate, destination: self.destinationCoordinate)
-                }
                 isNight = !isNight
             }) {
                 if isNight {
@@ -270,12 +262,12 @@ struct RouteDetailView: View {
                                                                             Image(systemName: "heart.fill")
                                                                                 .foregroundStyle(.red)
                                                                         }
-                                                                        if routes[index].expectedTravelTime != fasterRouteList.last {
+                                                                        if index == 0 || index == 1 {
                                                                             Image(systemName: "clock.fill")
                                                                                 .foregroundStyle(.green)
                                                                         }
                                                                         Spacer()
-                                                                        Text("SafetyRank:\(rankList[index])")
+                                                                        Text("SafetyRank:\(displayTexts[rankList[index], default: ""])")
                                                                             .font(.headline)
                                                                             .padding(.trailing, 8)
                                                                     }
