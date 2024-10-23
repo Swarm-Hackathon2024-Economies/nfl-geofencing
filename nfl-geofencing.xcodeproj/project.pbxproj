@@ -55,6 +55,7 @@
 		CE2E6C2B2CBD18DF007023DC /* MyCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2E6C2A2CBD18DF007023DC /* MyCollectionView.swift */; };
 		E1CCE3D32CBB94B400B64C1D /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CCE3D22CBB94B400B64C1D /* Team.swift */; };
 		E1CCE3D52CBB9F4400B64C1D /* TeamSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CCE3D42CBB9F4400B64C1D /* TeamSelectView.swift */; };
+		E1E31A1D2CC8BEF20082E2C8 /* LoginTitleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E31A1C2CC8BEF20082E2C8 /* LoginTitleImage.swift */; };
 		E1ED23A52CC6E71C00262A12 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ED23A42CC6E71C00262A12 /* Score.swift */; };
 		E1ED23A72CC6F3F500262A12 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ED23A62CC6F3F500262A12 /* Players.swift */; };
 /* End PBXBuildFile section */
@@ -110,6 +111,7 @@
 		CE2E6C2A2CBD18DF007023DC /* MyCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionView.swift; sourceTree = "<group>"; };
 		E1CCE3D22CBB94B400B64C1D /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		E1CCE3D42CBB9F4400B64C1D /* TeamSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSelectView.swift; sourceTree = "<group>"; };
+		E1E31A1C2CC8BEF20082E2C8 /* LoginTitleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTitleImage.swift; sourceTree = "<group>"; };
 		E1ED23A42CC6E71C00262A12 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		E1ED23A62CC6F3F500262A12 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,6 +161,7 @@
 				7BE7086E2CB556F600E0CBA9 /* Cards */,
 				7BE7086D2CB556F000E0CBA9 /* Drive */,
 				7BE7086C2CB556E800E0CBA9 /* Schedule */,
+				E1E31A1C2CC8BEF20082E2C8 /* LoginTitleImage.swift */,
 			);
 			path = iPhone;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				7BE708542CB54CA000E0CBA9 /* ContentView.swift in Sources */,
 				7BE708622CB5511000E0CBA9 /* HomeScreen.swift in Sources */,
 				7BE49F492CBD060D00B31067 /* CardUnpackView.swift in Sources */,
+				E1E31A1D2CC8BEF20082E2C8 /* LoginTitleImage.swift in Sources */,
 				7BE49F3D2CBC3E0100B31067 /* View+.swift in Sources */,
 				7B4BFFC32CB6A01D001C450F /* LocationManager.swift in Sources */,
 				7BE49F382CBBE82300B31067 /* DangerAreaRepository.swift in Sources */,
