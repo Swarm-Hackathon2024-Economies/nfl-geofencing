@@ -6,13 +6,10 @@ struct HomeScreen: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack {
-                    ProfileCardView()
-                    RankingView()
-                }
-                .padding()
+            VStack {
+                ProfileCardView()
             }
+            .padding()
             .toolbar {
                 
                 ToolbarItem(placement: .topBarLeading) {
@@ -23,12 +20,12 @@ struct HomeScreen: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack(spacing: 32) {
-                        Image(systemName: "football.fill")
+                        Image(systemName: "rosette")
                             .font(.caption)
                             .padding(4)
                             .foregroundStyle(.white)
                             .background(Circle().fill(.red))
-                        
+
                         Text("\(scoreManager.score)")
                             .font(Font.title2)
                             .bold()

@@ -8,9 +8,6 @@ struct MyPageScreen: View {
     let externalLinkItems: [ProfileItem] = [
         ProfileItem(name: "TOYOTA", imageName: "TOYOTAIcon"),
         ProfileItem(name: "TOYOTA Account", imageName: "TOYOTAIcon"),
-        ProfileItem(name: "NFL", imageName: "NFLIcon"),
-        ProfileItem(name: "NFL Ticket", imageName: "NFLIcon"),
-        ProfileItem(name: "NFL FLAG", imageName: "NFLFlagIcon"),
         ProfileItem(name: "FAQ & Contact Us", imageName: "QuestionIcon"),
     ]
     
@@ -76,7 +73,7 @@ struct MypageScreenToolbarItems: ViewModifier {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack(spacing: 38) {
-                        Image(systemName: "football.fill")
+                        Image(systemName: "rosette")
                             .font(.caption)
                             .foregroundStyle(.white)
                             .padding(4)

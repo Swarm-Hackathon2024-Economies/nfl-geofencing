@@ -140,7 +140,7 @@ struct RouteDetailView: View {
                             .onTapGesture {
                                 withAnimation {
                                     if modalOffset == offset {
-                                        modalOffset = 0
+                                        modalOffset = 40
                                     } else {
                                         modalOffset = offset
                                     }
@@ -260,14 +260,10 @@ struct RouteDetailView: View {
                                                                     HStack {
                                                                         Text("\(Int(ceil(route.distance / 1609))) miles")
                                                                         Spacer()
-//                                                                        Text("\(countRouteAvoidsArea(route: route).description)")
-//                                                                            .font(.caption2)
                                                                         Text("SafetyRank:\(rankList[index])")
                                                                             .font(.headline)
                                                                     }
                                                                     HStack(spacing: 8) {
-                                                                        Image(systemName: "football.fill")
-                                                                            .foregroundStyle(.blue)
                                                                         Text("Expected points earned")
                                                                         Text("\(scoreList[index])")
                                                                             .font(.title3)
@@ -327,8 +323,8 @@ struct RouteDetailView: View {
                                 withAnimation {
                                     if newOffset > offset {
                                         modalOffset = offset
-                                    } else if newOffset < 0 {
-                                        modalOffset = 0
+                                    } else if newOffset < 40 {
+                                        modalOffset = 40
                                     } else {
                                         modalOffset = newOffset
                                     }
@@ -339,7 +335,7 @@ struct RouteDetailView: View {
                                     if modalOffset > lastModalOffset {
                                         modalOffset = offset
                                     } else {
-                                        modalOffset = 0
+                                        modalOffset = 40
                                     }
                                 }
                                 lastModalOffset = modalOffset

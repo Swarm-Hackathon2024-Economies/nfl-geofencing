@@ -16,41 +16,21 @@ struct ContentView: View {
                     }
                     .tag(0)
                 
-                ScheduleScreen()
-                    .tabItem {
-                        if selectedTab == 1 {
-                            Image("Schedule_select")
-                        } else {
-                            Image("Schedule")
-                        }
-                    }
-                    .tag(1)
-                
                 DriveScreen()
                     .tabItem {
                             Image("Drive")
                     }
-                    .tag(2)
-                
-                CardsScreen()
-                    .tabItem {
-                        if selectedTab == 3 {
-                            Image("Card_select")
-                        } else {
-                            Image("Card")
-                        }
-                    }
-                    .tag(3)
-                
+                    .tag(1)
+
                 MyPageScreen()
                     .tabItem {
-                        if selectedTab == 4 {
+                        if selectedTab == 2 {
                             Image("Mypage_select")
                         } else {
                             Image("Mypage")
                         }
                     }
-                    .tag(4)
+                    .tag(2)
             }
         } else {
             LoginView() {
