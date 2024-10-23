@@ -160,17 +160,11 @@ struct RouteDetailView: View {
                                                         .frame(height: 22)
                                                         Divider()
                                                     }
-                                                    .padding(EdgeInsets(
-                                                        top: 0, leading: 0, bottom: 0, trailing: 20
-                                                    ))
+                                                    .padding(.trailing, 20)
                                                 }
-                                                .padding(EdgeInsets(
-                                                    top: 15, leading: 0, bottom: 0, trailing: 0
-                                                ))
+                                                .padding(.top, 15)
                                                 Image("dots_vertical")
-                                                    .padding(EdgeInsets(
-                                                        top: 0, leading: 25, bottom: 0, trailing: 0
-                                                    ))
+                                                    .padding(.leading, 25)
                                                 HStack{
                                                     Image(systemName: "mappin.circle.fill")
                                                         .resizable()
@@ -188,14 +182,10 @@ struct RouteDetailView: View {
                                                         .frame(height: 22)
                                                         Divider()
                                                     }
-                                                    .padding(EdgeInsets(
-                                                        top: 0, leading: 0, bottom: 0, trailing: 20
-                                                    ))
+                                                    .padding(.trailing, 20)
                                                 }
                                                 Image("dots_vertical")
-                                                    .padding(EdgeInsets(
-                                                        top: 0, leading: 25, bottom: 0, trailing: 0
-                                                    ))
+                                                    .padding(.leading, 25)
                                                 HStack{
                                                     Image(systemName: "plus.circle.fill")
                                                         .resizable()
@@ -221,7 +211,11 @@ struct RouteDetailView: View {
                                                             self.fasterRouteList.sort()
                                                         }
                                                     } label: {
-                                                        Text("Search")
+                                                        Image(systemName: "magnifyingglass.circle.fill")
+                                                            .resizable()
+                                                            .frame(width: 30, height: 30)
+                                                            .foregroundStyle(.blue)
+                                                            .padding(.trailing, 16)
                                                     }
                                                 }
                                             }
