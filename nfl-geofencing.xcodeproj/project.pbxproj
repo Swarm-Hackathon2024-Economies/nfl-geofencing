@@ -12,6 +12,7 @@
 		7B4BFFBF2CB69EE2001C450F /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4BFFBE2CB69EE2001C450F /* Place.swift */; };
 		7B4BFFC12CB69F36001C450F /* RouteNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4BFFC02CB69F36001C450F /* RouteNavigationView.swift */; };
 		7B4BFFC32CB6A01D001C450F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4BFFC22CB6A01D001C450F /* LocationManager.swift */; };
+		7B885D0F2CC93C88002F0D40 /* accidents_with_traffic_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B885D0E2CC93C88002F0D40 /* accidents_with_traffic_data.json */; };
 		7B9B6D5B2CBE6AA8007FA8A0 /* MapViewForScreenShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6D5A2CBE6AA8007FA8A0 /* MapViewForScreenShot.swift */; };
 		7BACAF112CB580B1005CC432 /* PlayerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BACAF102CB580B1005CC432 /* PlayerCard.swift */; };
 		7BD8C6782CC29BDB002D38A0 /* PlayerCard2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD8C6772CC29BDB002D38A0 /* PlayerCard2.swift */; };
@@ -66,6 +67,7 @@
 		7B4BFFBE2CB69EE2001C450F /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		7B4BFFC02CB69F36001C450F /* RouteNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteNavigationView.swift; sourceTree = "<group>"; };
 		7B4BFFC22CB6A01D001C450F /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		7B885D0E2CC93C88002F0D40 /* accidents_with_traffic_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = accidents_with_traffic_data.json; path = "accident-hotspot-extraction/accidents_with_traffic_data.json"; sourceTree = SOURCE_ROOT; };
 		7B9B6D5A2CBE6AA8007FA8A0 /* MapViewForScreenShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewForScreenShot.swift; sourceTree = "<group>"; };
 		7B9B6D5C2CBE787B007FA8A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7BACAF102CB580B1005CC432 /* PlayerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCard.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 		7BE49F332CBBE64C00B31067 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7B885D0E2CC93C88002F0D40 /* accidents_with_traffic_data.json */,
 				7B4BFFBE2CB69EE2001C450F /* Place.swift */,
 				A1FD2A3D2CC081D9001D603B /* crustered-accident-day.json */,
 				A1FD2A3E2CC081D9001D603B /* crustered-accident-night.json */,
@@ -384,6 +387,7 @@
 				7BE708592CB54CA000E0CBA9 /* Preview Assets.xcassets in Resources */,
 				A1FD2A3F2CC081D9001D603B /* crustered-accident-night.json in Resources */,
 				A1FD2A402CC081D9001D603B /* crustered-accident-day.json in Resources */,
+				7B885D0F2CC93C88002F0D40 /* accidents_with_traffic_data.json in Resources */,
 				7BE708562CB54CA000E0CBA9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
