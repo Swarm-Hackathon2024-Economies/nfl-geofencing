@@ -1,4 +1,10 @@
 US_Accidents_March23.csv
+TxDOT_Roadways.dbf
+TxDOT_Roadways.shp
+TxDOT_Roadways.shx
+input-aadt.csv
+filtered_accidents_2022_dallas_fortworth.csv
+aadt.csv
 
 venv/
 env/

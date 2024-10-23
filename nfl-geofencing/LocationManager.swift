@@ -40,35 +40,18 @@ class FakeLocationManager: NSObject, ObservableObject, CLLocationManagerDelegate
     }
 
     private func updateFakeLocation(with polyline: MKPolyline) {
-        guard currentStepIndex < routeCoordinates.count - 1 else {
+        let polylineCoordinates = polyline.getCoordinates()
+        guard currentStepIndex < polylineCoordinates.count - 1 else {
             stopUpdatingLocation()
             return
         }
-
-        if currentCoordinate == nil {
-            currentCoordinate = routeCoordinates[currentStepIndex]
-        }
-
-        guard let currentCoordinate = currentCoordinate else { return }
-        let nextCoordinate = routeCoordinates[currentStepIndex + 1]
-        let totalDistance = currentCoordinate.distance(to: nextCoordinate)
-        let distanceToMove = speed * updateInterval
-
-        if distanceToNextCoordinate + distanceToMove >= totalDistance {
-            self.currentCoordinate = nextCoordinate
-            distanceToNextCoordinate = 0.0
-            currentStepIndex += 1
-        } else {
-            let fraction = (distanceToNextCoordinate + distanceToMove) / totalDistance
-            let interpolatedCoordinate = currentCoordinate.interpolate(to: nextCoordinate, fraction: fraction)
-            self.currentCoordinate = interpolatedCoordinate
-            distanceToNextCoordinate += distanceToMove
-        }
-
+        let currentCoordinate = polylineCoordinates[currentStepIndex]
+        let nextCoordinate = polylineCoordinates[currentStepIndex + 1]
         DispatchQueue.main.async {
-            self.willChangeCoordinate?(currentCoordinate, self.currentCoordinate!)
-            self.coordinate = self.currentCoordinate
+            self.willChangeCoordinate?(currentCoordinate, nextCoordinate)
+            self.coordinate = nextCoordinate
         }
+        currentStepIndex += 1
     }
 
     func stopUpdatingLocation() {
