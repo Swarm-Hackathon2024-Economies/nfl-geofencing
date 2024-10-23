@@ -18,19 +18,17 @@ struct RouteDetailView: View {
     @ObservedObject var mcSessionManager = MCSessionManager()
 
     @State private var sourceCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(
-        latitude: 32.921456458832715,
-        longitude: -96.72846230370557
+        latitude: 32.921492482668214,
+        longitude: -96.72852667672464
     )
     @State private var destinationCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(
-        latitude: 32.74816795373609,
-        longitude: -97.09333068671008
+        latitude: 32.59387809009608,
+        longitude: -96.72226098488478
     )
-
     @State private var position: MapCameraPosition = .region(MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 32.7767, longitude: -96.7970),
-        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        center: CLLocationCoordinate2D(latitude: 32.75228632213828 , longitude: -96.71599399739304),
+        span: MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3)
     ))
-
 
     let offset: CGFloat = 540
     @State private var modalOffset: CGFloat = 540
