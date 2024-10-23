@@ -13,11 +13,8 @@ struct SplashScreen: View {
                 .animation(.easeInOut(duration: 1), value: isShowSplash)
         }
         .onAppear {
-            isShowSplash = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                withAnimation(.easeInOut(duration: 1)) {
                     isShowSplash = false
-                }
             }
         }
         
