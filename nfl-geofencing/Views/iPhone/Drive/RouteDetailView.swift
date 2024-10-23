@@ -3,7 +3,7 @@ import MapKit
 
 struct RouteDetailView: View {
     @State private var destinationInputText = "Toyota Motor North America, Inc."
-    @State private var arrivalInputText = "AT&T Stadium"
+    @State private var arrivalInputText = "AT&T S"
     @State private var addInputText = "Add waypoint"
     @State private var routes: [MKRoute] = []
     @State private var selectedRoute: MKRoute?
@@ -13,6 +13,7 @@ struct RouteDetailView: View {
     @State private var dangerPointCountList: [Int] = []
     @State private var rankList: [Int] = []
     @State private var scoreList: [Int] = []
+    @State private var fasterRouteList: [Double] = []
 
     @ObservedObject var mcSessionManager = MCSessionManager()
 
@@ -36,26 +37,6 @@ struct RouteDetailView: View {
     @State private var childHeight: CGFloat = .zero
     @State private var isNight: Bool = false
 
-    private let touristSpots = [
-        TouristSpot(latitude: 32.7883, longitude: -96.8004, placeName: "Dallas Arts District", symbolName: "paintpalette"),
-        TouristSpot(latitude: 32.7877, longitude: -96.8003, placeName: "Dallas Museum of Art", symbolName: "photo.on.rectangle"),
-        TouristSpot(latitude: 32.7790, longitude: -96.8088, placeName: "Dealey Plaza National Historic Landmark District", symbolName: "building.columns"),
-        TouristSpot(latitude: 32.7440, longitude: -96.8140, placeName: "Dallas Zoo", symbolName: "tortoise"),
-        TouristSpot(latitude: 32.8213, longitude: -96.7160, placeName: "Dallas Arboretum and Botanical Garden", symbolName: "leaf.fill"),
-        TouristSpot(latitude: 32.7802, longitude: -96.8086, placeName: "The Sixth Floor Museum at Dealey Plaza", symbolName: "book.closed"),
-        TouristSpot(latitude: 32.7756, longitude: -96.8094, placeName: "Reunion Tower", symbolName: "mappin.and.ellipse"),
-        TouristSpot(latitude: 32.7777, longitude: -96.8012, placeName: "Pioneer Plaza", symbolName: "figure.walk"),
-        TouristSpot(latitude: 32.7906, longitude: -96.8103, placeName: "American Airlines Center", symbolName: "sportscourt"),
-        TouristSpot(latitude: 33.1367, longitude: -96.7790, placeName: "Bayou Wildlife Zoo", symbolName: "pawprint"),
-        TouristSpot(latitude: 32.7892, longitude: -96.8018, placeName: "Klyde Warren Park", symbolName: "tree.fill"),
-        TouristSpot(latitude: 32.7869, longitude: -96.8064, placeName: "Perot Museum of Nature and Science", symbolName: "cube.box.fill"),
-        TouristSpot(latitude: 32.8292, longitude: -96.7116, placeName: "White Rock Lake", symbolName: "drop.fill"),
-        TouristSpot(latitude: 32.9628, longitude: -97.0353, placeName: "Grapevine Mills", symbolName: "bag"),
-        TouristSpot(latitude: 32.9385, longitude: -97.0723, placeName: "LEGOLAND Discovery Center", symbolName: "building.2.crop.circle"),
-        TouristSpot(latitude: 32.9335, longitude: -97.0788, placeName: "Sea Life Grapevine Aquarium", symbolName: "tortoise"),
-        TouristSpot(latitude: 32.9343, longitude: -97.0814, placeName: "Grapevine Vintage Railroad", symbolName: "tram.fill")
-    ]
-
     var body: some View {
         ZStack(alignment: .topTrailing) {
             VStack {
@@ -78,19 +59,6 @@ struct RouteDetailView: View {
                 }
                 .preferredColorScheme(isNight ? .dark : .light)
             }
-            .onAppear {
-                Task {
-                    routes = []
-                    dangerArea = dangerAreaRepository.get(by: .spring, isNight: isNight)
-                    await calculateRoute(source: self.sourceCoordinate, destination: self.destinationCoordinate)
-                    dangerPointCountList = []
-                    for route in routes {
-                        dangerPointCountList.append(countRouteAvoidsArea(route: route))
-                        self.rankList = convertPointToRank(originalArray: dangerPointCountList)
-                        self.scoreList = assignScores(from: rankList)
-                    }
-                }
-            }
             .onChange(of: isNight) {
                 Task {
                     routes = []
@@ -102,7 +70,9 @@ struct RouteDetailView: View {
                         dangerPointCountList.append(countRouteAvoidsArea(route: route))
                         self.rankList = convertPointToRank(originalArray: dangerPointCountList)
                         self.scoreList = assignScores(from: rankList)
+                        self.fasterRouteList.append(route.expectedTravelTime)
                     }
+                    self.fasterRouteList.sort()
                 }
             }
             Button(action: {
@@ -236,6 +206,23 @@ struct RouteDetailView: View {
                                                         ))
                                                     TextField("Add waypoint", text: $addInputText)
                                                         .foregroundStyle(.blue)
+                                                    Button {
+                                                        Task {
+                                                            routes = []
+                                                            dangerArea = dangerAreaRepository.get(by: .spring, isNight: isNight)
+                                                            await calculateRoute(source: self.sourceCoordinate, destination: self.destinationCoordinate)
+                                                            dangerPointCountList = []
+                                                            for route in routes {
+                                                                dangerPointCountList.append(countRouteAvoidsArea(route: route))
+                                                                self.rankList = convertPointToRank(originalArray: dangerPointCountList)
+                                                                self.scoreList = assignScores(from: rankList)
+                                                                self.fasterRouteList.append(route.expectedTravelTime)
+                                                            }
+                                                            self.fasterRouteList.sort()
+                                                        }
+                                                    } label: {
+                                                        Text("Search")
+                                                    }
                                                 }
                                             }
                                         }
@@ -260,15 +247,20 @@ struct RouteDetailView: View {
                                                                     HStack {
                                                                         Text("\(Int(ceil(route.distance / 1609))) miles")
                                                                         Spacer()
-                                                                        Text("SafetyRank:\(rankList[index])")
-                                                                            .font(.headline)
                                                                     }
                                                                     HStack(spacing: 8) {
-                                                                        Text("Expected points earned")
-                                                                        Text("\(scoreList[index])")
-                                                                            .font(.title3)
-                                                                            .bold()
-                                                                            .foregroundStyle(.blue)
+                                                                        if rankList[index] != rankList.last {
+                                                                            Image(systemName: "heart.fill")
+                                                                                .foregroundStyle(.red)
+                                                                        }
+                                                                        if routes[index].expectedTravelTime != fasterRouteList.last {
+                                                                            Image(systemName: "clock.fill")
+                                                                                .foregroundStyle(.green)
+                                                                        }
+                                                                        Spacer()
+                                                                        Text("SafetyRank:\(rankList[index])")
+                                                                            .font(.headline)
+                                                                            .padding(.trailing, 8)
                                                                     }
                                                                 }
                                                                 Button {
@@ -443,6 +435,11 @@ struct RouteDetailView: View {
         }
 
         return ranks
+    }
+    
+    func convertExpectedTimeToRank(originalArray: [Int]) {
+        print("originalArray \(originalArray)")
+//        let sortedArray = originalArray.sorted(by: )
     }
 
     func assignScores(from array: [Int]) -> [Int] {
