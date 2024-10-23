@@ -3,8 +3,8 @@ enum SelectTeamView {
     case NFL
     case Collage
     case FlagFootball
-    
 }
+
 struct RankingView: View {
     @State private var scrollOffset: CGFloat = 0
     @State private var selectedSection: SelectTeamView = .NFL

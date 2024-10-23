@@ -2,13 +2,16 @@ import SwiftUI
 
 struct MyPageScreen: View {
     let profileItems: [ProfileItem] = [
-        ProfileItem(name: "MyProfile", imageName: "PeopleIcon"),
-        ProfileItem(name: "Insurance class", imageName: "LikeIcon"),
+        ProfileItem(name: "MyProfile", imageName: "PeopleIcon", link: ""),
+        ProfileItem(name: "Insurance class", imageName: "LikeIcon", link: ""),
     ]
     let externalLinkItems: [ProfileItem] = [
-        ProfileItem(name: "TOYOTA", imageName: "TOYOTAIcon"),
-        ProfileItem(name: "TOYOTA Account", imageName: "TOYOTAIcon"),
-        ProfileItem(name: "FAQ & Contact Us", imageName: "QuestionIcon"),
+        ProfileItem(name: "TOYOTA", imageName: "TOYOTAIcon", link: "https://global.toyota/jp/"),
+        ProfileItem(name: "TOYOTA Account", imageName: "TOYOTAIcon", link: "https://id.toyota/"),
+        ProfileItem(name: "NFL", imageName: "NFLIcon", link: "https://www.nfl.com/"),
+        ProfileItem(name: "NFL Ticket", imageName: "NFLIcon", link: "https://www.ticketmaster.com/"),
+        ProfileItem(name: "NFL FLAG", imageName: "NFLFlagIcon", link: "https://nflflag.com/"),
+        ProfileItem(name: "FAQ & Contact Us", imageName: "QuestionIcon", link: ""),
     ]
     
     var body: some View {
@@ -50,6 +53,12 @@ struct MyPageScreen: View {
                             Image("ArrowIcon")
                         }
                         .frame(height: 35)
+                        .background(.white)
+                        .onTapGesture {
+                            if let url = URL(string: item.link) {
+                                UIApplication.shared.open(url)
+                            }
+                        }
                         Rectangle()
                             .fill(Color.gray)
                             .frame(height: 1)
@@ -73,7 +82,7 @@ struct MypageScreenToolbarItems: ViewModifier {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack(spacing: 38) {
-                        Image(systemName: "rosette")
+                        Image(systemName: "football.fill")
                             .font(.caption)
                             .foregroundStyle(.white)
                             .padding(4)
@@ -101,7 +110,8 @@ extension View {
 }
 
 struct ProfileItem: Identifiable {
-    let id = UUID() // 一意の識別子を生成
-    let name: String // プロフィールの名前
-    let imageName: String // 画像名
+    let id = UUID()
+    let name: String
+    let imageName: String
+    let link: String
 }
