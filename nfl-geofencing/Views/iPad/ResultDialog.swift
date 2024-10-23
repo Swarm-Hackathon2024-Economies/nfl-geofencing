@@ -9,8 +9,6 @@ struct ResultDialog: View {
     
     var body: some View {
         VStack {
-            Image("Eagles")
-                .padding()
             Text("Results").font(.largeTitle.bold())
             HStack(spacing: 0) {
                 Image(systemName: "football.fill")

@@ -27,7 +27,7 @@ struct RouteNavigationView: View {
             
             ForEach(coordinatesOnRoute.dropFirst()) { coordinate in
                 Annotation("", coordinate: coordinate, anchor: .bottomLeading) {
-                    Image(systemName: "football.fill")
+                    Image(systemName: "scope")
                         .font(.title)
                         .foregroundStyle(.brown)
                         .padding(4)
