@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B3EB49B2CC9E82F00954702 /* CustomHalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3EB49A2CC9E82F00954702 /* CustomHalfSheet.swift */; };
 		7B4BFFBA2CB69C10001C450F /* IPadContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4BFFB92CB69C10001C450F /* IPadContentView.swift */; };
 		7B4BFFBC2CB69E07001C450F /* ToyotaNavigationSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4BFFBB2CB69E07001C450F /* ToyotaNavigationSidebar.swift */; };
 		7B4BFFBF2CB69EE2001C450F /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4BFFBE2CB69EE2001C450F /* Place.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B3EB49A2CC9E82F00954702 /* CustomHalfSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHalfSheet.swift; sourceTree = "<group>"; };
 		7B4BFFB92CB69C10001C450F /* IPadContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadContentView.swift; sourceTree = "<group>"; };
 		7B4BFFBB2CB69E07001C450F /* ToyotaNavigationSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToyotaNavigationSidebar.swift; sourceTree = "<group>"; };
 		7B4BFFBE2CB69EE2001C450F /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				A1FD003F2CB8136100EC3A46 /* ScarableImageView.swift */,
 				7BE49F4C2CBD170800B31067 /* CapsuleButton.swift */,
 				A1D8CB0F2CC989780078A0E9 /* GifView.swift */,
+				7B3EB49A2CC9E82F00954702 /* CustomHalfSheet.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				7BE49F4D2CBD170800B31067 /* CapsuleButton.swift in Sources */,
 				7BACAF112CB580B1005CC432 /* PlayerCard.swift in Sources */,
 				7BE49F522CBD266900B31067 /* MatchCard.swift in Sources */,
+				7B3EB49B2CC9E82F00954702 /* CustomHalfSheet.swift in Sources */,
 				E1ED23A72CC6F3F500262A12 /* Players.swift in Sources */,
 				7BE708522CB54CA000E0CBA9 /* nfl_geofencingApp.swift in Sources */,
 				7BE49F4B2CBD142500B31067 /* ProfileCardView.swift in Sources */,
