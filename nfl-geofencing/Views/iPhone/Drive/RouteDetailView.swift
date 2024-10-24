@@ -257,7 +257,7 @@ struct RouteDetailView: View {
                     Text("\(Int(ceil(route.distance / 1609))) miles")
                         .frame(maxWidth: .infinity, alignment: .leading)
                     HStack(spacing: 8) {
-                        if rankList[index] != rankList.last {
+                        if rankList[index] == 1 || rankList[index] == 2 {
                             Image(systemName: "heart.fill")
                                 .foregroundStyle(.red)
                         }
