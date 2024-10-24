@@ -9,14 +9,14 @@ struct RouteDetailView: View {
     @State private var selectedRoute: MKRoute?
     @State private var dangerArea: [CircleArea] = []
     let dangerAreaRepository: DangerAreaRepository = JsonDangerAreaRepository()
-    
+
     @State private var dangerPointCountList: [Int] = []
     @State private var rankList: [Int] = []
     @State private var scoreList: [Int] = []
     @State private var fasterRouteList: [Double] = []
-    
+
     @ObservedObject var mcSessionManager = MCSessionManager()
-    
+
     @State private var sourceCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(
         latitude: 32.921492482668214,
         longitude: -96.72852667672464
@@ -29,19 +29,19 @@ struct RouteDetailView: View {
         center: CLLocationCoordinate2D(latitude: 32.75228632213828 , longitude: -96.71599399739304),
         span: MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3)
     ))
-    
+
     @State private var childHeight: CGFloat = .zero
-    @State private var isNight: Bool = false
+    @State private var isNight: Bool = true
     @State private var isSearching: Bool = false
-    
+
     @State private var modalOffset: CGFloat = 540
-    
+
     let displayTexts: [Int: String] = [
         1: "A",
         2: "B",
         3: "C"
     ]
-    
+
     var body: some View {
         VStack {
             Map (position: $position) {
@@ -56,7 +56,7 @@ struct RouteDetailView: View {
                 ForEach(dangerArea) { area in
                     MapCircle(
                         center: .init(latitude: area.latitude, longitude: area.longitude),
-                        radius: area.radius
+                        radius: area.radius * 2
                     )
                     .foregroundStyle(.red.opacity(0.6))
                 }
@@ -94,7 +94,6 @@ struct RouteDetailView: View {
                         .shadow(radius: 2)
                 }
             }
-            .disabled(routes.isEmpty)
             .padding(EdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 16))
         }
         .customHalfSheet(offset: $modalOffset) { sheet }
@@ -105,7 +104,7 @@ struct RouteDetailView: View {
             self.isNight = false
         }
     }
-    
+
     private var sheetTopBar: some View {
         HStack(spacing:0) {
             Image(systemName: "book.pages")
@@ -126,7 +125,7 @@ struct RouteDetailView: View {
             top: 0, leading: 22, bottom: 0, trailing: 22
         ))
     }
-    
+
     private var sheet: some View {
         NavigationStack {
             VStack {
@@ -155,7 +154,7 @@ struct RouteDetailView: View {
                                     ForEach(routes.indices, id: \.self) { index in
                                         let route = routes[index]
                                         routeRow(route, index: index)
-                                        .frame(height: 90)
+                                            .frame(height: 90)
                                         Divider()
                                             .padding(EdgeInsets(top: 12, leading: 0, bottom: 0, trailing: 0))
                                     }
@@ -169,9 +168,10 @@ struct RouteDetailView: View {
                     }
                 }
             }
+            .background(.white)
         }
     }
-    
+
     private var selectDestinationArea: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -222,7 +222,7 @@ struct RouteDetailView: View {
         )
         .padding(.horizontal)
     }
-    
+
     private func circleIcon(_ imageName: String) -> some View {
         Image(systemName: imageName)
             .resizable()
@@ -232,7 +232,7 @@ struct RouteDetailView: View {
                 top: 10, leading: 18, bottom: 10, trailing: 18
             ))
     }
-    
+
     private func destinationInput(_ text: Binding<String>) -> some View {
         VStack {
             HStack {
@@ -245,7 +245,7 @@ struct RouteDetailView: View {
         }
         .padding(.trailing, 20)
     }
-    
+
     private func routeRow(_ route: MKRoute, index: Int) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("\(Int(ceil(route.expectedTravelTime / 60))) min")
@@ -294,20 +294,20 @@ struct RouteDetailView: View {
             }
         }
     }
-    
+
     func calculateRoute(source: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) async {
         let sourcePlacemark = MKPlacemark(coordinate: source)
         let destinationPlacemark = MKPlacemark(coordinate: destination)
-        
+
         let request = MKDirections.Request()
         request.source = Place.tmna
         request.destination = Place.atAndTStadium
-        
+
         request.requestsAlternateRoutes = true
         request.source = MKMapItem(placemark: sourcePlacemark)
         request.destination = MKMapItem(placemark: destinationPlacemark)
         request.transportType = .automobile
-        
+
         do {
             let directions = MKDirections(request: request)
             let response = try await directions.calculate()
@@ -317,41 +317,41 @@ struct RouteDetailView: View {
             print(error.localizedDescription)
         }
     }
-    
+
     func roundToThirdDecimalPlace(value: Double) -> Double {
         return (value * 1000).rounded() / 1000
     }
-    
+
     func isCoordinateInRoundedRoute(route: CLLocationCoordinate2D, testCoordinate: CLLocationCoordinate2D) -> Bool {
         let roundedTestCoordinate = CLLocationCoordinate2D(
             latitude: roundToThirdDecimalPlace(value: testCoordinate.latitude),
             longitude: roundToThirdDecimalPlace(value: testCoordinate.longitude)
         )
-        
+
         let roundedRouteCoordinate = CLLocationCoordinate2D(
             latitude: roundToThirdDecimalPlace(value: route.latitude),
             longitude: roundToThirdDecimalPlace(value: route.longitude)
         )
-        
+
         if roundedRouteCoordinate.latitude == roundedTestCoordinate.latitude &&
             roundedRouteCoordinate.longitude == roundedTestCoordinate.longitude {
             return true
         }
         return false
     }
-    
+
     func countRouteAvoidsArea(route: MKRoute) -> Int {
         let routePolyline = route.polyline
         let pointCount = routePolyline.pointCount
         let points = routePolyline.points()
         var count = 0
-        
+
         for i in 0..<pointCount {
             let coordinate = points[i].coordinate
-            
+
             for dangerPoint in dangerArea {
                 let coordinate = CLLocationCoordinate2D(latitude: dangerPoint.latitude, longitude: dangerPoint.longitude)
-                
+
                 if isCoordinateInRoundedRoute(route: coordinate, testCoordinate: coordinate) {
                     count += 1
                 }
@@ -359,55 +359,55 @@ struct RouteDetailView: View {
         }
         return count
     }
-    
+
     func generateCoordinatePatterns(center: CLLocationCoordinate2D, latitudeRange: ClosedRange<Double>, longitudeRange: ClosedRange<Double>) -> [CLLocationCoordinate2D] {
         var patterns: [CLLocationCoordinate2D] = []
-        
+
         let step = 0.0001
-        
+
         for lat in stride(from: latitudeRange.lowerBound, through: latitudeRange.upperBound, by: step) {
             for lon in stride(from: longitudeRange.lowerBound, through: longitudeRange.upperBound, by: step) {
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
                 patterns.append(coordinate)
             }
         }
-        
+
         return patterns
     }
-    
+
     func convertPointToRank(originalArray: [Int]) -> [Int] {
         let sortedArray = originalArray.sorted()
         var ranks = [Int](repeating: 0, count: originalArray.count)
-        
+
         for (index, value) in originalArray.enumerated() {
             if let rank = sortedArray.firstIndex(of: value) {
                 ranks[index] = rank + 1
             }
         }
-        
+
         return ranks
     }
-    
+
     func convertExpectedTimeToRank(originalArray: [Int]) {
         print("originalArray \(originalArray)")
         //        let sortedArray = originalArray.sorted(by: )
     }
-    
+
     func assignScores(from array: [Int]) -> [Int] {
         let count = array.count
         if count < 2 { return [] }
-        
+
         var scores = [Int](repeating: 0, count: count)
-        
+
         let indexedArray = array.enumerated().map { (index: $0.offset, value: $0.element) }
-        
+
         let sortedArray = indexedArray.sorted { $0.value < $1.value }
-        
+
         for (rank, element) in sortedArray.enumerated() {
             let score = 80 - ((70 * rank) / (count - 1))
             scores[element.index] = score
         }
-        
+
         return scores
     }
 }
