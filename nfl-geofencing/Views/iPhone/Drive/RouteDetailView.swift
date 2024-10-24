@@ -203,8 +203,8 @@ struct RouteDetailView: View {
                             self.rankList = convertPointToRank(originalArray: dangerPointCountList)
                             self.scoreList = assignScores(from: rankList)
                             self.fasterRouteList.append(route.expectedTravelTime)
+                            self.fasterRouteList.sort()
                         }
-                        self.fasterRouteList.sort()
                         isSearching = false
                     }
                 } label: {
